@@ -4,9 +4,6 @@
 
 This courses covers the fundamental algorithms in data mining and machine learning; form the basis of data science, utilizing automated methods to analyze patterns and models for all kinds of data in applications ranging from scientific discovery to business analytics.
 
-```{tableofcontents}
-```
-
 # Course Staff  
 
 ## Instructors  
