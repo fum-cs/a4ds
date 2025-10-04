@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -209,6 +209,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/k-means-clustering.html">k-means Clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/high_dim_and_CD.html">High Dimensional Data &amp; the curse of dimensionality</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/high_dim_and_k-means.html">k-means in high dimensional spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/kNN-Classification-Evaluation.html">k-Nearest Neighbors and Classification Evaluation Metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/high_dim_and_KNN.html">kNN in high dimensional spaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_clustering.html">Clustering images</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image-clustering_HC.html">Clustering images by hierarchical clustering</a></li>
@@ -231,15 +232,13 @@
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="kNN-Classification-Evaluation.html">k-Nearest Neighbors and Classification Evaluation Metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.11-Clustering.html">Clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="K-Means-Clustering.html">k-means Clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression-part1.html">Linear Regression, Part 1</a></li>
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis-part1.html">Principal Component Analysis, PDSHB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
 </ul>
 </details></li>
@@ -536,7 +535,7 @@ In later chapters, we will go into more depth regarding the particular models an
 <h3>Classification: Predicting Discrete Labels<a class="headerlink" href="#classification-predicting-discrete-labels" title="Link to this heading">#</a></h3>
 <p>We will first take a look at a simple classification task, in which we are given a set of labeled points and want to use these to classify some unlabeled points.</p>
 <p>Imagine that we have the data shown in this figure:</p>
-<p><img alt="" src="machine-learning/img/05.01-classification-1.png" /></p>
+<p><img alt="" src="../_images/05.01-classification-1.png" /></p>
 <p>This data is two-dimensional: that is, we have two <em>features</em> for each point, represented by the (x,y) positions of the points on the plane.
 In addition, we have one of two <em>class labels</em> for each point, here represented by the colors of the points.
 From these features and labels, we would like to create a model that will let us decide whether a new point should be labeled “blue” or “red.”</p>
@@ -544,11 +543,11 @@ From these features and labels, we would like to create a model that will let us
 Here the <em>model</em> is a quantitative version of the statement “a straight line separates the classes,” while the <em>model parameters</em> are the particular numbers describing the location and orientation of that line for our data.
 The optimal values for these model parameters are learned from the data (this is the “learning” in machine learning), which is often called <em>training the model</em>.</p>
 <p>See the following figure shows a visual representation of what the trained model looks like for this data.</p>
-<p><img alt="" src="machine-learning/img/05.01-classification-2.png" /></p>
+<p><img alt="" src="../_images/05.01-classification-2.png" /></p>
 <p>Now that this model has been trained, it can be generalized to new, unlabeled data.
 In other words, we can take a new set of data, draw this line through it, and assign labels to the new points based on this model (see the following figure).
 This stage is usually called <em>prediction</em>.</p>
-<p><img alt="" src="machine-learning/img/05.01-classification-3.png" /></p>
+<p><img alt="" src="../_images/05.01-classification-3.png" /></p>
 <p>This is the basic idea of a classification task in machine learning, where “classification” indicates that the data has discrete class labels.
 At first glance this may seem trivial: it’s easy to look at our data and draw such a discriminatory line to accomplish this classification.
 A benefit of the machine learning approach, however, is that it can generalize to much larger datasets in many more dimensions.</p>
@@ -566,21 +565,21 @@ We will see an example of such text-based classification in <a class="reference 
 <h3>Regression: Predicting Continuous Labels<a class="headerlink" href="#regression-predicting-continuous-labels" title="Link to this heading">#</a></h3>
 <p>In contrast with the discrete labels of a classification algorithm, we will next look at a simple regression task in which the labels are continuous quantities.</p>
 <p>Consider the data shown in the following figure, which consists of a set of points each with a continuous label.</p>
-<p><img alt="" src="machine-learning/img/05.01-regression-1.png" /></p>
+<p><img alt="" src="../_images/05.01-regression-1.png" /></p>
 <p>As with the classification example, we have two-dimensional data: that is, there are two features describing each data point.
 The color of each point represents the continuous label for that point.</p>
 <p>There are a number of possible regression models we might use for this type of data, but here we will use a simple linear regression model to predict the points.
 This simple model assumes that if we treat the label as a third spatial dimension, we can fit a plane to the data.
 This is a higher-level generalization of the well-known problem of fitting a line to data with two coordinates.</p>
 <p>We can visualize this setup as shown in the following figure:</p>
-<p><img alt="" src="machine-learning/img/05.01-regression-2.png" /></p>
+<p><img alt="" src="../_images/05.01-regression-2.png" /></p>
 <p>Notice that the <em>feature 1–feature 2</em> plane here is the same as in the two-dimensional plot in Figure 37-4; in this case, however, we have represented the labels by both color and three-dimensional axis position.
 From this view, it seems reasonable that fitting a plane through this three-dimensional data would allow us to predict the expected label for any set of input parameters.
 Returning to the two-dimensional projection, when we fit such a plane we get the result shown in the following figure:</p>
-<p><img alt="" src="machine-learning/img/05.01-regression-3.png" /></p>
+<p><img alt="" src="../_images/05.01-regression-3.png" /></p>
 <p>This plane of fit gives us what we need to predict labels for new points.
 Visually, we find the results shown in the following figure:</p>
-<p><img alt="" src="machine-learning/img/05.01-regression-4.png" /></p>
+<p><img alt="" src="../_images/05.01-regression-4.png" /></p>
 <p>As with the classification example, this task may seem trivial in a low number of dimensions.
 But the power of these methods is that they can be straightforwardly applied and evaluated in the case of data with many, many features.</p>
 <p>For example, this is similar to the task of computing the distance to galaxies observed through a telescope—in this case, we might use the following features and labels:</p>
@@ -638,11 +637,11 @@ In astronomy circles, this is known as the “photometric redshift” problem.</
 Unsupervised learning involves models that describe data without reference to any known labels.</p>
 <p>One common case of unsupervised learning is “clustering,” in which data is automatically assigned to some number of discrete groups.
 For example, we might have some two-dimensional data like that shown in the following figure:</p>
-<p><img alt="" src="machine-learning/img/05.01-clustering-1.png" /></p>
+<p><img alt="" src="../_images/05.01-clustering-1.png" /></p>
 <p>By eye, it is clear that each of these points is part of a distinct group.
 Given this input, a clustering model will use the intrinsic structure of the data to determine which points are related.
 Using the very fast and intuitive <em>k</em>-means algorithm (see <a class="reference internal" href="05.11-Clustering.html"><span class="std std-doc">Clustering</span></a>), we find the clusters shown in the following figure:</p>
-<p><img alt="" src="machine-learning/img/05.01-clustering-2.png" /></p>
+<p><img alt="" src="../_images/05.01-clustering-2.png" /></p>
 <p><em>k</em>-means fits a model consisting of <em>k</em> cluster centers; the optimal centers are assumed to be those that minimize the distance of each point from its assigned center.
 Again, this might seem like a trivial exercise in two dimensions, but as our data becomes larger and more complex such clustering algorithms can continue to be employed to extract useful information from the dataset.</p>
 <p>We will discuss the <em>k</em>-means algorithm in more depth in <a class="reference internal" href="05.11-Clustering.html"><span class="std std-doc">Clustering</span></a>.
@@ -654,12 +653,12 @@ Other important clustering algorithms include Gaussian mixture models (see <a cl
 Dimensionality reduction is a bit more abstract than the examples we looked at before, but generally it seeks to pull out some low-dimensional representation of data that in some way preserves relevant qualities of the full dataset.
 Different dimensionality reduction routines measure these relevant qualities in different ways, as we will see in <a class="reference internal" href="#05.10-Manifold-Learning.ipynb"><span class="xref myst"> Manifold Learning</span></a>.</p>
 <p>As an example of this, consider the data shown in the following figure:</p>
-<p><img alt="" src="machine-learning/img/05.01-dimesionality-1.png" /></p>
+<p><img alt="" src="../_images/05.01-dimesionality-1.png" /></p>
 <p>Visually, it is clear that there is some structure in this data: it is drawn from a one-dimensional line that is arranged in a spiral within this two-dimensional space.
 In a sense, you could say that this data is “intrinsically” only one-dimensional, though this one-dimensional data is embedded in two-dimensional space.
 A suitable dimensionality reduction model in this case would be sensitive to this nonlinear embedded structure and be able to detect this lower-dimensionality representation.</p>
 <p>The following figure shows a visualization of the results of the Isomap algorithm, a manifold learning algorithm that does exactly this.</p>
-<p><img alt="" src="machine-learning/img/05.01-dimesionality-2.png" /></p>
+<p><img alt="" src="../_images/05.01-dimesionality-2.png" /></p>
 <p>Notice that the colors (which represent the extracted one-dimensional latent variable) change uniformly along the spiral, which indicates that the algorithm did in fact detect the structure we saw by eye.
 As with the previous examples, the power of dimensionality reduction algorithms becomes clearer in higher-dimensional cases.
 For example, we might wish to visualize important relationships within a dataset that has 100 or 1,000 features.
