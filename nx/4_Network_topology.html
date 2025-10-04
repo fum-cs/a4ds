@@ -1,0 +1,1145 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4. Topology: network properties &#8212; Algorithms for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nx/4_Network_topology';</script>
+    <link rel="icon" href="../_static/fum-logo.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Network analysis: centrality measures" href="5_network_analysis_centralitiy.html" />
+    <link rel="prev" title="3. Graph extentions" href="3_Extensions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/fum-cs-logo.png" class="logo__image only-light" alt="Algorithms for Data Science - Home"/>
+    <script>document.write(`<img src="../_static/fum-cs-logo.png" class="logo__image only-dark" alt="Algorithms for Data Science - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to Algorithms for Data Science Course
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Python &amp; NumPy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pyhton-DSHB/Python-DSHB-intro.html">Foundation from the Python Data Science Handbook</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pyhton-DSHB/02.01-Understanding-Data-Types.html">Understanding Data Types in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pyhton-DSHB/02.02-The-Basics-Of-NumPy-Arrays.html">The Basics of NumPy Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pyhton-DSHB/02.03-Computation-on-arrays-ufuncs.html">Computation on NumPy Arrays: Universal Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pyhton-DSHB/02.04-Computation-on-arrays-aggregates.html">Aggregations: min, max, and Everything in Between</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pyhton-DSHB/02.05-Computation-on-arrays-broadcasting.html">Computation on Arrays: Broadcasting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pyhton-DSHB/02.06-Boolean-Arrays-and-Masks.html">Comparisons, Masks, and Boolean Logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pyhton-DSHB/02.07-Fancy-Indexing.html">Fancy Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pyhton-DSHB/02.08-Sorting.html">Sorting Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pyhton-DSHB/02.09-Structured-Data-NumPy.html">Structured Data: NumPy’s Structured Arrays</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Networkx</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Introduction to Graph Theory and Complex Networks Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_Introduction.html">1. Introduction to Graph Theory and Complex Network Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_Fundamentals.html">2. Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_Extensions.html">3. Graph extentions</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4. Topology: network properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_network_analysis_centralitiy.html">5. Network analysis: centrality measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_network_analysis_across_time.html">6. Longitudinal analysis; Evolution of complex networks.</a></li>
+
+
+
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">High Dimensional Spaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../high-dimensional-spaces/high-dim-intro.html">High Dimensional Spaces</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/SAT_Table.html">SAT-Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/NQueen.html">N-Queen Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_01_intro.html">Images as high dimensional data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_02_seg_k-means.html">Image Segmentaion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_03_seg_coords.html">Add coordinates as spatial features to clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/BF-clustering.html">Brute force search clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/k-means-clustering.html">k-means Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/high_dim_and_CD.html">High Dimensional Data &amp; the curse of dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/high_dim_and_k-means.html">k-means in high dimensional spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/kNN-Classification-Evaluation.html">k-Nearest Neighbors and Classification Evaluation Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/high_dim_and_KNN.html">kNN in high dimensional spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_clustering.html">Clustering images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image-clustering_HC.html">Clustering images by hierarchical clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/LVQ.html">Vector Quantization</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/Dimensionality-reduction_01.html">Dimensionality Reduction - Part 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/Dimensionality-reduction_02.html">Dimensionality Reduction - Part 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/Bias-Variance-Tradeoff.html">Bias-Variance Tradeoff</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../machine-learning/05.00-Machine-Learning.html">Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.01-What-Is-Machine-Learning.html">What Is Machine Learning?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.02-Introducing-Scikit-Learn.html">Introducing Scikit-Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.04-Feature-Engineering.html">Feature Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.05-Naive-Bayes.html">Naive Bayes Classification</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.11-Clustering.html">Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.12-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.06-Linear-Regression-part1.html">Linear Regression, Part 1</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.09-Principal-Component-Analysis-part1.html">Principal Component Analysis, PDSHB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/fum-cs/a4ds/blob/main/docs/nx/4_Network_topology.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fum-cs/a4ds" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fum-cs/a4ds/issues/new?title=Issue%20on%20page%20%2Fnx/4_Network_topology.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/nx/4_Network_topology.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>4. Topology: network properties</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topology-measures">4.1. Topology measures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#network-size-n-i">4.1.3. Network size (<span class="math notranslate nohighlight">\(N_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-links-e-i">4.1.2. Number of links (<span class="math notranslate nohighlight">\(E_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-degree-k-i-u">4.1.3. Node degree (<span class="math notranslate nohighlight">\(K_{i,u}\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#density-d-i">4.1.4. Density (<span class="math notranslate nohighlight">\(d_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accumulated-degree-k-i">4.1.5. Accumulated degree (<span class="math notranslate nohighlight">\(K_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-links-of-attribute-attr-w-i">4.1.6. Weighted links of attribute <code class="docutils literal notranslate"><span class="pre">attr</span></code> (<span class="math notranslate nohighlight">\(W_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-components-c-i">4.1.7. Number of components (<span class="math notranslate nohighlight">\(c_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nodos-en-la-componente-principal-s-i">4.1.8. Nodos en la componente principal (<span class="math notranslate nohighlight">\(S_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-clustering-coefficient-langle-c-i-rangle">4.1.9. Mean clustering coefficient <span class="math notranslate nohighlight">\(\langle C_i \rangle\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-triangles-delta">4.1.10. Number of triangles (<span class="math notranslate nohighlight">\(\#\Delta\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-path-length-langle-l-rangle">4.1.11. Average path length <span class="math notranslate nohighlight">\(\langle l \rangle\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-comparison-of-topology-metric-between-two-networks">4.2. Example: Comparison of topology metric between two networks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="topology-network-properties">
+<h1>4. Topology: network properties<a class="headerlink" href="#topology-network-properties" title="Link to this heading">#</a></h1>
+<p>Import modules:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<p>When studying the topology of a network, we refer to the characteristics of the network structure.</p>
+<p>There are many metrics that allow us to characterize and compare network topologies.</p>
+<p>Example of these features/metrics are:</p>
+<ul class="simple">
+<li><p>Network Size (<span class="math notranslate nohighlight">\(N_i\)</span>)</p></li>
+<li><p>Number of links (<span class="math notranslate nohighlight">\(E_i\)</span>)</p></li>
+<li><p>Node degree (<span class="math notranslate nohighlight">\(K_{i,u}\)</span>)</p></li>
+<li><p>Density (<span class="math notranslate nohighlight">\(d_i\)</span>)</p></li>
+<li><p>Accumulated degree (<span class="math notranslate nohighlight">\(K_i\)</span>)</p></li>
+<li><p>Weighted link of attribute (<span class="math notranslate nohighlight">\(W_i\)</span>)</p></li>
+<li><p>Number of components (<span class="math notranslate nohighlight">\(c_i\)</span>)</p></li>
+<li><p>Nodes of the largest connected component (<span class="math notranslate nohighlight">\(S_i\)</span>)</p></li>
+<li><p>Mean clustering coefficient (<span class="math notranslate nohighlight">\(\langle C_i \rangle\)</span>)</p></li>
+<li><p>Number of triangles (<span class="math notranslate nohighlight">\(\# \Delta\)</span>)</p></li>
+<li><p>Average path length (<span class="math notranslate nohighlight">\(\langle l \rangle\)</span>)</p></li>
+</ul>
+<p><strong>Example:</strong> Florenntine families Graph</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">florentine_families_graph</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#, gridspec_kw={&#39;width_ratios&#39;: [1.5, 1]})</span>
+<span class="n">sc</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;$Florentine\ families\ graph$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;$Florentine\\ families\\ graph$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/61e0f11e9f91518b6734d6c811bd4f360b1112c2dfde3e7947add93ef15459b6.png" src="../_images/61e0f11e9f91518b6734d6c811bd4f360b1112c2dfde3e7947add93ef15459b6.png" />
+</div>
+</div>
+<section id="topology-measures">
+<h2>4.1. Topology measures<a class="headerlink" href="#topology-measures" title="Link to this heading">#</a></h2>
+<section id="network-size-n-i">
+<h3>4.1.3. Network size (<span class="math notranslate nohighlight">\(N_i\)</span>)<a class="headerlink" href="#network-size-n-i" title="Link to this heading">#</a></h3>
+<p>Number of nodes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">network_size</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()</span> 
+<span class="n">network_size</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="number-of-links-e-i">
+<h3>4.1.2. Number of links (<span class="math notranslate nohighlight">\(E_i\)</span>)<a class="headerlink" href="#number-of-links-e-i" title="Link to this heading">#</a></h3>
+<p>Number of edges or connections.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number_of_links</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">number_of_edges</span><span class="p">()</span> 
+<span class="n">number_of_links</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="node-degree-k-i-u">
+<h3>4.1.3. Node degree (<span class="math notranslate nohighlight">\(K_{i,u}\)</span>)<a class="headerlink" href="#node-degree-k-i-u" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DegreeView({&#39;Acciaiuoli&#39;: 1, &#39;Medici&#39;: 6, &#39;Castellani&#39;: 3, &#39;Peruzzi&#39;: 3, &#39;Strozzi&#39;: 4, &#39;Barbadori&#39;: 2, &#39;Ridolfi&#39;: 3, &#39;Tornabuoni&#39;: 3, &#39;Albizzi&#39;: 3, &#39;Salviati&#39;: 2, &#39;Pazzi&#39;: 1, &#39;Bischeri&#39;: 3, &#39;Guadagni&#39;: 4, &#39;Ginori&#39;: 1, &#39;Lamberteschi&#39;: 1})
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DegreeView({&#39;Acciaiuoli&#39;: 1, &#39;Medici&#39;: 6, &#39;Castellani&#39;: 3, &#39;Peruzzi&#39;: 3, &#39;Strozzi&#39;: 4, &#39;Barbadori&#39;: 2, &#39;Ridolfi&#39;: 3, &#39;Tornabuoni&#39;: 3, &#39;Albizzi&#39;: 3, &#39;Salviati&#39;: 2, &#39;Pazzi&#39;: 1, &#39;Bischeri&#39;: 3, &#39;Guadagni&#39;: 4, &#39;Ginori&#39;: 1, &#39;Lamberteschi&#39;: 1})
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dict</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_values([1, 6, 3, 3, 4, 2, 3, 3, 3, 2, 1, 3, 4, 1, 1])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_degrees</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+<span class="n">G_degrees</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 6, 3, 3, 4, 2, 3, 3, 3, 2, 1, 3, 4, 1, 1])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="density-d-i">
+<h3>4.1.4. Density (<span class="math notranslate nohighlight">\(d_i\)</span>)<a class="headerlink" href="#density-d-i" title="Link to this heading">#</a></h3>
+<p>Ratio of actual connections <span class="math notranslate nohighlight">\(d_i = \frac{2 E_i}{N_i (N_i - 1)}\)</span> for undirected graphs and <span class="math notranslate nohighlight">\(d_i = \frac{E_i}{N_i (N_i - 1)}\)</span> for directed ones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">density</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">G</span><span class="p">)</span> 
+<span class="n">density</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">number_of_links</span><span class="o">/</span><span class="p">(</span><span class="n">network_size</span><span class="o">*</span><span class="p">(</span><span class="n">network_size</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.19047619047619047, 0.19047619047619047)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="accumulated-degree-k-i">
+<h3>4.1.5. Accumulated degree (<span class="math notranslate nohighlight">\(K_i\)</span>)<a class="headerlink" href="#accumulated-degree-k-i" title="Link to this heading">#</a></h3>
+<p>Total contacts in Graph <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(K_i = \sum_n k_n\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accumulated_degree</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">G_degrees</span><span class="p">)</span>
+<span class="n">accumulated_degree</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>40
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="weighted-links-of-attribute-attr-w-i">
+<h3>4.1.6. Weighted links of attribute <code class="docutils literal notranslate"><span class="pre">attr</span></code> (<span class="math notranslate nohighlight">\(W_i\)</span>)<a class="headerlink" href="#weighted-links-of-attribute-attr-w-i" title="Link to this heading">#</a></h3>
+<p>Sum of weighted links based on a given attribute <span class="math notranslate nohighlight">\(attr\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(W_i = \sum_u \sum_{u &gt; v} w_{uv}^{attr}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number_connected_components</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">number_connected_components</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">number_connected_components</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="number-of-components-c-i">
+<h3>4.1.7. Number of components (<span class="math notranslate nohighlight">\(c_i\)</span>)<a class="headerlink" href="#number-of-components-c-i" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number_connected_components</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">number_connected_components</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">number_connected_components</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Network structure/fragmentation.</p>
+</section>
+<section id="nodos-en-la-componente-principal-s-i">
+<h3>4.1.8. Nodos en la componente principal (<span class="math notranslate nohighlight">\(S_i\)</span>)<a class="headerlink" href="#nodos-en-la-componente-principal-s-i" title="Link to this heading">#</a></h3>
+<p>Network structure/fragmentation.</p>
+</section>
+<section id="mean-clustering-coefficient-langle-c-i-rangle">
+<h3>4.1.9. Mean clustering coefficient <span class="math notranslate nohighlight">\(\langle C_i \rangle\)</span><a class="headerlink" href="#mean-clustering-coefficient-langle-c-i-rangle" title="Link to this heading">#</a></h3>
+<p>Probabbility of common neighbours.</p>
+<p><span class="math notranslate nohighlight">\(\langle C_i \rangle = \frac{1}{N_i} \sum_n C^\prime_{n,i}\)</span>, where <span class="math notranslate nohighlight">\(C^\prime_{n,i} = \frac{E^{(n)}}{k_n(k_n-1)}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_clustering_coef</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">average_clustering</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">mean_clustering_coef</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.16
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="number-of-triangles-delta">
+<h3>4.1.10. Number of triangles (<span class="math notranslate nohighlight">\(\#\Delta\)</span>)<a class="headerlink" href="#number-of-triangles-delta" title="Link to this heading">#</a></h3>
+<p>Number of triangles that includes a given node as one of its vertex.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">triangles</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Acciaiuoli&#39;: 0,
+ &#39;Medici&#39;: 1,
+ &#39;Castellani&#39;: 1,
+ &#39;Peruzzi&#39;: 2,
+ &#39;Strozzi&#39;: 2,
+ &#39;Barbadori&#39;: 0,
+ &#39;Ridolfi&#39;: 1,
+ &#39;Tornabuoni&#39;: 1,
+ &#39;Albizzi&#39;: 0,
+ &#39;Salviati&#39;: 0,
+ &#39;Pazzi&#39;: 0,
+ &#39;Bischeri&#39;: 1,
+ &#39;Guadagni&#39;: 0,
+ &#39;Ginori&#39;: 0,
+ &#39;Lamberteschi&#39;: 0}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_tri</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">triangles</span><span class="p">(</span><span class="n">G</span><span class="p">))</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_tri</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, 2, 2, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">average_triangles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">G_tri</span><span class="p">)</span>
+<span class="n">average_triangles</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="average-path-length-langle-l-rangle">
+<h3>4.1.11. Average path length <span class="math notranslate nohighlight">\(\langle l \rangle\)</span><a class="headerlink" href="#average-path-length-langle-l-rangle" title="Link to this heading">#</a></h3>
+<p>Social accessibility between non-interactings.</p>
+<p><span class="math notranslate nohighlight">\(\langle l \rangle = \sum \sum l_{i,j}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">average_shortest_path_length</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">average_shortest_path_length</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">average_shortest_path_length</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.4857142857142858
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="example-comparison-of-topology-metric-between-two-networks">
+<h2>4.2. Example: Comparison of topology metric between two networks<a class="headerlink" href="#example-comparison-of-topology-metric-between-two-networks" title="Link to this heading">#</a></h2>
+<p>In this section, we will compare the topology of two networks based on some of previous measures.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G1</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">florentine_families_graph</span><span class="p">()</span>
+<span class="n">G2</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#, gridspec_kw={&#39;width_ratios&#39;: [1.5, 1]})</span>
+
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G1</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sc</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G1</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;royalblue&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G1</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G2</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sc</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G2</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G2</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;&quot;Florentine families&quot;&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;&quot;Karate club&quot;&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;&quot;Karate club&quot;&#39;)
+</pre></div>
+</div>
+<img alt="../_images/d26a4dd9653e8e791f9a4baf928b9d1482ed79b4c4daf1464c09e23b18832b6f.png" src="../_images/d26a4dd9653e8e791f9a4baf928b9d1482ed79b4c4daf1464c09e23b18832b6f.png" />
+</div>
+</div>
+<p>Thus, for both graphs, we will compute the next metrics:</p>
+<ul class="simple">
+<li><p>Network size (<span class="math notranslate nohighlight">\(N_i\)</span>)</p></li>
+<li><p>Number of links (<span class="math notranslate nohighlight">\(E_i\)</span>)</p></li>
+<li><p>Average node degree (<span class="math notranslate nohighlight">\(\langle K_{i} \rangle\)</span>)</p></li>
+<li><p>Density (<span class="math notranslate nohighlight">\(d_i\)</span>)</p></li>
+<li><p>Accumulated degree (<span class="math notranslate nohighlight">\(K_i\)</span>)</p></li>
+<li><p>Mean clustering coefficient (<span class="math notranslate nohighlight">\(\langle C_i \rangle\)</span>)</p></li>
+<li><p>Average number of triangles (<span class="math notranslate nohighlight">\(\langle \# \Delta \rangle\)</span>)</p></li>
+<li><p>Average path length (<span class="math notranslate nohighlight">\(\langle l \rangle\)</span>)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_topology_values</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
+  <span class="c1"># input:</span>
+  <span class="c1"># G: Networkx Graph</span>
+  <span class="c1"># out:</span>
+  <span class="c1"># dict (key: metric name, value: metric value)</span>
+
+  <span class="n">d_topology_vals</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">&quot;network_size&quot;</span> <span class="p">:</span> <span class="n">G</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">(),</span>
+      <span class="s2">&quot;number_of_links&quot;</span> <span class="p">:</span> <span class="n">G</span><span class="o">.</span><span class="n">number_of_edges</span><span class="p">(),</span>
+      <span class="s2">&quot;avg_degree&quot;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="o">.</span><span class="n">values</span><span class="p">())),</span>
+      <span class="s2">&quot;density&quot;</span> <span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">G</span><span class="p">),</span>
+      <span class="s2">&quot;accumulated_degeree&quot;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="o">.</span><span class="n">values</span><span class="p">())),</span>
+      <span class="s2">&quot;avg_clustering_coef&quot;</span> <span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">average_clustering</span><span class="p">(</span><span class="n">G</span><span class="p">),</span>
+      <span class="s2">&quot;avg_triangles&quot;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">triangles</span><span class="p">(</span><span class="n">G</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">())),</span>
+      <span class="s2">&quot;avg_path_length&quot;</span> <span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">average_shortest_path_length</span><span class="p">(</span><span class="n">G</span><span class="p">),</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">d_topology_vals</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">topology_G1</span> <span class="o">=</span> <span class="n">get_topology_values</span><span class="p">(</span><span class="n">G1</span><span class="p">)</span>
+<span class="n">topology_G2</span> <span class="o">=</span> <span class="n">get_topology_values</span><span class="p">(</span><span class="n">G2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">topology_G1</span><span class="p">,</span> <span class="n">topology_G2</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;G_1&quot;</span><span class="p">,</span> <span class="s2">&quot;G_2&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>G_1</th>
+      <th>G_2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>network_size</th>
+      <td>15.000000</td>
+      <td>34.000000</td>
+    </tr>
+    <tr>
+      <th>number_of_links</th>
+      <td>20.000000</td>
+      <td>78.000000</td>
+    </tr>
+    <tr>
+      <th>avg_degree</th>
+      <td>2.666667</td>
+      <td>4.588235</td>
+    </tr>
+    <tr>
+      <th>density</th>
+      <td>0.190476</td>
+      <td>0.139037</td>
+    </tr>
+    <tr>
+      <th>accumulated_degeree</th>
+      <td>40.000000</td>
+      <td>156.000000</td>
+    </tr>
+    <tr>
+      <th>avg_clustering_coef</th>
+      <td>0.160000</td>
+      <td>0.570638</td>
+    </tr>
+    <tr>
+      <th>avg_triangles</th>
+      <td>0.600000</td>
+      <td>3.970588</td>
+    </tr>
+    <tr>
+      <th>avg_path_length</th>
+      <td>2.485714</td>
+      <td>2.408200</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Maarten van Steen (2010). Graph Theory and Complex Networks. An Introduction (Book).</p></li>
+<li><p>Newman, M. (2010). Networks: An Introduction (Book).
+Robin J. Wilson (1996). Introduction to Graph Theory (eBook: <a class="reference external" href="https://www.maths.ed.ac.uk/~v1ranick/papers/wilsongraph.pdf">https://www.maths.ed.ac.uk/~v1ranick/papers/wilsongraph.pdf</a>).</p></li>
+<li><p>Samaniego, H., Franco-Cisterna, M., &amp; Sotomayor-Gómez, B. (2020). The topology of communicating across cities of increasing sizes, or the complex task of “reaching out” in larger cities. Theories and Models of Urbanization: Geography, Economics and Computing Sciences, 97-118. (Article, <a class="reference external" href="https://link.springer.com/chapter/10.1007/978-3-030-36656-8_6">https://link.springer.com/chapter/10.1007/978-3-030-36656-8_6</a>)</p></li>
+</ol>
+<hr class="docutils" />
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./nx"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="3_Extensions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">3. Graph extentions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="5_network_analysis_centralitiy.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">5. Network analysis: centrality measures</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topology-measures">4.1. Topology measures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#network-size-n-i">4.1.3. Network size (<span class="math notranslate nohighlight">\(N_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-links-e-i">4.1.2. Number of links (<span class="math notranslate nohighlight">\(E_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-degree-k-i-u">4.1.3. Node degree (<span class="math notranslate nohighlight">\(K_{i,u}\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#density-d-i">4.1.4. Density (<span class="math notranslate nohighlight">\(d_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accumulated-degree-k-i">4.1.5. Accumulated degree (<span class="math notranslate nohighlight">\(K_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-links-of-attribute-attr-w-i">4.1.6. Weighted links of attribute <code class="docutils literal notranslate"><span class="pre">attr</span></code> (<span class="math notranslate nohighlight">\(W_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-components-c-i">4.1.7. Number of components (<span class="math notranslate nohighlight">\(c_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nodos-en-la-componente-principal-s-i">4.1.8. Nodos en la componente principal (<span class="math notranslate nohighlight">\(S_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-clustering-coefficient-langle-c-i-rangle">4.1.9. Mean clustering coefficient <span class="math notranslate nohighlight">\(\langle C_i \rangle\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-triangles-delta">4.1.10. Number of triangles (<span class="math notranslate nohighlight">\(\#\Delta\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-path-length-langle-l-rangle">4.1.11. Average path length <span class="math notranslate nohighlight">\(\langle l \rangle\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-comparison-of-topology-metric-between-two-networks">4.2. Example: Comparison of topology metric between two networks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mahmood Amintoosi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025. CC0 Licensed - Computer Science Dept., Ferdowsi University of Mashhad.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

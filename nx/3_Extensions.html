@@ -1,0 +1,1292 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. Graph extentions &#8212; Algorithms for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nx/3_Extensions';</script>
+    <link rel="icon" href="../_static/fum-logo.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Topology: network properties" href="4_Network_topology.html" />
+    <link rel="prev" title="2. Fundamentals" href="2_Fundamentals.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/fum-cs-logo.png" class="logo__image only-light" alt="Algorithms for Data Science - Home"/>
+    <script>document.write(`<img src="../_static/fum-cs-logo.png" class="logo__image only-dark" alt="Algorithms for Data Science - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to Algorithms for Data Science Course
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Python &amp; NumPy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pyhton-DSHB/Python-DSHB-intro.html">Foundation from the Python Data Science Handbook</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pyhton-DSHB/02.01-Understanding-Data-Types.html">Understanding Data Types in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pyhton-DSHB/02.02-The-Basics-Of-NumPy-Arrays.html">The Basics of NumPy Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pyhton-DSHB/02.03-Computation-on-arrays-ufuncs.html">Computation on NumPy Arrays: Universal Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pyhton-DSHB/02.04-Computation-on-arrays-aggregates.html">Aggregations: min, max, and Everything in Between</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pyhton-DSHB/02.05-Computation-on-arrays-broadcasting.html">Computation on Arrays: Broadcasting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pyhton-DSHB/02.06-Boolean-Arrays-and-Masks.html">Comparisons, Masks, and Boolean Logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pyhton-DSHB/02.07-Fancy-Indexing.html">Fancy Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pyhton-DSHB/02.08-Sorting.html">Sorting Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pyhton-DSHB/02.09-Structured-Data-NumPy.html">Structured Data: NumPy’s Structured Arrays</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Networkx</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Introduction to Graph Theory and Complex Networks Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_Introduction.html">1. Introduction to Graph Theory and Complex Network Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_Fundamentals.html">2. Fundamentals</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3. Graph extentions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_Network_topology.html">4. Topology: network properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_network_analysis_centralitiy.html">5. Network analysis: centrality measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_network_analysis_across_time.html">6. Longitudinal analysis; Evolution of complex networks.</a></li>
+
+
+
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">High Dimensional Spaces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../high-dimensional-spaces/high-dim-intro.html">High Dimensional Spaces</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/SAT_Table.html">SAT-Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/NQueen.html">N-Queen Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_01_intro.html">Images as high dimensional data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_02_seg_k-means.html">Image Segmentaion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_03_seg_coords.html">Add coordinates as spatial features to clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/BF-clustering.html">Brute force search clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/k-means-clustering.html">k-means Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/high_dim_and_CD.html">High Dimensional Data &amp; the curse of dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/high_dim_and_k-means.html">k-means in high dimensional spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/kNN-Classification-Evaluation.html">k-Nearest Neighbors and Classification Evaluation Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/high_dim_and_KNN.html">kNN in high dimensional spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_clustering.html">Clustering images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image-clustering_HC.html">Clustering images by hierarchical clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/LVQ.html">Vector Quantization</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/Dimensionality-reduction_01.html">Dimensionality Reduction - Part 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/Dimensionality-reduction_02.html">Dimensionality Reduction - Part 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/Bias-Variance-Tradeoff.html">Bias-Variance Tradeoff</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../machine-learning/05.00-Machine-Learning.html">Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.01-What-Is-Machine-Learning.html">What Is Machine Learning?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.02-Introducing-Scikit-Learn.html">Introducing Scikit-Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.04-Feature-Engineering.html">Feature Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.05-Naive-Bayes.html">Naive Bayes Classification</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.11-Clustering.html">Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.12-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.06-Linear-Regression-part1.html">Linear Regression, Part 1</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.09-Principal-Component-Analysis-part1.html">Principal Component Analysis, PDSHB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/fum-cs/a4ds/blob/main/docs/nx/3_Extensions.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fum-cs/a4ds" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fum-cs/a4ds/issues/new?title=Issue%20on%20page%20%2Fnx/3_Extensions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/nx/3_Extensions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>3. Graph extentions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directed-graphs-digraph">3.1. Directed graphs (Digraph)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">3.1.1. Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connectivity-in-digraphs">3.1.2. Connectivity in DiGraphs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-graphs">3.2. Weighted graphs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-digraphs">3.3. Weighted digraphs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bipartite-graph">3.4. Bipartite Graph</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.4.1. Definition</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-of-users-connected-by-artists">2.4.2.1. Graph of users connected by artists</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-of-artists-connected-by-users">2.4.2.2. Graph of artists connected by users</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-applications">3.4.2. Other applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="graph-extentions">
+<h1>3. Graph extentions<a class="headerlink" href="#graph-extentions" title="Link to this heading">#</a></h1>
+<p>Import modules:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<section id="directed-graphs-digraph">
+<h2>3.1. Directed graphs (Digraph)<a class="headerlink" href="#directed-graphs-digraph" title="Link to this heading">#</a></h2>
+<p>Sometimes, the direction of the connections between two nodes are relevant for modelling.</p>
+<p><img alt="image.png" src="data:image/png;base64,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" /></p>
+<p>In certain cases, such as modeling a network of people based on phone calls, the direction of the connections becomes significant. We need to distinguish between the caller (sender) and the person answering the call (receiver). If we use undirected networks, this valuable information about who is who is lost.</p>
+<p>To address this, we can utilize directed graphs, where the links have a specific direction or sense.</p>
+<section id="definition">
+<h3>3.1.1. Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h3>
+<p><strong>Definition</strong>: A directed graph or digraph <span class="math notranslate nohighlight">\(D\)</span> consists of a collection of vertices <span class="math notranslate nohighlight">\(V\)</span>, and a collection of arcs <span class="math notranslate nohighlight">\(E\)</span>, denoted as <span class="math notranslate nohighlight">\(D = (V,E)\)</span>. Each arc <span class="math notranslate nohighlight">\(e = \langle u, v \rangle\)</span> connects vertex <span class="math notranslate nohighlight">\(u \in V\)</span> to another (not necessarily distinct) vertex <span class="math notranslate nohighlight">\(v\)</span>. The vertex <span class="math notranslate nohighlight">\(u\)</span> is called the <em>origin</em> of <span class="math notranslate nohighlight">\(e\)</span> and <span class="math notranslate nohighlight">\(v\)</span> is called the <em>destination</em>.</p>
+<p><strong>Example:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">node_labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">edge_labels</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)]</span>
+<span class="n">weight</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">weighted_edges</span> <span class="o">=</span> <span class="p">[(</span><span class="n">edge_labels</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">edge_labels</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">edge_labels</span><span class="p">))]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">W</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">node_labels</span><span class="p">)</span>
+<span class="n">W</span><span class="o">.</span><span class="n">add_weighted_edges_from</span><span class="p">(</span><span class="n">weighted_edges</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s2">&quot;#cf52a5&quot;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">weight</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$W$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;$W$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/b5cbefaa90c2fb0ba74afc3fde7403bb73dcc31459afb4306cb67d32f70cddd2.png" src="../_images/b5cbefaa90c2fb0ba74afc3fde7403bb73dcc31459afb4306cb67d32f70cddd2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s2">&quot;weight&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>EdgeDataView([(0, 1, 1), (0, 2, 1), (1, 2, 2), (1, 3, 2), (2, 3, 2), (3, 4, 4)])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">WA</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">adjacency_matrix</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+<span class="n">WA</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 1, 0, 0],
+       [1, 0, 2, 2, 0],
+       [1, 2, 0, 2, 0],
+       [0, 2, 2, 0, 4],
+       [0, 0, 0, 4, 0]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cmap_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;Greys_r&#39;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">WA</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_</span><span class="p">)</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s2">&quot;weights&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Nodes&quot;</span><span class="p">);</span> <span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Nodes&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\m.amintoosi\AppData\Local\Temp\ipykernel_16216\3096156229.py:2: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed in 3.11. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap()`` or ``pyplot.get_cmap()`` instead.
+  cmap_ = plt.cm.get_cmap(&#39;Greys_r&#39;)
+</pre></div>
+</div>
+<img alt="../_images/55955a950bee486327f50262f6f5fa95159da461217414b8f3f8ee5fc8651bb3.png" src="../_images/55955a950bee486327f50262f6f5fa95159da461217414b8f3f8ee5fc8651bb3.png" />
+</div>
+</div>
+</section>
+<section id="connectivity-in-digraphs">
+<h3>3.1.2. Connectivity in DiGraphs<a class="headerlink" href="#connectivity-in-digraphs" title="Link to this heading">#</a></h3>
+<p>It is often important to “measure” the distance between one node and another. This is called “Connectivity” of the network.</p>
+<p>It is measured for both undirected and directed networks, and consists of finding paths between one node and another.</p>
+<p><strong>Definition</strong>: Consider a digraph <span class="math notranslate nohighlight">\(D\)</span>. A directed path-(<span class="math notranslate nohighlight">\(v_0, v_k\)</span>) in <span class="math notranslate nohighlight">\(D\)</span> is an alternating sequence <span class="math notranslate nohighlight">\([v_0, a_0, v_1, a_1, a_1, \dots, v_{k-1}, a_{k-1}, v_k]\)</span> of vertices and arcs of <span class="math notranslate nohighlight">\(D\)</span> with <span class="math notranslate nohighlight">\(\langle \overrightarrow{v_i, v_{i+1}} \rangle\)</span>. A <em>directed path</em> is a directed walk in which all arcs are distinct; a <em>directed path</em> is a directed path in which all vertices are also distinct.</p>
+<p><strong>Example:</strong></p>
+<p><img alt="image.png" src="data:image/png;base64,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" /></p>
+<p>For the previous Graph, what would a path from node <code class="docutils literal notranslate"><span class="pre">V1</span></code> to <code class="docutils literal notranslate"><span class="pre">V4</span></code> look like?</p>
+<p>A path can be:</p>
+<p><code class="docutils literal notranslate"><span class="pre">V1-&gt;</span> <span class="pre">a</span> <span class="pre">-&gt;</span> <span class="pre">V2</span> <span class="pre">-&gt;</span> <span class="pre">f</span> <span class="pre">-&gt;</span> <span class="pre">V4</span></code>.</p>
+<p>On the other hand, we can also go from <code class="docutils literal notranslate"><span class="pre">V1</span></code> to <code class="docutils literal notranslate"><span class="pre">V4</span></code> as follows:</p>
+<p><code class="docutils literal notranslate"><span class="pre">V1</span> <span class="pre">-&gt;</span> <span class="pre">a</span> <span class="pre">-&gt;</span> <span class="pre">V2</span> <span class="pre">-&gt;</span> <span class="pre">b</span> <span class="pre">-&gt;</span> <span class="pre">V3</span> <span class="pre">-&gt;</span> <span class="pre">c</span> <span class="pre">-&gt;</span> <span class="pre">V4</span></code>.</p>
+<p>We will consider this concept of “path” as <em>node accessibility</em> in Sub-Chapter 4 as a property of the network.</p>
+</section>
+</section>
+<section id="weighted-graphs">
+<h2>3.2. Weighted graphs<a class="headerlink" href="#weighted-graphs" title="Link to this heading">#</a></h2>
+<p><strong>Definition</strong>: A weighted graph <span class="math notranslate nohighlight">\(G\)</span> is a graph where each link <span class="math notranslate nohighlight">\(e\)</span> has a real number <span class="math notranslate nohighlight">\(w(e)\)</span> associated with it, called *weight. For a subgraph <span class="math notranslate nohighlight">\(H \subseteq G\)</span>, the weight of <span class="math notranslate nohighlight">\(H\)</span> is simply the sum of weights of its links: <span class="math notranslate nohighlight">\(w(H) = \sum_{e \in E(H)} w(e)\)</span>.</p>
+<p><strong>Example:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">node_labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">edge_labels</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)]</span>
+<span class="n">weight</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">weighted_edges</span> <span class="o">=</span> <span class="p">[(</span><span class="n">edge_labels</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">edge_labels</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">edge_labels</span><span class="p">))]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">W</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">node_labels</span><span class="p">)</span>
+<span class="n">W</span><span class="o">.</span><span class="n">add_weighted_edges_from</span><span class="p">(</span><span class="n">weighted_edges</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s2">&quot;#cf52a5&quot;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">weight</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$W$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;$W$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/b5cbefaa90c2fb0ba74afc3fde7403bb73dcc31459afb4306cb67d32f70cddd2.png" src="../_images/b5cbefaa90c2fb0ba74afc3fde7403bb73dcc31459afb4306cb67d32f70cddd2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s2">&quot;weight&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>EdgeDataView([(0, 1, 1), (0, 2, 1), (1, 2, 2), (1, 3, 2), (2, 3, 2), (3, 4, 4)])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">WA</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">adjacency_matrix</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+<span class="n">WA</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 1, 0, 0],
+       [1, 0, 2, 2, 0],
+       [1, 2, 0, 2, 0],
+       [0, 2, 2, 0, 4],
+       [0, 0, 0, 4, 0]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cmap_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;Greys_r&#39;</span><span class="p">)</span><span class="c1">#, 5)</span>
+<span class="c1">#labels = np.arange(0, 4+1, 1)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">WA</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_</span><span class="p">)</span><span class="c1">#, vmin=0, vmax=4)</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s2">&quot;weights&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Nodes&quot;</span><span class="p">);</span> <span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Nodes&quot;</span><span class="p">);</span>
+<span class="c1">#loc = labels - 0.5</span>
+<span class="c1">#cbar.set_ticks(loc)</span>
+<span class="c1">#cbar.set_ticklabels(labels)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\m.amintoosi\AppData\Local\Temp\ipykernel_16216\3503279781.py:2: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed in 3.11. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap()`` or ``pyplot.get_cmap()`` instead.
+  cmap_ = plt.cm.get_cmap(&#39;Greys_r&#39;)#, 5)
+</pre></div>
+</div>
+<img alt="../_images/55955a950bee486327f50262f6f5fa95159da461217414b8f3f8ee5fc8651bb3.png" src="../_images/55955a950bee486327f50262f6f5fa95159da461217414b8f3f8ee5fc8651bb3.png" />
+</div>
+</div>
+</section>
+<section id="weighted-digraphs">
+<h2>3.3. Weighted digraphs<a class="headerlink" href="#weighted-digraphs" title="Link to this heading">#</a></h2>
+<p><strong>Definition</strong>: A directed weighted graph <span class="math notranslate nohighlight">\(D\)</span> consists of a collection of vertices <span class="math notranslate nohighlight">\(V\)</span>, a collection of links <span class="math notranslate nohighlight">\(E\)</span> and weights <span class="math notranslate nohighlight">\(W\)</span>, denoted as <span class="math notranslate nohighlight">\(D = (V,E,W)\)</span>. Each link <span class="math notranslate nohighlight">\(e = \langle u, v \rangle\)</span> connects vertex <span class="math notranslate nohighlight">\(u \in V\)</span> to another (not necessarily distinct) vertex <span class="math notranslate nohighlight">\(v\)</span>. The vertex <span class="math notranslate nohighlight">\(u\)</span> is called the <em>origin</em> of <span class="math notranslate nohighlight">\(e\)</span> and <span class="math notranslate nohighlight">\(v\)</span> is called the <em>destination</em>.</p>
+<p><strong>Example:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">node_labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">edge_labels</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span>
+<span class="n">weight</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">weighted_edges</span> <span class="o">=</span> <span class="p">[(</span><span class="n">edge_labels</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">edge_labels</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">edge_labels</span><span class="p">))]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">WD</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+<span class="n">WD</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">node_labels</span><span class="p">)</span>
+<span class="n">WD</span><span class="o">.</span><span class="n">add_weighted_edges_from</span><span class="p">(</span><span class="n">weighted_edges</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">WD</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">WD</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s2">&quot;#cf52a5&quot;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">WD</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">weight</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$WD$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;$WD$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/88d6829a0b1e8a83089c28531e68d2eca435c8010b80543567d7a5e8cc7e162b.png" src="../_images/88d6829a0b1e8a83089c28531e68d2eca435c8010b80543567d7a5e8cc7e162b.png" />
+</div>
+</div>
+</section>
+<section id="bipartite-graph">
+<h2>3.4. Bipartite Graph<a class="headerlink" href="#bipartite-graph" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>3.4.1. Definition<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>A bipartite graph can be defined as a graph whose vertices <span class="math notranslate nohighlight">\(V\)</span> can be partitioned into two sets, <span class="math notranslate nohighlight">\(V_1\)</span> and <span class="math notranslate nohighlight">\(V_2\)</span>,disjoint and non-empty, such that each link <span class="math notranslate nohighlight">\(E\)</span> connects a vertex of <span class="math notranslate nohighlight">\(V_1\)</span> to <span class="math notranslate nohighlight">\(V_2\)</span>. Formally it can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[
+G = (V_1 \cup V_2, E)
+\]</div>
+<p>Where <span class="math notranslate nohighlight">\(V_1 \cap V_2 = \emptyset\)</span> (i.e., <span class="math notranslate nohighlight">\(V_1\)</span> and <span class="math notranslate nohighlight">\(V_2\)</span> are disjoint) and for each <span class="math notranslate nohighlight">\(u,v \in E\)</span>, <span class="math notranslate nohighlight">\(u \in V_1\)</span> and <span class="math notranslate nohighlight">\(v \in V_2\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_artists_names</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Slow Joy&#39;</span><span class="p">,</span> <span class="c1">#0</span>
+    <span class="s1">&#39;La ciencia simple&#39;</span><span class="p">,</span> <span class="c1">#1</span>
+    <span class="s1">&#39;Origami Angel&#39;</span><span class="p">,</span> <span class="c1">#2 </span>
+    <span class="s1">&#39;Jeff Rosenstock&#39;</span><span class="p">,</span> <span class="c1">#3 </span>
+    <span class="s1">&#39;Millencolin&#39;</span><span class="p">,</span> <span class="c1">#4</span>
+    <span class="s1">&#39;NoFX&#39;</span><span class="p">,</span> <span class="c1">#5</span>
+    <span class="p">]</span>
+<span class="n">list_artists_names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Slow Joy&#39;,
+ &#39;La ciencia simple&#39;,
+ &#39;Origami Angel&#39;,
+ &#39;Jeff Rosenstock&#39;,
+ &#39;Millencolin&#39;,
+ &#39;NoFX&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">users_and_artists</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">0</span> <span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="mi">1</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="mi">2</span> <span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="mi">3</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_users</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">users_and_artists</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="n">list_users</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 2, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_artists</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">users_and_artists</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">list_artists</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0, 1, 2], [2, 3], [4, 5], [2, 4, 5]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_artists</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">users_and_artists</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">list_artists</span><span class="p">)</span>
+<span class="n">list_artists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">list_artists</span><span class="p">))</span>
+<span class="n">list_artists</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0, 1, 2], [2, 3], [4, 5], [2, 4, 5]]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_users</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_artists</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;U = </span><span class="si">%i</span><span class="s2"> A = </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">A</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>U = 4 A = 6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">A</span><span class="p">))</span>
+<span class="n">conn_matrix</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">users_and_artists</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i_u</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">U</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">users_and_artists</span><span class="p">[</span><span class="n">i_u</span><span class="p">])</span>
+  <span class="c1">#for l_artists in users_and_artists[i_u]:</span>
+  <span class="c1">#  print(l_artists)</span>
+  <span class="n">conn_matrix</span><span class="p">[</span><span class="n">i_u</span><span class="p">,</span> <span class="n">users_and_artists</span><span class="p">[</span><span class="n">i_u</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 2]
+[2, 3]
+[4, 5]
+[2, 4, 5]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn_matrix</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1., 1., 1., 0., 0., 0.],
+       [0., 0., 1., 1., 0., 0.],
+       [0., 0., 0., 0., 1., 1.],
+       [0., 0., 1., 0., 1., 1.]])
+</pre></div>
+</div>
+</div>
+</div>
+<section id="graph-of-users-connected-by-artists">
+<h4>2.4.2.1. Graph of users connected by artists<a class="headerlink" href="#graph-of-users-connected-by-artists" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1., 1., 1., 0., 0., 0.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn_matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0., 0., 1., 1., 0., 0.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">users_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">U</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">U</span><span class="p">):</span>
+  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">U</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">conn_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">*</span><span class="n">conn_matrix</span><span class="p">[</span><span class="n">j</span><span class="p">,:])</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+      <span class="n">users_mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">conn_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">*</span><span class="n">conn_matrix</span><span class="p">[</span><span class="n">j</span><span class="p">,:])</span> <span class="c1"># 1</span>
+    <span class="n">users_mat</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">users_mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">users_mat</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 1., 0., 1.],
+       [1., 0., 0., 1.],
+       [0., 0., 0., 2.],
+       [1., 1., 2., 0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_users</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">users_mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_edge_attributes</span><span class="p">(</span><span class="n">G_users</span><span class="p">,</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">G_users</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G_users</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s2">&quot;#52cfa5&quot;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_users</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">labels</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_users</span><span class="p">,</span><span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span><span class="n">edge_labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$Graph\ (Users)$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;$Graph\\ (Users)$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/e995f722402f46a5794e895f1e9ec8475b56e30818a322ddb168a2eafd8e984d.png" src="../_images/e995f722402f46a5794e895f1e9ec8475b56e30818a322ddb168a2eafd8e984d.png" />
+</div>
+</div>
+</section>
+<section id="graph-of-artists-connected-by-users">
+<h4>2.4.2.2. Graph of artists connected by users<a class="headerlink" href="#graph-of-artists-connected-by-users" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">artists_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">A</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">conn_matrix</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">conn_matrix</span><span class="p">[:,</span><span class="n">j</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+      <span class="n">artists_mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">conn_matrix</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">conn_matrix</span><span class="p">[:,</span><span class="n">j</span><span class="p">])</span>
+      <span class="n">artists_mat</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">artists_mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">artists_mat</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 1., 1., 0., 0., 0.],
+       [1., 0., 1., 0., 0., 0.],
+       [1., 1., 0., 1., 1., 1.],
+       [0., 0., 1., 0., 0., 0.],
+       [0., 0., 1., 0., 0., 2.],
+       [0., 0., 1., 0., 2., 0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_artists</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">artists_mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_edge_attributes</span><span class="p">(</span><span class="n">G_artists</span><span class="p">,</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{(0, 1): 1.0,
+ (0, 2): 1.0,
+ (1, 2): 1.0,
+ (2, 3): 1.0,
+ (2, 4): 1.0,
+ (2, 5): 1.0,
+ (4, 5): 2.0}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_edge_attributes</span><span class="p">(</span><span class="n">G_artists</span><span class="p">,</span> <span class="s2">&quot;weight&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">labels</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">G_artists</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G_artists</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s2">&quot;#52cfa5&quot;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_artists</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">labels</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_artists</span><span class="p">,</span><span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span><span class="n">edge_labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$Graph\ (Users)$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/53764f65d02aa2f0faee1725340ffb49569280b04e398b8fd364865e033ca680.png" src="../_images/53764f65d02aa2f0faee1725340ffb49569280b04e398b8fd364865e033ca680.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="other-applications">
+<h3>3.4.2. Other applications<a class="headerlink" href="#other-applications" title="Link to this heading">#</a></h3>
+<p>Bipartite graphs find application in a wide range of diverse fields. For instance,</p>
+<ul class="simple">
+<li><p>Recommendation systems.</p></li>
+<li><p>Social network analysis.</p></li>
+<li><p>Matching problems.</p></li>
+<li><p>Data integration.</p></li>
+<li><p>Biology and genetics.</p></li>
+<li><p>Transport problems.</p></li>
+<li><p>Citation analysis.</p></li>
+</ul>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Maarten van Steen (2010). Graph Theory and Complex Networks. An Introduction (Book).</p></li>
+<li><p>Newman, M. (2010). Networks: An Introduction (Book).
+Robin J. Wilson (1996). Introduction to Graph Theory (eBook: <a class="reference external" href="https://www.maths.ed.ac.uk/~v1ranick/papers/wilsongraph.pdf">https://www.maths.ed.ac.uk/~v1ranick/papers/wilsongraph.pdf</a>).</p></li>
+</ol>
+<hr class="docutils" />
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./nx"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2_Fundamentals.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">2. Fundamentals</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="4_Network_topology.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">4. Topology: network properties</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directed-graphs-digraph">3.1. Directed graphs (Digraph)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">3.1.1. Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connectivity-in-digraphs">3.1.2. Connectivity in DiGraphs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-graphs">3.2. Weighted graphs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-digraphs">3.3. Weighted digraphs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bipartite-graph">3.4. Bipartite Graph</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.4.1. Definition</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-of-users-connected-by-artists">2.4.2.1. Graph of users connected by artists</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-of-artists-connected-by-users">2.4.2.2. Graph of artists connected by users</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-applications">3.4.2. Other applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mahmood Amintoosi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025. CC0 Licensed - Computer Science Dept., Ferdowsi University of Mashhad.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
