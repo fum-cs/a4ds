@@ -485,7 +485,8 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-graph">2.1. What is a Graph?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subgraphs">2.2. Subgraphs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-representations-and-data-structures">2.3.Graph representations and data structures</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-representations-and-data-structures">2.3.Graph representations and data structures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">📚 Further Reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adjacency-matrix">2.3.1. Adjacency matrix</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incidence-matrix">2.3.2. Incidence matrix</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-edges">2.3.3. List of edges</a></li>
@@ -543,21 +544,15 @@ Each link <span class="math notranslate nohighlight">\(e\)</span> is said to con
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
-<span class="n">axs</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.9989638474274827,
- 1.1899467909320232,
- -1.150778381847691,
- 1.1507784414523377)
-</pre></div>
-</div>
-<img alt="../_images/739e3948519c8a97480a07f9cb118140fa44c097f3de4dc3cf58f85cdf6f69b9.png" src="../_images/739e3948519c8a97480a07f9cb118140fa44c097f3de4dc3cf58f85cdf6f69b9.png" />
+<img alt="../_images/51872aae659aa5655c39954870178147544416e8ec2ea408ccd16858155fe114.png" src="../_images/51872aae659aa5655c39954870178147544416e8ec2ea408ccd16858155fe114.png" />
 </div>
 </div>
 <p>The complement of a graph <span class="math notranslate nohighlight">\(G\)</span>, denoted as <span class="math notranslate nohighlight">\(\overline{G}\)</span> is the graph obtained by removing all links and connecting exactly those vertices that are not adjacent in <span class="math notranslate nohighlight">\(G\)</span>.</p>
@@ -595,13 +590,43 @@ Each link <span class="math notranslate nohighlight">\(e\)</span> is said to con
 <p>The subgraph of <span class="math notranslate nohighlight">\(G = (V,E)\)</span> induced by <span class="math notranslate nohighlight">\(V' \subseteq V \)</span>, defined as <span class="math notranslate nohighlight">\(G[V']\)</span>, is a graph such that <span class="math notranslate nohighlight">\((V', \{(n_i,n_j) | (n_i, n_j) \in E \land (n_i, n_j) \in V'\})\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G2</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
-<span class="n">node_labels2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
-<span class="n">edge_labels2</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">)]</span> 
-<span class="n">G2</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">node_labels2</span><span class="p">)</span>
-<span class="n">G2</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edge_labels2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Create the original graph G</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)])</span>
+
+<span class="c1"># Define a subset of nodes for the induced subgraph</span>
+<span class="n">subset_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="c1"># Create the induced subgraph H from G</span>
+<span class="n">H</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">subgraph</span><span class="p">(</span><span class="n">subset_nodes</span><span class="p">)</span>
+
+<span class="c1"># Use a consistent layout for both graphs</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Plot both graphs side by side</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Plot original graph G</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Original Graph G&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>  <span class="c1"># Hide axis ticks and borders</span>
+
+<span class="c1"># Plot induced subgraph H</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;lightgreen&#39;</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Induced Subgraph H&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>  <span class="c1"># Hide axis ticks and borders</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fd933d836b57c51862c9ec71324c404c3a8ef9b76d64e7106d6dd0e95945ba15.png" src="../_images/fd933d836b57c51862c9ec71324c404c3a8ef9b76d64e7106d6dd0e95945ba15.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -640,6 +665,69 @@ Consider a graph <span class="math notranslate nohighlight">\(G\)</span> with <s
 <p>An adjacency matrix is <em>symmetric</em>, if for all <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>, <span class="math notranslate nohighlight">\(A[i,j] = A[j,i]\)</span>. This property reflects the fact that a link is represented as an unordered pair of vertices (i.e., <span class="math notranslate nohighlight">\(e = \langle v_i, v_j \rangle = \langle v_j, v_i \rangle\)</span>).
 2. A graph <span class="math notranslate nohighlight">\(G\)</span> is simple if and only if for each <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>, <span class="math notranslate nohighlight">\(A[i,j] \leq\)</span> and <span class="math notranslate nohighlight">\(A[i,i] = 0\)</span>. In other words, there can be at least one link connecting vertices <span class="math notranslate nohighlight">\(v_i\)</span> and <span class="math notranslate nohighlight">\(v_j\)</span> and, in particular, no link connects to a vertex by itself.</p>
 <p>As an alternative, we can also use the <em>incidence matrix</em> of a graph as its representation. An incidence matrix <span class="math notranslate nohighlight">\(M\)</span> of graph <span class="math notranslate nohighlight">\(G\)</span> consists of <span class="math notranslate nohighlight">\(n\)</span> rows and <span class="math notranslate nohighlight">\(m\)</span> columns such that <span class="math notranslate nohighlight">\(M[i,j]\)</span> counts the number of times the link <span class="math notranslate nohighlight">\(e_j\)</span> is incident to vertex <span class="math notranslate nohighlight">\(v_i\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a simple undirected graph</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)])</span>
+
+<span class="c1"># Get adjacency matrix as NumPy array</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">to_numpy_array</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Adjacency Matrix:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adjacency Matrix:
+ [[0 1 1 0 0]
+ [1 0 1 1 0]
+ [1 1 0 1 0]
+ [0 1 1 0 1]
+ [0 0 0 1 0]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">incidence_matrix</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span>
+    <span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">edges</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">edges</span><span class="p">):</span>
+        <span class="n">i_u</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+        <span class="n">i_v</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="n">mat</span><span class="p">[</span><span class="n">i_u</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">mat</span><span class="p">[</span><span class="n">i_v</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">mat</span>
+
+<span class="n">M</span> <span class="o">=</span> <span class="n">incidence_matrix</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Incidence Matrix:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Incidence Matrix:
+ [[1 1 0 0 0 0]
+ [1 0 1 1 0 0]
+ [0 1 1 0 1 0]
+ [0 0 0 1 1 1]
+ [0 0 0 0 0 1]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="further-reading">
+<h2>📚 Further Reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
+<p>If you want more control over layout, labels, and LaTeX-style formatting, refer to the following extended version, which includes:</p>
+<ul class="simple">
+<li><p>Custom edge and node labels</p></li>
+<li><p>Graph drawing alongside matrix visualization</p></li>
+<li><p>Use of <code class="docutils literal notranslate"><span class="pre">draw_networkx_edge_labels</span></code> and <code class="docutils literal notranslate"><span class="pre">draw_networkx_labels</span></code></p></li>
+<li><p>LaTeX-style labels for publication-quality figures</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">draw_graph_and_adjmatrix</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">node_labels</span><span class="p">,</span> <span class="n">edge_labels</span><span class="p">):</span>
@@ -837,7 +925,8 @@ Consider a graph <span class="math notranslate nohighlight">\(G\)</span> with <s
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-graph">2.1. What is a Graph?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subgraphs">2.2. Subgraphs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-representations-and-data-structures">2.3.Graph representations and data structures</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-representations-and-data-structures">2.3.Graph representations and data structures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">📚 Further Reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adjacency-matrix">2.3.1. Adjacency matrix</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incidence-matrix">2.3.2. Incidence matrix</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-edges">2.3.3. List of edges</a></li>
