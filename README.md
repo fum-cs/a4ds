@@ -24,6 +24,8 @@ This courses covers the fundamental algorithms in data mining and machine learni
 
 ## Teaching Assistants  
 
+### TA Head
+
 <table style="width:100%;">  
   <tr>  
     <td style="width:20%;">  

@@ -76,12 +76,12 @@ Book documentation.
   </tr>
   <tr>
       <td style="width:120px; text-align:center; vertical-align:middle;">
-      <!-- <img src="_images/Mr-Dashtban.jpg" alt="Mr. Dashtban" style="width:100px;height:auto;"> <br> -->
-      Mr. Fatehi-nia
+      <img src="_images/Mr-Fatehinia.jpg" alt="Mr. Fatehinia" style="width:100px;height:auto;"> <br>
+      Mohammad reza Fatehinia
     </td>
     <td style="width:120px; text-align:center; vertical-align:middle;">
-      <!-- <img src="_images/Miss-Kiani.jpg" alt="Miss. Kiani" style="width:100px;height:auto;"> <br> -->
-      Mr. Sajjadi
+      <img src="_images/Mr-Sajadi.jpg" alt="Mr. Sajadi" style="width:100px;height:auto;"> <br>
+      Seyed Masih Sajadi
     </td>
   </tr>
 </table>

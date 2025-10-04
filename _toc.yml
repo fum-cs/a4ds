@@ -32,6 +32,7 @@ parts:
       - file: high-dimensional-spaces/k-means-clustering
       - file: high-dimensional-spaces/high_dim_and_CD
       - file: high-dimensional-spaces/high_dim_and_k-means
+      - file: high-dimensional-spaces/kNN-Classification-Evaluation
       - file: high-dimensional-spaces/high_dim_and_KNN
       - file: high-dimensional-spaces/image_clustering
       - file: high-dimensional-spaces/image-clustering_HC
@@ -53,11 +54,10 @@ parts:
       - file: machine-learning/05.03-Hyperparameters-and-Model-Validation
       - file: machine-learning/05.04-Feature-Engineering
       - file: machine-learning/05.05-Naive-Bayes
-      - file: machine-learning/kNN-Classification-Evaluation
       - file: machine-learning/05.11-Clustering
-      - file: machine-learning/K-Means-Clustering
+      # - file: machine-learning/K-Means-Clustering
       - file: machine-learning/05.12-Gaussian-Mixtures-part1
       - file: machine-learning/05.06-Linear-Regression-part1
-      - file: machine-learning/Clustering-Validation-Metrics
+      # - file: machine-learning/Clustering-Validation-Metrics
       - file: machine-learning/05.09-Principal-Component-Analysis-part1
       - file: machine-learning/05.08-Random-Forests
