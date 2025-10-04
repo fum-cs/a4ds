@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. Topology: network properties &#8212; Algorithms for Data Science</title>
+    <title>Topology: network properties &#8212; Algorithms for Data Science</title>
   
   
   
@@ -63,7 +63,7 @@
     <link rel="icon" href="../_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. Network analysis: centrality measures" href="5_network_analysis_centralitiy.html" />
+    <link rel="next" title="Network analysis: centrality measures" href="5_network_analysis_centralitiy.html" />
     <link rel="prev" title="3. Graph extentions" href="3_Extensions.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -200,11 +200,14 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Networkx</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Introduction to Graph Theory and Complex Networks Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="1_Introduction.html">1. Introduction to Graph Theory and Complex Network Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_Introduction.html">Introduction to Graph Theory and Complex Network Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2_Fundamentals.html">2. Fundamentals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3_Extensions.html">3. Graph extentions</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">4. Topology: network properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5_network_analysis_centralitiy.html">5. Network analysis: centrality measures</a></li>
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Topology: network properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_network_analysis_centralitiy.html">Network analysis: centrality measures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="6_network_analysis_across_time.html">6. Longitudinal analysis; Evolution of complex networks.</a></li>
 
 
@@ -473,7 +476,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>4. Topology: network properties</h1>
+    <h1>Topology: network properties</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -483,21 +486,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topology-measures">4.1. Topology measures</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#network-size-n-i">4.1.3. Network size (<span class="math notranslate nohighlight">\(N_i\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-links-e-i">4.1.2. Number of links (<span class="math notranslate nohighlight">\(E_i\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-degree-k-i-u">4.1.3. Node degree (<span class="math notranslate nohighlight">\(K_{i,u}\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#density-d-i">4.1.4. Density (<span class="math notranslate nohighlight">\(d_i\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accumulated-degree-k-i">4.1.5. Accumulated degree (<span class="math notranslate nohighlight">\(K_i\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-links-of-attribute-attr-w-i">4.1.6. Weighted links of attribute <code class="docutils literal notranslate"><span class="pre">attr</span></code> (<span class="math notranslate nohighlight">\(W_i\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-components-c-i">4.1.7. Number of components (<span class="math notranslate nohighlight">\(c_i\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nodos-en-la-componente-principal-s-i">4.1.8. Nodos en la componente principal (<span class="math notranslate nohighlight">\(S_i\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-clustering-coefficient-langle-c-i-rangle">4.1.9. Mean clustering coefficient <span class="math notranslate nohighlight">\(\langle C_i \rangle\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-triangles-delta">4.1.10. Number of triangles (<span class="math notranslate nohighlight">\(\#\Delta\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-path-length-langle-l-rangle">4.1.11. Average path length <span class="math notranslate nohighlight">\(\langle l \rangle\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topology-measures">Topology measures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#network-size-n-i">Network size (<span class="math notranslate nohighlight">\(N_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-links-e-i">Number of links (<span class="math notranslate nohighlight">\(E_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-degree-k-i-u">Node degree (<span class="math notranslate nohighlight">\(K_{i,u}\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#density-d-i">Density (<span class="math notranslate nohighlight">\(d_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accumulated-degree-k-i">Accumulated degree (<span class="math notranslate nohighlight">\(K_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-links-of-attribute-attr-w-i">Weighted links of attribute <code class="docutils literal notranslate"><span class="pre">attr</span></code> (<span class="math notranslate nohighlight">\(W_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-components-c-i">Number of components (<span class="math notranslate nohighlight">\(c_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nodos-en-la-componente-principal-s-i">Nodos en la componente principal (<span class="math notranslate nohighlight">\(S_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-clustering-coefficient-langle-c-i-rangle">Mean clustering coefficient <span class="math notranslate nohighlight">\(\langle C_i \rangle\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-triangles-delta">Number of triangles (<span class="math notranslate nohighlight">\(\#\Delta\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-path-length-langle-l-rangle">Average path length <span class="math notranslate nohighlight">\(\langle l \rangle\)</span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-comparison-of-topology-metric-between-two-networks">4.2. Example: Comparison of topology metric between two networks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-comparison-of-topology-metric-between-two-networks">Example: Comparison of topology metric between two networks</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
@@ -511,7 +514,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="topology-network-properties">
-<h1>4. Topology: network properties<a class="headerlink" href="#topology-network-properties" title="Link to this heading">#</a></h1>
+<h1>Topology: network properties<a class="headerlink" href="#topology-network-properties" title="Link to this heading">#</a></h1>
 <p>Import modules:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -576,9 +579,9 @@ document.write(`
 </div>
 </div>
 <section id="topology-measures">
-<h2>4.1. Topology measures<a class="headerlink" href="#topology-measures" title="Link to this heading">#</a></h2>
+<h2>Topology measures<a class="headerlink" href="#topology-measures" title="Link to this heading">#</a></h2>
 <section id="network-size-n-i">
-<h3>4.1.3. Network size (<span class="math notranslate nohighlight">\(N_i\)</span>)<a class="headerlink" href="#network-size-n-i" title="Link to this heading">#</a></h3>
+<h3>Network size (<span class="math notranslate nohighlight">\(N_i\)</span>)<a class="headerlink" href="#network-size-n-i" title="Link to this heading">#</a></h3>
 <p>Number of nodes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -595,7 +598,7 @@ document.write(`
 </div>
 </section>
 <section id="number-of-links-e-i">
-<h3>4.1.2. Number of links (<span class="math notranslate nohighlight">\(E_i\)</span>)<a class="headerlink" href="#number-of-links-e-i" title="Link to this heading">#</a></h3>
+<h3>Number of links (<span class="math notranslate nohighlight">\(E_i\)</span>)<a class="headerlink" href="#number-of-links-e-i" title="Link to this heading">#</a></h3>
 <p>Number of edges or connections.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -612,7 +615,7 @@ document.write(`
 </div>
 </section>
 <section id="node-degree-k-i-u">
-<h3>4.1.3. Node degree (<span class="math notranslate nohighlight">\(K_{i,u}\)</span>)<a class="headerlink" href="#node-degree-k-i-u" title="Link to this heading">#</a></h3>
+<h3>Node degree (<span class="math notranslate nohighlight">\(K_{i,u}\)</span>)<a class="headerlink" href="#node-degree-k-i-u" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">()</span>
@@ -664,7 +667,7 @@ document.write(`
 </div>
 </section>
 <section id="density-d-i">
-<h3>4.1.4. Density (<span class="math notranslate nohighlight">\(d_i\)</span>)<a class="headerlink" href="#density-d-i" title="Link to this heading">#</a></h3>
+<h3>Density (<span class="math notranslate nohighlight">\(d_i\)</span>)<a class="headerlink" href="#density-d-i" title="Link to this heading">#</a></h3>
 <p>Ratio of actual connections <span class="math notranslate nohighlight">\(d_i = \frac{2 E_i}{N_i (N_i - 1)}\)</span> for undirected graphs and <span class="math notranslate nohighlight">\(d_i = \frac{E_i}{N_i (N_i - 1)}\)</span> for directed ones.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -681,7 +684,7 @@ document.write(`
 </div>
 </section>
 <section id="accumulated-degree-k-i">
-<h3>4.1.5. Accumulated degree (<span class="math notranslate nohighlight">\(K_i\)</span>)<a class="headerlink" href="#accumulated-degree-k-i" title="Link to this heading">#</a></h3>
+<h3>Accumulated degree (<span class="math notranslate nohighlight">\(K_i\)</span>)<a class="headerlink" href="#accumulated-degree-k-i" title="Link to this heading">#</a></h3>
 <p>Total contacts in Graph <span class="math notranslate nohighlight">\(i\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(K_i = \sum_n k_n\)</span></p>
 <div class="cell docutils container">
@@ -699,7 +702,7 @@ document.write(`
 </div>
 </section>
 <section id="weighted-links-of-attribute-attr-w-i">
-<h3>4.1.6. Weighted links of attribute <code class="docutils literal notranslate"><span class="pre">attr</span></code> (<span class="math notranslate nohighlight">\(W_i\)</span>)<a class="headerlink" href="#weighted-links-of-attribute-attr-w-i" title="Link to this heading">#</a></h3>
+<h3>Weighted links of attribute <code class="docutils literal notranslate"><span class="pre">attr</span></code> (<span class="math notranslate nohighlight">\(W_i\)</span>)<a class="headerlink" href="#weighted-links-of-attribute-attr-w-i" title="Link to this heading">#</a></h3>
 <p>Sum of weighted links based on a given attribute <span class="math notranslate nohighlight">\(attr\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(W_i = \sum_u \sum_{u &gt; v} w_{uv}^{attr}\)</span></p>
 <div class="cell docutils container">
@@ -717,7 +720,7 @@ document.write(`
 </div>
 </section>
 <section id="number-of-components-c-i">
-<h3>4.1.7. Number of components (<span class="math notranslate nohighlight">\(c_i\)</span>)<a class="headerlink" href="#number-of-components-c-i" title="Link to this heading">#</a></h3>
+<h3>Number of components (<span class="math notranslate nohighlight">\(c_i\)</span>)<a class="headerlink" href="#number-of-components-c-i" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number_connected_components</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">number_connected_components</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
@@ -734,11 +737,11 @@ document.write(`
 <p>Network structure/fragmentation.</p>
 </section>
 <section id="nodos-en-la-componente-principal-s-i">
-<h3>4.1.8. Nodos en la componente principal (<span class="math notranslate nohighlight">\(S_i\)</span>)<a class="headerlink" href="#nodos-en-la-componente-principal-s-i" title="Link to this heading">#</a></h3>
+<h3>Nodos en la componente principal (<span class="math notranslate nohighlight">\(S_i\)</span>)<a class="headerlink" href="#nodos-en-la-componente-principal-s-i" title="Link to this heading">#</a></h3>
 <p>Network structure/fragmentation.</p>
 </section>
 <section id="mean-clustering-coefficient-langle-c-i-rangle">
-<h3>4.1.9. Mean clustering coefficient <span class="math notranslate nohighlight">\(\langle C_i \rangle\)</span><a class="headerlink" href="#mean-clustering-coefficient-langle-c-i-rangle" title="Link to this heading">#</a></h3>
+<h3>Mean clustering coefficient <span class="math notranslate nohighlight">\(\langle C_i \rangle\)</span><a class="headerlink" href="#mean-clustering-coefficient-langle-c-i-rangle" title="Link to this heading">#</a></h3>
 <p>Probabbility of common neighbours.</p>
 <p><span class="math notranslate nohighlight">\(\langle C_i \rangle = \frac{1}{N_i} \sum_n C^\prime_{n,i}\)</span>, where <span class="math notranslate nohighlight">\(C^\prime_{n,i} = \frac{E^{(n)}}{k_n(k_n-1)}\)</span></p>
 <div class="cell docutils container">
@@ -756,7 +759,7 @@ document.write(`
 </div>
 </section>
 <section id="number-of-triangles-delta">
-<h3>4.1.10. Number of triangles (<span class="math notranslate nohighlight">\(\#\Delta\)</span>)<a class="headerlink" href="#number-of-triangles-delta" title="Link to this heading">#</a></h3>
+<h3>Number of triangles (<span class="math notranslate nohighlight">\(\#\Delta\)</span>)<a class="headerlink" href="#number-of-triangles-delta" title="Link to this heading">#</a></h3>
 <p>Number of triangles that includes a given node as one of its vertex.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -818,7 +821,7 @@ document.write(`
 </div>
 </section>
 <section id="average-path-length-langle-l-rangle">
-<h3>4.1.11. Average path length <span class="math notranslate nohighlight">\(\langle l \rangle\)</span><a class="headerlink" href="#average-path-length-langle-l-rangle" title="Link to this heading">#</a></h3>
+<h3>Average path length <span class="math notranslate nohighlight">\(\langle l \rangle\)</span><a class="headerlink" href="#average-path-length-langle-l-rangle" title="Link to this heading">#</a></h3>
 <p>Social accessibility between non-interactings.</p>
 <p><span class="math notranslate nohighlight">\(\langle l \rangle = \sum \sum l_{i,j}\)</span></p>
 <div class="cell docutils container">
@@ -837,7 +840,7 @@ document.write(`
 </section>
 </section>
 <section id="example-comparison-of-topology-metric-between-two-networks">
-<h2>4.2. Example: Comparison of topology metric between two networks<a class="headerlink" href="#example-comparison-of-topology-metric-between-two-networks" title="Link to this heading">#</a></h2>
+<h2>Example: Comparison of topology metric between two networks<a class="headerlink" href="#example-comparison-of-topology-metric-between-two-networks" title="Link to this heading">#</a></h2>
 <p>In this section, we will compare the topology of two networks based on some of previous measures.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1052,7 +1055,7 @@ Robin J. Wilson (1996). Introduction to Graph Theory (eBook: <a class="reference
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">5. Network analysis: centrality measures</p>
+        <p class="prev-next-title">Network analysis: centrality measures</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1072,21 +1075,21 @@ Robin J. Wilson (1996). Introduction to Graph Theory (eBook: <a class="reference
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topology-measures">4.1. Topology measures</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#network-size-n-i">4.1.3. Network size (<span class="math notranslate nohighlight">\(N_i\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-links-e-i">4.1.2. Number of links (<span class="math notranslate nohighlight">\(E_i\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-degree-k-i-u">4.1.3. Node degree (<span class="math notranslate nohighlight">\(K_{i,u}\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#density-d-i">4.1.4. Density (<span class="math notranslate nohighlight">\(d_i\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accumulated-degree-k-i">4.1.5. Accumulated degree (<span class="math notranslate nohighlight">\(K_i\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-links-of-attribute-attr-w-i">4.1.6. Weighted links of attribute <code class="docutils literal notranslate"><span class="pre">attr</span></code> (<span class="math notranslate nohighlight">\(W_i\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-components-c-i">4.1.7. Number of components (<span class="math notranslate nohighlight">\(c_i\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nodos-en-la-componente-principal-s-i">4.1.8. Nodos en la componente principal (<span class="math notranslate nohighlight">\(S_i\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-clustering-coefficient-langle-c-i-rangle">4.1.9. Mean clustering coefficient <span class="math notranslate nohighlight">\(\langle C_i \rangle\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-triangles-delta">4.1.10. Number of triangles (<span class="math notranslate nohighlight">\(\#\Delta\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-path-length-langle-l-rangle">4.1.11. Average path length <span class="math notranslate nohighlight">\(\langle l \rangle\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topology-measures">Topology measures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#network-size-n-i">Network size (<span class="math notranslate nohighlight">\(N_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-links-e-i">Number of links (<span class="math notranslate nohighlight">\(E_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-degree-k-i-u">Node degree (<span class="math notranslate nohighlight">\(K_{i,u}\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#density-d-i">Density (<span class="math notranslate nohighlight">\(d_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accumulated-degree-k-i">Accumulated degree (<span class="math notranslate nohighlight">\(K_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-links-of-attribute-attr-w-i">Weighted links of attribute <code class="docutils literal notranslate"><span class="pre">attr</span></code> (<span class="math notranslate nohighlight">\(W_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-components-c-i">Number of components (<span class="math notranslate nohighlight">\(c_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nodos-en-la-componente-principal-s-i">Nodos en la componente principal (<span class="math notranslate nohighlight">\(S_i\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-clustering-coefficient-langle-c-i-rangle">Mean clustering coefficient <span class="math notranslate nohighlight">\(\langle C_i \rangle\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-triangles-delta">Number of triangles (<span class="math notranslate nohighlight">\(\#\Delta\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-path-length-langle-l-rangle">Average path length <span class="math notranslate nohighlight">\(\langle l \rangle\)</span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-comparison-of-topology-metric-between-two-networks">4.2. Example: Comparison of topology metric between two networks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-comparison-of-topology-metric-between-two-networks">Example: Comparison of topology metric between two networks</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>

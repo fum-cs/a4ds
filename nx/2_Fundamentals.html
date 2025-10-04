@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. Fundamentals &#8212; Algorithms for Data Science</title>
+    <title>Fundamentals &#8212; Algorithms for Data Science</title>
   
   
   
@@ -63,8 +63,8 @@
     <link rel="icon" href="../_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Graph extentions" href="3_Extensions.html" />
-    <link rel="prev" title="1. Introduction to Graph Theory and Complex Network Analysis" href="1_Introduction.html" />
+    <link rel="next" title="Graph extentions" href="3_Extensions.html" />
+    <link rel="prev" title="Introduction to Graph Theory and Complex Network Analysis" href="1_Introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -200,12 +200,15 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Networkx</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Introduction to Graph Theory and Complex Networks Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="1_Introduction.html">1. Introduction to Graph Theory and Complex Network Analysis</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">2. Fundamentals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_Extensions.html">3. Graph extentions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_Network_topology.html">4. Topology: network properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5_network_analysis_centralitiy.html">5. Network analysis: centrality measures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6_network_analysis_across_time.html">6. Longitudinal analysis; Evolution of complex networks.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_Introduction.html">Introduction to Graph Theory and Complex Network Analysis</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_Extensions.html">Graph extentions</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="4_Network_topology.html">Topology: network properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_network_analysis_centralitiy.html">Network analysis: centrality measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_network_analysis_across_time.html">Longitudinal analysis; Evolution of complex networks.</a></li>
 
 
 
@@ -473,7 +476,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>2. Fundamentals</h1>
+    <h1>Fundamentals</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -483,13 +486,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-graph">2.1. What is a Graph?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subgraphs">2.2. Subgraphs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-representations-and-data-structures">2.3.Graph representations and data structures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-graph">What is a Graph?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subgraphs">Subgraphs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-representations-and-data-structures">Graph representations and data structures</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">📚 Further Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adjacency-matrix">2.3.1. Adjacency matrix</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incidence-matrix">2.3.2. Incidence matrix</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-edges">2.3.3. List of edges</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adjacency-matrix">Adjacency matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incidence-matrix">Incidence matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-edges">List of edges</a></li>
 </ul>
 </li>
 </ul>
@@ -504,7 +507,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="fundamentals">
-<h1>2. Fundamentals<a class="headerlink" href="#fundamentals" title="Link to this heading">#</a></h1>
+<h1>Fundamentals<a class="headerlink" href="#fundamentals" title="Link to this heading">#</a></h1>
 <p>Import modules:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -521,7 +524,7 @@ document.write(`
 </div>
 </div>
 <section id="what-is-a-graph">
-<h2>2.1. What is a Graph?<a class="headerlink" href="#what-is-a-graph" title="Link to this heading">#</a></h2>
+<h2>What is a Graph?<a class="headerlink" href="#what-is-a-graph" title="Link to this heading">#</a></h2>
 <p><strong>Definition</strong>: A graph <span class="math notranslate nohighlight">\(G\)</span> consists of a collection <span class="math notranslate nohighlight">\(V\)</span> of vertices and a collection of links <span class="math notranslate nohighlight">\(E\)</span>, for which we denote <span class="math notranslate nohighlight">\(G = (V, E)\)</span>.
 Each link <span class="math notranslate nohighlight">\(e\)</span> is said to connect two vertices, which are called its endpoints. If <span class="math notranslate nohighlight">\(e\)</span> connects <span class="math notranslate nohighlight">\(u, v \in V\)</span>, we write <span class="math notranslate nohighlight">\(e = \langle u, v \rangle\)</span>. In this case, the vertices <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> are called adjacent.</p>
 <div class="cell docutils container">
@@ -585,7 +588,7 @@ Each link <span class="math notranslate nohighlight">\(e\)</span> is said to con
 </div>
 </section>
 <section id="subgraphs">
-<h2>2.2. Subgraphs<a class="headerlink" href="#subgraphs" title="Link to this heading">#</a></h2>
+<h2>Subgraphs<a class="headerlink" href="#subgraphs" title="Link to this heading">#</a></h2>
 <p><strong>Definition</strong>: A subgraph <span class="math notranslate nohighlight">\(G\)</span> is a graph <span class="math notranslate nohighlight">\(H\)</span> with <span class="math notranslate nohighlight">\(V(H) \subseteq V(G)\)</span> and <span class="math notranslate nohighlight">\(E(H) \subseteq E(G)\)</span>.</p>
 <p>The subgraph of <span class="math notranslate nohighlight">\(G = (V,E)\)</span> induced by <span class="math notranslate nohighlight">\(V' \subseteq V \)</span>, defined as <span class="math notranslate nohighlight">\(G[V']\)</span>, is a graph such that <span class="math notranslate nohighlight">\((V', \{(n_i,n_j) | (n_i, n_j) \in E \land (n_i, n_j) \in V'\})\)</span>.</p>
 <div class="cell docutils container">
@@ -657,10 +660,9 @@ Each link <span class="math notranslate nohighlight">\(e\)</span> is said to con
 </div>
 </section>
 <section id="graph-representations-and-data-structures">
-<h2>2.3.Graph representations and data structures<a class="headerlink" href="#graph-representations-and-data-structures" title="Link to this heading">#</a></h2>
+<h2>Graph representations and data structures<a class="headerlink" href="#graph-representations-and-data-structures" title="Link to this heading">#</a></h2>
 <p>There are different ways to represent a graph. Perhaps the most common is to use an <em>adjacency matrix</em>.
 Consider a graph <span class="math notranslate nohighlight">\(G\)</span> with <span class="math notranslate nohighlight">\(n\)</span> vertices and <span class="math notranslate nohighlight">\(m\)</span> links. Its adjacency matrix is a matrix <span class="math notranslate nohighlight">\(A\)</span> with <span class="math notranslate nohighlight">\(n\)</span> columns and <span class="math notranslate nohighlight">\(n\)</span> rows with entries <span class="math notranslate nohighlight">\(A[i, j]\)</span> denoting the number of links connected by vertices <span class="math notranslate nohighlight">\(v_i\)</span> and <span class="math notranslate nohighlight">\(v_j\)</span>.</p>
-<p>Figure 2.7 shows a simple graph with its respective adjacency matrix.</p>
 <p>What properties can we see from this example?</p>
 <p>An adjacency matrix is <em>symmetric</em>, if for all <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>, <span class="math notranslate nohighlight">\(A[i,j] = A[j,i]\)</span>. This property reflects the fact that a link is represented as an unordered pair of vertices (i.e., <span class="math notranslate nohighlight">\(e = \langle v_i, v_j \rangle = \langle v_j, v_i \rangle\)</span>).
 2. A graph <span class="math notranslate nohighlight">\(G\)</span> is simple if and only if for each <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>, <span class="math notranslate nohighlight">\(A[i,j] \leq\)</span> and <span class="math notranslate nohighlight">\(A[i,i] = 0\)</span>. In other words, there can be at least one link connecting vertices <span class="math notranslate nohighlight">\(v_i\)</span> and <span class="math notranslate nohighlight">\(v_j\)</span> and, in particular, no link connects to a vertex by itself.</p>
@@ -793,7 +795,7 @@ Consider a graph <span class="math notranslate nohighlight">\(G\)</span> with <s
 </div>
 </div>
 <section id="adjacency-matrix">
-<h3>2.3.1. Adjacency matrix<a class="headerlink" href="#adjacency-matrix" title="Link to this heading">#</a></h3>
+<h3>Adjacency matrix<a class="headerlink" href="#adjacency-matrix" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_graph_formalities</span><span class="p">(</span><span class="n">node_labels</span><span class="p">,</span> <span class="n">edge_labels</span><span class="p">)</span>
@@ -809,7 +811,7 @@ Consider a graph <span class="math notranslate nohighlight">\(G\)</span> with <s
 </div>
 </section>
 <section id="incidence-matrix">
-<h3>2.3.2. Incidence matrix<a class="headerlink" href="#incidence-matrix" title="Link to this heading">#</a></h3>
+<h3>Incidence matrix<a class="headerlink" href="#incidence-matrix" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_incidence_matrix</span><span class="p">(</span><span class="n">node_labels</span><span class="p">,</span> <span class="n">edge_labels</span><span class="p">):</span>
@@ -852,7 +854,7 @@ Consider a graph <span class="math notranslate nohighlight">\(G\)</span> with <s
 </div>
 </section>
 <section id="list-of-edges">
-<h3>2.3.3. List of edges<a class="headerlink" href="#list-of-edges" title="Link to this heading">#</a></h3>
+<h3>List of edges<a class="headerlink" href="#list-of-edges" title="Link to this heading">#</a></h3>
 <p><span class="math notranslate nohighlight">\((\langle v_0, v_1 \rangle, \langle v_0, v_2 \rangle, \langle v_1, v_2 \rangle, \langle v_2, v_3 \rangle, \langle v_3, v_4 \rangle, \langle v_1, v_3 \rangle)\)</span></p>
 <hr class="docutils" />
 </section>
@@ -895,7 +897,7 @@ Consider a graph <span class="math notranslate nohighlight">\(G\)</span> with <s
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">1. Introduction to Graph Theory and Complex Network Analysis</p>
+        <p class="prev-next-title">Introduction to Graph Theory and Complex Network Analysis</p>
       </div>
     </a>
     <a class="right-next"
@@ -903,7 +905,7 @@ Consider a graph <span class="math notranslate nohighlight">\(G\)</span> with <s
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">3. Graph extentions</p>
+        <p class="prev-next-title">Graph extentions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -923,13 +925,13 @@ Consider a graph <span class="math notranslate nohighlight">\(G\)</span> with <s
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-graph">2.1. What is a Graph?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subgraphs">2.2. Subgraphs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-representations-and-data-structures">2.3.Graph representations and data structures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-graph">What is a Graph?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subgraphs">Subgraphs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-representations-and-data-structures">Graph representations and data structures</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">📚 Further Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adjacency-matrix">2.3.1. Adjacency matrix</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incidence-matrix">2.3.2. Incidence matrix</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-edges">2.3.3. List of edges</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adjacency-matrix">Adjacency matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incidence-matrix">Incidence matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-edges">List of edges</a></li>
 </ul>
 </li>
 </ul>

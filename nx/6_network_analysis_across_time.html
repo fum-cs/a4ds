@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>6. Longitudinal analysis; Evolution of complex networks. &#8212; Algorithms for Data Science</title>
+    <title>Longitudinal analysis; Evolution of complex networks. &#8212; Algorithms for Data Science</title>
   
   
   
@@ -64,7 +64,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="High Dimensional Spaces" href="../high-dimensional-spaces/high-dim-intro.html" />
-    <link rel="prev" title="5. Network analysis: centrality measures" href="5_network_analysis_centralitiy.html" />
+    <link rel="prev" title="Network analysis: centrality measures" href="5_network_analysis_centralitiy.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -200,15 +200,15 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Networkx</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Introduction to Graph Theory and Complex Networks Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="1_Introduction.html">1. Introduction to Graph Theory and Complex Network Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_Fundamentals.html">2. Fundamentals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_Extensions.html">3. Graph extentions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_Network_topology.html">4. Topology: network properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5_network_analysis_centralitiy.html">5. Network analysis: centrality measures</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">6. Longitudinal analysis; Evolution of complex networks.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_Introduction.html">Introduction to Graph Theory and Complex Network Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_Fundamentals.html">Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_Extensions.html">Graph extentions</a></li>
 
 
 
+<li class="toctree-l2"><a class="reference internal" href="4_Network_topology.html">Topology: network properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_network_analysis_centralitiy.html">Network analysis: centrality measures</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Longitudinal analysis; Evolution of complex networks.</a></li>
 </ul>
 </details></li>
 </ul>
@@ -473,7 +473,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>6. Longitudinal analysis; Evolution of complex networks.</h1>
+    <h1>Longitudinal analysis; Evolution of complex networks.</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -483,18 +483,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">6. Longitudinal analysis; Evolution of complex networks.</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">6.1. Introduction</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphs-across-time">6.2. Graphs across time!</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#application-in-networkx">6.3. Application in NetworkX</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies-data-loading">6.3.1. Dependencies &amp; data loading</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-of-simple-network-as-a-binary-graph-across-time">6.3.2. Simulation of simple network as a binary graph across time</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-of-topology-metrics-across-time">6.3.3. Analysis of topology metrics across time</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-of-traces-across-time">6.3.4. Visualization of traces across time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphs-across-time">Graphs across time!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-in-networkx">Application in NetworkX</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies-data-loading">Dependencies &amp; data loading</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-of-simple-network-as-a-binary-graph-across-time">Simulation of simple network as a binary graph across time</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-of-topology-metrics-across-time">Analysis of topology metrics across time</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-of-traces-across-time">Visualization of traces across time</a></li>
 </ul>
 </li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -505,8 +503,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="longitudinal-analysis-evolution-of-complex-networks">
-<h1>6. Longitudinal analysis; Evolution of complex networks.<a class="headerlink" href="#longitudinal-analysis-evolution-of-complex-networks" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="longitudinal-analysis-evolution-of-complex-networks">
+<h1>Longitudinal analysis; Evolution of complex networks.<a class="headerlink" href="#longitudinal-analysis-evolution-of-complex-networks" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
@@ -521,15 +519,14 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
 <section id="introduction">
-<h1>6.1. Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>When we consider a temporal variable (for example, we want to know how are the relationships between different entities in our study over time) we can perform multiple types of analysis.</p>
 <p>In this course, we are going to see how we can study the evolution of networks in terms of (possible) changes in their topology and for the centrality of the nodes of our network.</p>
 <p>How much certain properties of the network vary will depend, as you can imagine, on the type of problem or application in which we are using this type of modeling.</p>
 </section>
 <section id="graphs-across-time">
-<h1>6.2. Graphs across time!<a class="headerlink" href="#graphs-across-time" title="Link to this heading">#</a></h1>
+<h2>Graphs across time!<a class="headerlink" href="#graphs-across-time" title="Link to this heading">#</a></h2>
 <p>Here, I propose to consider a network evolving over time as a sequence of ordered networks, each corresponding to a specific point in time. This perspective treats the network as a function of the time variable, allowing us to capture its temporal dynamics and changes.</p>
 <p>Let <span class="math notranslate nohighlight">\(G_t\)</span> an ordered set of binary graphs across time <span class="math notranslate nohighlight">\(t\)</span>. This is:</p>
 <div class="math notranslate nohighlight">
@@ -548,9 +545,9 @@ G_t(V, E_t).
 <p>In the next sub-chapter, we will learn how to perform this type of analysis via a simple example and by using NetworkX lib.</p>
 </section>
 <section id="application-in-networkx">
-<h1>6.3. Application in NetworkX<a class="headerlink" href="#application-in-networkx" title="Link to this heading">#</a></h1>
+<h2>Application in NetworkX<a class="headerlink" href="#application-in-networkx" title="Link to this heading">#</a></h2>
 <section id="dependencies-data-loading">
-<h2>6.3.1. Dependencies &amp; data loading<a class="headerlink" href="#dependencies-data-loading" title="Link to this heading">#</a></h2>
+<h3>Dependencies &amp; data loading<a class="headerlink" href="#dependencies-data-loading" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_features_from_graph</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
@@ -596,7 +593,7 @@ G_t(V, E_t).
 </div>
 </section>
 <section id="simulation-of-simple-network-as-a-binary-graph-across-time">
-<h2>6.3.2. Simulation of simple network as a binary graph across time<a class="headerlink" href="#simulation-of-simple-network-as-a-binary-graph-across-time" title="Link to this heading">#</a></h2>
+<h3>Simulation of simple network as a binary graph across time<a class="headerlink" href="#simulation-of-simple-network-as-a-binary-graph-across-time" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_T</span> <span class="o">=</span> <span class="n">example_create_tensor</span><span class="p">()</span>
@@ -661,7 +658,7 @@ G_t(V, E_t).
 </div>
 </section>
 <section id="analysis-of-topology-metrics-across-time">
-<h2>6.3.3. Analysis of topology metrics across time<a class="headerlink" href="#analysis-of-topology-metrics-across-time" title="Link to this heading">#</a></h2>
+<h3>Analysis of topology metrics across time<a class="headerlink" href="#analysis-of-topology-metrics-across-time" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l_features</span> <span class="o">=</span> <span class="p">[</span><span class="n">compute_features_from_graph</span><span class="p">(</span><span class="n">l_G</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">)]</span>
@@ -785,7 +782,7 @@ G_t(V, E_t).
 </div>
 </section>
 <section id="visualization-of-traces-across-time">
-<h2>6.3.4. Visualization of traces across time<a class="headerlink" href="#visualization-of-traces-across-time" title="Link to this heading">#</a></h2>
+<h3>Visualization of traces across time<a class="headerlink" href="#visualization-of-traces-across-time" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span>
@@ -818,6 +815,7 @@ G_t(V, E_t).
 <p><strong>Note:</strong> For an increasing <span class="math notranslate nohighlight">\(T\)</span>, we can use these features to predict future states of the network!</p>
 <p>Do you have other ideas about the use these traces?</p>
 <hr class="docutils" />
+</section>
 </section>
 </section>
 
@@ -857,7 +855,7 @@ G_t(V, E_t).
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">5. Network analysis: centrality measures</p>
+        <p class="prev-next-title">Network analysis: centrality measures</p>
       </div>
     </a>
     <a class="right-next"
@@ -885,18 +883,16 @@ G_t(V, E_t).
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">6. Longitudinal analysis; Evolution of complex networks.</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">6.1. Introduction</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphs-across-time">6.2. Graphs across time!</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#application-in-networkx">6.3. Application in NetworkX</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies-data-loading">6.3.1. Dependencies &amp; data loading</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-of-simple-network-as-a-binary-graph-across-time">6.3.2. Simulation of simple network as a binary graph across time</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-of-topology-metrics-across-time">6.3.3. Analysis of topology metrics across time</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-of-traces-across-time">6.3.4. Visualization of traces across time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphs-across-time">Graphs across time!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-in-networkx">Application in NetworkX</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies-data-loading">Dependencies &amp; data loading</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-of-simple-network-as-a-binary-graph-across-time">Simulation of simple network as a binary graph across time</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-of-topology-metrics-across-time">Analysis of topology metrics across time</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-of-traces-across-time">Visualization of traces across time</a></li>
 </ul>
 </li>
 </ul>
-
   </nav></div>
 
 </div></div>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Graph extentions &#8212; Algorithms for Data Science</title>
+    <title>Graph extentions &#8212; Algorithms for Data Science</title>
   
   
   
@@ -63,8 +63,8 @@
     <link rel="icon" href="../_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Topology: network properties" href="4_Network_topology.html" />
-    <link rel="prev" title="2. Fundamentals" href="2_Fundamentals.html" />
+    <link rel="next" title="Topology: network properties" href="4_Network_topology.html" />
+    <link rel="prev" title="Fundamentals" href="2_Fundamentals.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -200,12 +200,15 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Networkx</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Introduction to Graph Theory and Complex Networks Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="1_Introduction.html">1. Introduction to Graph Theory and Complex Network Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_Fundamentals.html">2. Fundamentals</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">3. Graph extentions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_Network_topology.html">4. Topology: network properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5_network_analysis_centralitiy.html">5. Network analysis: centrality measures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6_network_analysis_across_time.html">6. Longitudinal analysis; Evolution of complex networks.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_Introduction.html">Introduction to Graph Theory and Complex Network Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_Fundamentals.html">Fundamentals</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Graph extentions</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="4_Network_topology.html">Topology: network properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_network_analysis_centralitiy.html">Network analysis: centrality measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_network_analysis_across_time.html">Longitudinal analysis; Evolution of complex networks.</a></li>
 
 
 
@@ -473,7 +476,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>3. Graph extentions</h1>
+    <h1>Graph extentions</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -483,24 +486,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directed-graphs-digraph">3.1. Directed graphs (Digraph)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">3.1.1. Definition</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connectivity-in-digraphs">3.1.2. Connectivity in DiGraphs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Graph extentions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-graphs">Weighted Graphs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#directed-graphs-digraph">Directed graphs (Digraph)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connectivity-in-digraphs">Connectivity in DiGraphs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-digraphs">Weighted digraphs</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-graphs">3.2. Weighted graphs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-digraphs">3.3. Weighted digraphs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bipartite-graph">3.4. Bipartite Graph</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.4.1. Definition</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-of-users-connected-by-artists">2.4.2.1. Graph of users connected by artists</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-of-artists-connected-by-users">2.4.2.2. Graph of artists connected by users</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-applications">3.4.2. Other applications</a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bipartite-graph">Bipartite Graph</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-of-users-connected-by-artists">Graph of users connected by artists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-of-artists-connected-by-users">Graph of artists connected by users</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-applications">Other applications</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -512,7 +513,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="graph-extentions">
-<h1>3. Graph extentions<a class="headerlink" href="#graph-extentions" title="Link to this heading">#</a></h1>
+<h1>Graph extentions<a class="headerlink" href="#graph-extentions" title="Link to this heading">#</a></h1>
 <p>Import modules:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -528,15 +529,10 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="directed-graphs-digraph">
-<h2>3.1. Directed graphs (Digraph)<a class="headerlink" href="#directed-graphs-digraph" title="Link to this heading">#</a></h2>
-<p>Sometimes, the direction of the connections between two nodes are relevant for modelling.</p>
-<p><img alt="image.png" src="data:image/png;base64,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" /></p>
-<p>In certain cases, such as modeling a network of people based on phone calls, the direction of the connections becomes significant. We need to distinguish between the caller (sender) and the person answering the call (receiver). If we use undirected networks, this valuable information about who is who is lost.</p>
-<p>To address this, we can utilize directed graphs, where the links have a specific direction or sense.</p>
-<section id="definition">
-<h3>3.1.1. Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h3>
-<p><strong>Definition</strong>: A directed graph or digraph <span class="math notranslate nohighlight">\(D\)</span> consists of a collection of vertices <span class="math notranslate nohighlight">\(V\)</span>, and a collection of arcs <span class="math notranslate nohighlight">\(E\)</span>, denoted as <span class="math notranslate nohighlight">\(D = (V,E)\)</span>. Each arc <span class="math notranslate nohighlight">\(e = \langle u, v \rangle\)</span> connects vertex <span class="math notranslate nohighlight">\(u \in V\)</span> to another (not necessarily distinct) vertex <span class="math notranslate nohighlight">\(v\)</span>. The vertex <span class="math notranslate nohighlight">\(u\)</span> is called the <em>origin</em> of <span class="math notranslate nohighlight">\(e\)</span> and <span class="math notranslate nohighlight">\(v\)</span> is called the <em>destination</em>.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="weighted-graphs">
+<h1>Weighted Graphs<a class="headerlink" href="#weighted-graphs" title="Link to this heading">#</a></h1>
+<p><strong>Definition</strong>: A weighted graph <span class="math notranslate nohighlight">\(G\)</span> is a graph where each link <span class="math notranslate nohighlight">\(e\)</span> has a real number <span class="math notranslate nohighlight">\(w(e)\)</span> associated with it, called *weight. For a subgraph <span class="math notranslate nohighlight">\(H \subseteq G\)</span>, the weight of <span class="math notranslate nohighlight">\(H\)</span> is simply the sum of weights of its links: <span class="math notranslate nohighlight">\(w(H) = \sum_{e \in E(H)} w(e)\)</span>.</p>
 <p><strong>Example:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -616,7 +612,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\m.amintoosi\AppData\Local\Temp\ipykernel_16216\3096156229.py:2: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed in 3.11. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap()`` or ``pyplot.get_cmap()`` instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\m.amintoosi\AppData\Local\Temp\ipykernel_23944\3096156229.py:2: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed in 3.11. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap()`` or ``pyplot.get_cmap()`` instead.
   cmap_ = plt.cm.get_cmap(&#39;Greys_r&#39;)
 </pre></div>
 </div>
@@ -624,8 +620,15 @@ document.write(`
 </div>
 </div>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="directed-graphs-digraph">
+<h1>Directed graphs (Digraph)<a class="headerlink" href="#directed-graphs-digraph" title="Link to this heading">#</a></h1>
+<p>Sometimes, the direction of the connections between two nodes are relevant for modelling.</p>
+<p><img alt="image.png" src="data:image/png;base64,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" /></p>
+<p>In certain cases, such as modeling a network of people based on phone calls, the direction of the connections becomes significant. We need to distinguish between the caller (sender) and the person answering the call (receiver). If we use undirected networks, this valuable information about who is who is lost.</p>
+<p>To address this, we can utilize directed graphs, where the links have a specific direction or sense.</p>
+<p><strong>Definition</strong>: A directed graph or digraph <span class="math notranslate nohighlight">\(D\)</span> consists of a collection of vertices <span class="math notranslate nohighlight">\(V\)</span>, and a collection of arcs <span class="math notranslate nohighlight">\(E\)</span>, denoted as <span class="math notranslate nohighlight">\(D = (V,E)\)</span>. Each arc <span class="math notranslate nohighlight">\(e = \langle u, v \rangle\)</span> connects vertex <span class="math notranslate nohighlight">\(u \in V\)</span> to another (not necessarily distinct) vertex <span class="math notranslate nohighlight">\(v\)</span>. The vertex <span class="math notranslate nohighlight">\(u\)</span> is called the <em>origin</em> of <span class="math notranslate nohighlight">\(e\)</span> and <span class="math notranslate nohighlight">\(v\)</span> is called the <em>destination</em>.</p>
 <section id="connectivity-in-digraphs">
-<h3>3.1.2. Connectivity in DiGraphs<a class="headerlink" href="#connectivity-in-digraphs" title="Link to this heading">#</a></h3>
+<h2>Connectivity in DiGraphs<a class="headerlink" href="#connectivity-in-digraphs" title="Link to this heading">#</a></h2>
 <p>It is often important to “measure” the distance between one node and another. This is called “Connectivity” of the network.</p>
 <p>It is measured for both undirected and directed networks, and consists of finding paths between one node and another.</p>
 <p><strong>Definition</strong>: Consider a digraph <span class="math notranslate nohighlight">\(D\)</span>. A directed path-(<span class="math notranslate nohighlight">\(v_0, v_k\)</span>) in <span class="math notranslate nohighlight">\(D\)</span> is an alternating sequence <span class="math notranslate nohighlight">\([v_0, a_0, v_1, a_1, a_1, \dots, v_{k-1}, a_{k-1}, v_k]\)</span> of vertices and arcs of <span class="math notranslate nohighlight">\(D\)</span> with <span class="math notranslate nohighlight">\(\langle \overrightarrow{v_i, v_{i+1}} \rangle\)</span>. A <em>directed path</em> is a directed walk in which all arcs are distinct; a <em>directed path</em> is a directed path in which all vertices are also distinct.</p>
@@ -638,103 +641,8 @@ document.write(`
 <p><code class="docutils literal notranslate"><span class="pre">V1</span> <span class="pre">-&gt;</span> <span class="pre">a</span> <span class="pre">-&gt;</span> <span class="pre">V2</span> <span class="pre">-&gt;</span> <span class="pre">b</span> <span class="pre">-&gt;</span> <span class="pre">V3</span> <span class="pre">-&gt;</span> <span class="pre">c</span> <span class="pre">-&gt;</span> <span class="pre">V4</span></code>.</p>
 <p>We will consider this concept of “path” as <em>node accessibility</em> in Sub-Chapter 4 as a property of the network.</p>
 </section>
-</section>
-<section id="weighted-graphs">
-<h2>3.2. Weighted graphs<a class="headerlink" href="#weighted-graphs" title="Link to this heading">#</a></h2>
-<p><strong>Definition</strong>: A weighted graph <span class="math notranslate nohighlight">\(G\)</span> is a graph where each link <span class="math notranslate nohighlight">\(e\)</span> has a real number <span class="math notranslate nohighlight">\(w(e)\)</span> associated with it, called *weight. For a subgraph <span class="math notranslate nohighlight">\(H \subseteq G\)</span>, the weight of <span class="math notranslate nohighlight">\(H\)</span> is simply the sum of weights of its links: <span class="math notranslate nohighlight">\(w(H) = \sum_{e \in E(H)} w(e)\)</span>.</p>
-<p><strong>Example:</strong></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">node_labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
-<span class="n">edge_labels</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)]</span>
-<span class="n">weight</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-<span class="n">weighted_edges</span> <span class="o">=</span> <span class="p">[(</span><span class="n">edge_labels</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">edge_labels</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">edge_labels</span><span class="p">))]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
-<span class="n">W</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">node_labels</span><span class="p">)</span>
-<span class="n">W</span><span class="o">.</span><span class="n">add_weighted_edges_from</span><span class="p">(</span><span class="n">weighted_edges</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s2">&quot;#cf52a5&quot;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">weight</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
-<span class="n">axs</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-<span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$W$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;$W$&#39;)
-</pre></div>
-</div>
-<img alt="../_images/b5cbefaa90c2fb0ba74afc3fde7403bb73dcc31459afb4306cb67d32f70cddd2.png" src="../_images/b5cbefaa90c2fb0ba74afc3fde7403bb73dcc31459afb4306cb67d32f70cddd2.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s2">&quot;weight&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>EdgeDataView([(0, 1, 1), (0, 2, 1), (1, 2, 2), (1, 3, 2), (2, 3, 2), (3, 4, 4)])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">WA</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">adjacency_matrix</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
-<span class="n">WA</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 1, 0, 0],
-       [1, 0, 2, 2, 0],
-       [1, 2, 0, 2, 0],
-       [0, 2, 2, 0, 4],
-       [0, 0, 0, 4, 0]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">cmap_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;Greys_r&#39;</span><span class="p">)</span><span class="c1">#, 5)</span>
-<span class="c1">#labels = np.arange(0, 4+1, 1)</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">WA</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_</span><span class="p">)</span><span class="c1">#, vmin=0, vmax=4)</span>
-<span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
-<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s2">&quot;weights&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Nodes&quot;</span><span class="p">);</span> <span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Nodes&quot;</span><span class="p">);</span>
-<span class="c1">#loc = labels - 0.5</span>
-<span class="c1">#cbar.set_ticks(loc)</span>
-<span class="c1">#cbar.set_ticklabels(labels)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\m.amintoosi\AppData\Local\Temp\ipykernel_16216\3503279781.py:2: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed in 3.11. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap()`` or ``pyplot.get_cmap()`` instead.
-  cmap_ = plt.cm.get_cmap(&#39;Greys_r&#39;)#, 5)
-</pre></div>
-</div>
-<img alt="../_images/55955a950bee486327f50262f6f5fa95159da461217414b8f3f8ee5fc8651bb3.png" src="../_images/55955a950bee486327f50262f6f5fa95159da461217414b8f3f8ee5fc8651bb3.png" />
-</div>
-</div>
-</section>
 <section id="weighted-digraphs">
-<h2>3.3. Weighted digraphs<a class="headerlink" href="#weighted-digraphs" title="Link to this heading">#</a></h2>
+<h2>Weighted digraphs<a class="headerlink" href="#weighted-digraphs" title="Link to this heading">#</a></h2>
 <p><strong>Definition</strong>: A directed weighted graph <span class="math notranslate nohighlight">\(D\)</span> consists of a collection of vertices <span class="math notranslate nohighlight">\(V\)</span>, a collection of links <span class="math notranslate nohighlight">\(E\)</span> and weights <span class="math notranslate nohighlight">\(W\)</span>, denoted as <span class="math notranslate nohighlight">\(D = (V,E,W)\)</span>. Each link <span class="math notranslate nohighlight">\(e = \langle u, v \rangle\)</span> connects vertex <span class="math notranslate nohighlight">\(u \in V\)</span> to another (not necessarily distinct) vertex <span class="math notranslate nohighlight">\(v\)</span>. The vertex <span class="math notranslate nohighlight">\(u\)</span> is called the <em>origin</em> of <span class="math notranslate nohighlight">\(e\)</span> and <span class="math notranslate nohighlight">\(v\)</span> is called the <em>destination</em>.</p>
 <p><strong>Example:</strong></p>
 <div class="cell docutils container">
@@ -775,10 +683,9 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="bipartite-graph">
-<h2>3.4. Bipartite Graph<a class="headerlink" href="#bipartite-graph" title="Link to this heading">#</a></h2>
-<section id="id1">
-<h3>3.4.1. Definition<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="bipartite-graph">
+<h1>Bipartite Graph<a class="headerlink" href="#bipartite-graph" title="Link to this heading">#</a></h1>
 <p>A bipartite graph can be defined as a graph whose vertices <span class="math notranslate nohighlight">\(V\)</span> can be partitioned into two sets, <span class="math notranslate nohighlight">\(V_1\)</span> and <span class="math notranslate nohighlight">\(V_2\)</span>,disjoint and non-empty, such that each link <span class="math notranslate nohighlight">\(E\)</span> connects a vertex of <span class="math notranslate nohighlight">\(V_1\)</span> to <span class="math notranslate nohighlight">\(V_2\)</span>. Formally it can be expressed as:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -943,7 +850,7 @@ G = (V_1 \cup V_2, E)
 </div>
 </div>
 <section id="graph-of-users-connected-by-artists">
-<h4>2.4.2.1. Graph of users connected by artists<a class="headerlink" href="#graph-of-users-connected-by-artists" title="Link to this heading">#</a></h4>
+<h2>Graph of users connected by artists<a class="headerlink" href="#graph-of-users-connected-by-artists" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
@@ -1030,7 +937,7 @@ G = (V_1 \cup V_2, E)
 </div>
 </section>
 <section id="graph-of-artists-connected-by-users">
-<h4>2.4.2.2. Graph of artists connected by users<a class="headerlink" href="#graph-of-artists-connected-by-users" title="Link to this heading">#</a></h4>
+<h2>Graph of artists connected by users<a class="headerlink" href="#graph-of-artists-connected-by-users" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">artists_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">A</span><span class="p">))</span>
@@ -1128,9 +1035,8 @@ G = (V_1 \cup V_2, E)
 </div>
 </div>
 </section>
-</section>
 <section id="other-applications">
-<h3>3.4.2. Other applications<a class="headerlink" href="#other-applications" title="Link to this heading">#</a></h3>
+<h2>Other applications<a class="headerlink" href="#other-applications" title="Link to this heading">#</a></h2>
 <p>Bipartite graphs find application in a wide range of diverse fields. For instance,</p>
 <ul class="simple">
 <li><p>Recommendation systems.</p></li>
@@ -1141,7 +1047,6 @@ G = (V_1 \cup V_2, E)
 <li><p>Transport problems.</p></li>
 <li><p>Citation analysis.</p></li>
 </ul>
-</section>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
@@ -1190,7 +1095,7 @@ Robin J. Wilson (1996). Introduction to Graph Theory (eBook: <a class="reference
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">2. Fundamentals</p>
+        <p class="prev-next-title">Fundamentals</p>
       </div>
     </a>
     <a class="right-next"
@@ -1198,7 +1103,7 @@ Robin J. Wilson (1996). Introduction to Graph Theory (eBook: <a class="reference
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">4. Topology: network properties</p>
+        <p class="prev-next-title">Topology: network properties</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1218,24 +1123,22 @@ Robin J. Wilson (1996). Introduction to Graph Theory (eBook: <a class="reference
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directed-graphs-digraph">3.1. Directed graphs (Digraph)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">3.1.1. Definition</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connectivity-in-digraphs">3.1.2. Connectivity in DiGraphs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Graph extentions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-graphs">Weighted Graphs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#directed-graphs-digraph">Directed graphs (Digraph)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connectivity-in-digraphs">Connectivity in DiGraphs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-digraphs">Weighted digraphs</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-graphs">3.2. Weighted graphs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-digraphs">3.3. Weighted digraphs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bipartite-graph">3.4. Bipartite Graph</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.4.1. Definition</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-of-users-connected-by-artists">2.4.2.1. Graph of users connected by artists</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-of-artists-connected-by-users">2.4.2.2. Graph of artists connected by users</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-applications">3.4.2. Other applications</a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bipartite-graph">Bipartite Graph</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-of-users-connected-by-artists">Graph of users connected by artists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-of-artists-connected-by-users">Graph of artists connected by users</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-applications">Other applications</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
