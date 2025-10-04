@@ -8,7 +8,7 @@ options:  # The options key will be applied to all chapters, but not sub-section
 parts:
   - caption: Introduction to Python & NumPy
     chapters:
-    - file: pyhton-DSHB/02.00-Introduction-to-NumPy
+    - file: pyhton-DSHB/Python-DSHB-intro
       sections:
       - file: pyhton-DSHB/02.01-Understanding-Data-Types
       - file: pyhton-DSHB/02.02-The-Basics-Of-NumPy-Arrays
