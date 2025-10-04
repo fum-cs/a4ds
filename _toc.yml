@@ -19,6 +19,16 @@ parts:
       - file: pyhton-DSHB/02.07-Fancy-Indexing
       - file: pyhton-DSHB/02.08-Sorting
       - file: pyhton-DSHB/02.09-Structured-Data-NumPy
+  - caption: Introduction to Networkx
+    chapters:
+    - file: nx/intro
+      sections:
+      - file: nx/1_Introduction
+      - file: nx/2_Fundamentals
+      - file: nx/3_Extensions
+      - file: nx/4_Network_topology
+      - file: nx/5_network_analysis_centralitiy
+      - file: nx/6_network_analysis_across_time
   - caption: High Dimensional Spaces
     chapters:
     - file: high-dimensional-spaces/high-dim-intro
