@@ -1,0 +1,63 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+options:  # The options key will be applied to all chapters, but not sub-sections
+  numbered: True
+parts:
+  - caption: Introduction to Python & NumPy
+    chapters:
+    - file: pyhton-DSHB/02.00-Introduction-to-NumPy
+      sections:
+      - file: pyhton-DSHB/02.01-Understanding-Data-Types
+      - file: pyhton-DSHB/02.02-The-Basics-Of-NumPy-Arrays
+      - file: pyhton-DSHB/02.03-Computation-on-arrays-ufuncs
+      - file: pyhton-DSHB/02.04-Computation-on-arrays-aggregates
+      - file: pyhton-DSHB/02.05-Computation-on-arrays-broadcasting
+      - file: pyhton-DSHB/02.06-Boolean-Arrays-and-Masks
+      - file: pyhton-DSHB/02.07-Fancy-Indexing
+      - file: pyhton-DSHB/02.08-Sorting
+      - file: pyhton-DSHB/02.09-Structured-Data-NumPy
+  - caption: High Dimensional Spaces
+    chapters:
+    - file: high-dimensional-spaces/high-dim-intro
+      sections:
+      - file: high-dimensional-spaces/SAT_Table
+      - file: high-dimensional-spaces/NQueen
+      - file: high-dimensional-spaces/image_01_intro
+      - file: high-dimensional-spaces/image_02_seg_k-means
+      - file: high-dimensional-spaces/image_03_seg_coords
+      - file: high-dimensional-spaces/BF-clustering
+      - file: high-dimensional-spaces/k-means-clustering
+      - file: high-dimensional-spaces/high_dim_and_CD
+      - file: high-dimensional-spaces/high_dim_and_k-means
+      - file: high-dimensional-spaces/high_dim_and_KNN
+      - file: high-dimensional-spaces/image_clustering
+      - file: high-dimensional-spaces/image-clustering_HC
+      # - file: high-dimensional-spaces/kmeans-clustering-iris
+      - file: high-dimensional-spaces/LVQ
+      # - file: high-dimensional-spaces/Silhouette-clustering
+      - file: high-dimensional-spaces/Dimensionality-reduction_01
+      - file: high-dimensional-spaces/Dimensionality-reduction_02
+      # - file: high-dimensional-spaces/plot_pca_vs_lda
+      # - file: high-dimensional-spaces/SVD_image_compression
+      - file: high-dimensional-spaces/Bias-Variance-Tradeoff
+      # - file: high-dimensional-spaces/misc          
+  - caption:  Machine Learning
+    chapters:
+    - file: machine-learning/05.00-Machine-Learning
+      sections:
+      - file: machine-learning/05.01-What-Is-Machine-Learning
+      - file: machine-learning/05.02-Introducing-Scikit-Learn
+      - file: machine-learning/05.03-Hyperparameters-and-Model-Validation
+      - file: machine-learning/05.04-Feature-Engineering
+      - file: machine-learning/05.05-Naive-Bayes
+      - file: machine-learning/kNN-Classification-Evaluation
+      - file: machine-learning/05.11-Clustering
+      - file: machine-learning/K-Means-Clustering
+      - file: machine-learning/05.12-Gaussian-Mixtures-part1
+      - file: machine-learning/05.06-Linear-Regression-part1
+      - file: machine-learning/Clustering-Validation-Metrics
+      - file: machine-learning/05.09-Principal-Component-Analysis-part1
+      - file: machine-learning/05.08-Random-Forests
