@@ -511,7 +511,6 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="graph-extentions">
 <h1>Graph extentions<a class="headerlink" href="#graph-extentions" title="Link to this heading">#</a></h1>
-<p>Import modules:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
@@ -529,7 +528,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="weighted-graphs">
 <h1>Weighted Graphs<a class="headerlink" href="#weighted-graphs" title="Link to this heading">#</a></h1>
-<p><strong>Definition</strong>: A weighted graph <span class="math notranslate nohighlight">\(G\)</span> is a graph where each link <span class="math notranslate nohighlight">\(e\)</span> has a real number <span class="math notranslate nohighlight">\(w(e)\)</span> associated with it, called *weight. For a subgraph <span class="math notranslate nohighlight">\(H \subseteq G\)</span>, the weight of <span class="math notranslate nohighlight">\(H\)</span> is simply the sum of weights of its links: <span class="math notranslate nohighlight">\(w(H) = \sum_{e \in E(H)} w(e)\)</span>.</p>
+<p><strong>Definition</strong>: A weighted graph <span class="math notranslate nohighlight">\(G\)</span> is a graph where each link <span class="math notranslate nohighlight">\(e\)</span> has a real number <span class="math notranslate nohighlight">\(w(e)\)</span> associated with it, called <em>weight</em>. For a subgraph <span class="math notranslate nohighlight">\(H \subseteq G\)</span>, the weight of <span class="math notranslate nohighlight">\(H\)</span> is simply the sum of weights of its links: <span class="math notranslate nohighlight">\(w(H) = \sum_{e \in E(H)} w(e)\)</span>.</p>
 <p><strong>Example:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -556,16 +555,12 @@ document.write(`
 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s2">&quot;#cf52a5&quot;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">weight</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
-<span class="n">axs</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-<span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$W$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;$W$&#39;)
-</pre></div>
-</div>
-<img alt="../_images/b5cbefaa90c2fb0ba74afc3fde7403bb73dcc31459afb4306cb67d32f70cddd2.png" src="../_images/b5cbefaa90c2fb0ba74afc3fde7403bb73dcc31459afb4306cb67d32f70cddd2.png" />
+<img alt="../_images/8c41937f3f4bd11cf5ce10daa4ba9459f233a857bc0b95fcac297def19c355bd.png" src="../_images/8c41937f3f4bd11cf5ce10daa4ba9459f233a857bc0b95fcac297def19c355bd.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -667,16 +662,25 @@ document.write(`
 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">WD</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">WD</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s2">&quot;#cf52a5&quot;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">WD</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">weight</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
-<span class="n">axs</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-<span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$WD$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;$WD$&#39;)
+<img alt="../_images/ac70bb3cb3f36c7f8f5fd2c8bc5efbe32efa4fa0f0bca4277efa774d26c95ea3.png" src="../_images/ac70bb3cb3f36c7f8f5fd2c8bc5efbe32efa4fa0f0bca4277efa774d26c95ea3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">WD</span><span class="o">.</span><span class="n">in_degree</span><span class="p">(),</span> <span class="n">WD</span><span class="o">.</span><span class="n">out_degree</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/88d6829a0b1e8a83089c28531e68d2eca435c8010b80543567d7a5e8cc7e162b.png" src="../_images/88d6829a0b1e8a83089c28531e68d2eca435c8010b80543567d7a5e8cc7e162b.png" />
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(InDegreeView({0: 1, 1: 1, 2: 2, 3: 3, 4: 1}),
+ OutDegreeView({0: 2, 1: 2, 2: 1, 3: 1, 4: 2}))
+</pre></div>
+</div>
 </div>
 </div>
 </section>
