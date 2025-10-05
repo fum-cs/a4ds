@@ -489,9 +489,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-degree-k-i-u">Node degree (<span class="math notranslate nohighlight">\(K_{i,u}\)</span>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#density-d-i">Density (<span class="math notranslate nohighlight">\(d_i\)</span>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accumulated-degree-k-i">Accumulated degree (<span class="math notranslate nohighlight">\(K_i\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-links-of-attribute-attr-w-i">Weighted links of attribute <code class="docutils literal notranslate"><span class="pre">attr</span></code> (<span class="math notranslate nohighlight">\(W_i\)</span>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-components-c-i">Number of components (<span class="math notranslate nohighlight">\(c_i\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nodos-en-la-componente-principal-s-i">Nodos en la componente principal (<span class="math notranslate nohighlight">\(S_i\)</span>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-clustering-coefficient-langle-c-i-rangle">Mean clustering coefficient <span class="math notranslate nohighlight">\(\langle C_i \rangle\)</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-triangles-delta">Number of triangles (<span class="math notranslate nohighlight">\(\#\Delta\)</span>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-path-length-langle-l-rangle">Average path length <span class="math notranslate nohighlight">\(\langle l \rangle\)</span></a></li>
@@ -546,23 +544,18 @@ document.write(`
 <p><strong>Example:</strong> Florenntine families Graph</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">florentine_families_graph</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#, gridspec_kw={&#39;width_ratios&#39;: [1.5, 1]})</span>
-<span class="n">sc</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">florentine_families_graph</span><span class="p">()</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">1200</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+
 <span class="n">axs</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;$Florentine\ families\ graph$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
@@ -572,7 +565,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;$Florentine\\ families\\ graph$&#39;)
 </pre></div>
 </div>
-<img alt="../_images/61e0f11e9f91518b6734d6c811bd4f360b1112c2dfde3e7947add93ef15459b6.png" src="../_images/61e0f11e9f91518b6734d6c811bd4f360b1112c2dfde3e7947add93ef15459b6.png" />
+<img alt="../_images/84cbd22a63ec662e90674c15b17887777c5062c766aff1aa3968894976f2ba13.png" src="../_images/84cbd22a63ec662e90674c15b17887777c5062c766aff1aa3968894976f2ba13.png" />
 </div>
 </div>
 <section id="topology-measures">
@@ -698,24 +691,6 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="weighted-links-of-attribute-attr-w-i">
-<h3>Weighted links of attribute <code class="docutils literal notranslate"><span class="pre">attr</span></code> (<span class="math notranslate nohighlight">\(W_i\)</span>)<a class="headerlink" href="#weighted-links-of-attribute-attr-w-i" title="Link to this heading">#</a></h3>
-<p>Sum of weighted links based on a given attribute <span class="math notranslate nohighlight">\(attr\)</span>.</p>
-<p><span class="math notranslate nohighlight">\(W_i = \sum_u \sum_{u &gt; v} w_{uv}^{attr}\)</span></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number_connected_components</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">number_connected_components</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-<span class="n">number_connected_components</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="number-of-components-c-i">
 <h3>Number of components (<span class="math notranslate nohighlight">\(c_i\)</span>)<a class="headerlink" href="#number-of-components-c-i" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -731,10 +706,6 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Network structure/fragmentation.</p>
-</section>
-<section id="nodos-en-la-componente-principal-s-i">
-<h3>Nodos en la componente principal (<span class="math notranslate nohighlight">\(S_i\)</span>)<a class="headerlink" href="#nodos-en-la-componente-principal-s-i" title="Link to this heading">#</a></h3>
 <p>Network structure/fragmentation.</p>
 </section>
 <section id="mean-clustering-coefficient-langle-c-i-rangle">
@@ -1078,9 +1049,7 @@ Robin J. Wilson (1996). Introduction to Graph Theory (eBook: <a class="reference
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-degree-k-i-u">Node degree (<span class="math notranslate nohighlight">\(K_{i,u}\)</span>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#density-d-i">Density (<span class="math notranslate nohighlight">\(d_i\)</span>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accumulated-degree-k-i">Accumulated degree (<span class="math notranslate nohighlight">\(K_i\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-links-of-attribute-attr-w-i">Weighted links of attribute <code class="docutils literal notranslate"><span class="pre">attr</span></code> (<span class="math notranslate nohighlight">\(W_i\)</span>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-components-c-i">Number of components (<span class="math notranslate nohighlight">\(c_i\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nodos-en-la-componente-principal-s-i">Nodos en la componente principal (<span class="math notranslate nohighlight">\(S_i\)</span>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-clustering-coefficient-langle-c-i-rangle">Mean clustering coefficient <span class="math notranslate nohighlight">\(\langle C_i \rangle\)</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-triangles-delta">Number of triangles (<span class="math notranslate nohighlight">\(\#\Delta\)</span>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-path-length-langle-l-rangle">Average path length <span class="math notranslate nohighlight">\(\langle l \rangle\)</span></a></li>
