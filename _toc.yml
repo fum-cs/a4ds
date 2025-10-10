@@ -28,7 +28,24 @@ parts:
       - file: nx/3_Extensions
       - file: nx/4_Network_topology
       - file: nx/5_network_analysis_centralitiy
-      - file: nx/6_network_analysis_across_time
+      - file: nx/6_network_analysis_across_time        
+  - caption:  Machine Learning
+    chapters:
+    - file: machine-learning/05.00-Machine-Learning
+      sections:
+      - file: machine-learning/05.01-What-Is-Machine-Learning
+      - file: machine-learning/05.02-Introducing-Scikit-Learn
+      - file: machine-learning/05.03-Hyperparameters-and-Model-Validation
+      - file: machine-learning/05.04-Feature-Engineering
+      - file: machine-learning/05.05-Naive-Bayes
+      - file: machine-learning/05.11-Clustering
+      # - file: machine-learning/K-Means-Clustering
+      - file: machine-learning/05.12-Gaussian-Mixtures-part1
+      - file: machine-learning/05.06-Linear-Regression-part1
+      - file: machine-learning/05.06-Linear-Regression-part2
+      # - file: machine-learning/Clustering-Validation-Metrics
+      - file: machine-learning/05.09-Principal-Component-Analysis-part1
+      - file: machine-learning/05.08-Random-Forests
   - caption: High Dimensional Spaces
     chapters:
     - file: high-dimensional-spaces/high-dim-intro
@@ -54,20 +71,4 @@ parts:
       # - file: high-dimensional-spaces/plot_pca_vs_lda
       # - file: high-dimensional-spaces/SVD_image_compression
       - file: high-dimensional-spaces/Bias-Variance-Tradeoff
-      # - file: high-dimensional-spaces/misc          
-  - caption:  Machine Learning
-    chapters:
-    - file: machine-learning/05.00-Machine-Learning
-      sections:
-      - file: machine-learning/05.01-What-Is-Machine-Learning
-      - file: machine-learning/05.02-Introducing-Scikit-Learn
-      - file: machine-learning/05.03-Hyperparameters-and-Model-Validation
-      - file: machine-learning/05.04-Feature-Engineering
-      - file: machine-learning/05.05-Naive-Bayes
-      - file: machine-learning/05.11-Clustering
-      # - file: machine-learning/K-Means-Clustering
-      - file: machine-learning/05.12-Gaussian-Mixtures-part1
-      - file: machine-learning/05.06-Linear-Regression-part1
-      # - file: machine-learning/Clustering-Validation-Metrics
-      - file: machine-learning/05.09-Principal-Component-Analysis-part1
-      - file: machine-learning/05.08-Random-Forests
+      # - file: high-dimensional-spaces/misc        
