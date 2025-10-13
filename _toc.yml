@@ -72,3 +72,8 @@ parts:
       # - file: high-dimensional-spaces/SVD_image_compression
       - file: high-dimensional-spaces/Bias-Variance-Tradeoff
       # - file: high-dimensional-spaces/misc        
+  - caption: Home Works
+    chapters:
+    - file: hws/index
+      sections:
+      - file: hws/GitHub-Pages
