@@ -212,6 +212,32 @@
 </ul>
 </details></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="05.00-Machine-Learning.html">Machine Learning</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="05.01-What-Is-Machine-Learning.html">What Is Machine Learning?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.02-Introducing-Scikit-Learn.html">Introducing Scikit-Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.04-Feature-Engineering.html">Feature Engineering</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Naive Bayes Classification</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="05.11-Clustering.html">Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression-part1.html">Linear Regression, Part 1</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression-part2.html">Linear Regression, Part 2</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis-part1.html">Principal Component Analysis, PDSHB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
+</ul>
+</details></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">High Dimensional Spaces</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../high-dimensional-spaces/high-dim-intro.html">High Dimensional Spaces</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -236,27 +262,9 @@
 </ul>
 </details></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="05.00-Machine-Learning.html">Machine Learning</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="05.01-What-Is-Machine-Learning.html">What Is Machine Learning?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.02-Introducing-Scikit-Learn.html">Introducing Scikit-Learn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.04-Feature-Engineering.html">Feature Engineering</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Naive Bayes Classification</a></li>
-
-
-
-<li class="toctree-l2"><a class="reference internal" href="05.11-Clustering.html">Clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression-part1.html">Linear Regression, Part 1</a></li>
-
-
-
-<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis-part1.html">Principal Component Analysis, PDSHB</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
-</ul>
-</details></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Home Works</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../hws/GitHub-Pages.html">Create Your GitHub Pages</a></li>
 </ul>
 
     </div>
@@ -570,18 +578,18 @@ This chapter will provide an intuitive explanation of how naive Bayes classifier
 <h1>Naive Bayes Classifier<a class="headerlink" href="#naive-bayes-classifier" title="Link to this heading">#</a></h1>
 <p>by: <a class="reference external" href="https://www.cs.ucr.edu/~eamonn/">Eamonn Keogh</a>,
 <a class="reference external" href="https://www1.cs.ucr.edu/">CS, UCR</a>. <a class="reference external" href="https://www.cs.ucr.edu/~eamonn/CE/Bayesian%20Classification%20withInsect_examples.pdf">PDF</a></p>
-<p><img alt="" src="machine-learning/img/BCW_page_01.jpg" /></p>
+<p><img alt="" src="../_images/BCW_page_01.jpg" /></p>
 <p><strong>Thomas Bayes 1702 - 1761</strong></p>
 <p>We will start off with a visual intuition before looking at the math…</p>
 <hr class="docutils" />
 <section id="grasshoppers-vs-katydids">
 <h2>Grasshoppers vs. Katydids<a class="headerlink" href="#grasshoppers-vs-katydids" title="Link to this heading">#</a></h2>
-<p><img alt="" src="machine-learning/img/BCW_page_02.png" /></p>
+<p><img alt="" src="../_images/BCW_page_02.png" /></p>
 <section id="antenna-length-vs-abdomen-length">
 <h3>Antenna Length vs. Abdomen Length<a class="headerlink" href="#antenna-length-vs-abdomen-length" title="Link to this heading">#</a></h3>
 <p>With a lot of data, we can build a histogram. Let us just build one for “Antenna Length” for now…</p>
-<p><img alt="" src="machine-learning/img/BCW_page_03.png" /></p>
-<p><img alt="" src="machine-learning/img/BCW_page_04.png" /></p>
+<p><img alt="" src="../_images/BCW_page_03.png" /></p>
+<p><img alt="" src="../_images/BCW_page_04.png" /></p>
 </section>
 <hr class="docutils" />
 <section id="classifying-an-insect">
@@ -589,7 +597,7 @@ This chapter will provide an intuitive explanation of how naive Bayes classifier
 <ul class="simple">
 <li><p>We want to classify an insect we have found. Its antennae are 3 units long. How can we classify it?</p></li>
 </ul>
-<p><img alt="" src="machine-learning/img/BCW_page_05.png" /></p>
+<p><img alt="" src="../_images/BCW_page_05.png" /></p>
 <ul class="simple">
 <li><p>We can just ask ourselves, given the distributions of antennae lengths we have seen, is it more probable that our insect is a <strong>Grasshopper</strong> or a <strong>Katydid</strong>.</p></li>
 <li><p>There is a formal way to discuss the most probable classification:</p></li>
@@ -602,7 +610,7 @@ p(c_j | d) = \text{probability of class } c_j, \text{ given that we have observe
 <hr class="docutils" />
 <section id="example-antennae-length-is-3">
 <h3>Example: Antennae Length is 3<a class="headerlink" href="#example-antennae-length-is-3" title="Link to this heading">#</a></h3>
-<p><img alt="" src="machine-learning/img/BCW_page_06.png" /></p>
+<p><img alt="" src="../_images/BCW_page_06.png" /></p>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}\begin{split}
 P(\text{Grasshopper} | 3) = \frac{10}{10 + 2} = 0.833\\\end{split}\\P(\text{Katydid} | 3) = \frac{2}{10 + 2} = 0.166
@@ -630,8 +638,8 @@ $$
 $$
 P(\text{Katydid} | 5) = \frac{6}{6 + 6} = 0.500
 $$ -->
-<p><img alt="" src="machine-learning/img/BCW_page_07.png" /></p>
-<p><img alt="" src="machine-learning/img/BCW_page_08.png" /></p>
+<p><img alt="" src="../_images/BCW_page_07.png" /></p>
+<p><img alt="" src="../_images/BCW_page_08.png" /></p>
 </section>
 </section>
 <hr class="docutils" />
@@ -706,10 +714,10 @@ p(\text{female} \, | \, \text{Drew}) = \frac{p(\text{Drew} \, | \, \text{female}
 </section>
 </section>
 <section id="id1">
-<h2><img alt="" src="machine-learning/img/BCW_page_11.png" /><a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<h2><img alt="" src="../_images/BCW_page_11.png" /><a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <section id="officer-drew-example">
 <h3>Officer Drew Example<a class="headerlink" href="#officer-drew-example" title="Link to this heading">#</a></h3>
-<p><img alt="" src="machine-learning/img/BCW_page_12.png" /></p>
+<p><img alt="" src="../_images/BCW_page_12.png" /></p>
 <p>We have a small database with names and sex:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -761,7 +769,7 @@ p(\text{male} | \text{Drew}) = \frac{1/3 \times 3/8}{3/8} = \frac{0.125}{3/8}
 p(\text{female} | \text{Drew}) = \frac{2/5 \times 5/8}{3/8} = \frac{0.250}{3/8}
 \]</div>
 <p>Officer Drew is more likely to be a Female!</p>
-<p><img alt="" src="machine-learning/img/BCW_page_14.png" /></p>
+<p><img alt="" src="../_images/BCW_page_14.png" /></p>
 </section>
 <hr class="docutils" />
 <section id="naive-bayes-with-multiple-features">

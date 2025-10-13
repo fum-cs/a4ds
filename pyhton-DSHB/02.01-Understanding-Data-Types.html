@@ -210,6 +210,32 @@
 </ul>
 </details></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../machine-learning/05.00-Machine-Learning.html">Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.01-What-Is-Machine-Learning.html">What Is Machine Learning?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.02-Introducing-Scikit-Learn.html">Introducing Scikit-Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.04-Feature-Engineering.html">Feature Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.05-Naive-Bayes.html">Naive Bayes Classification</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.11-Clustering.html">Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.12-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.06-Linear-Regression-part1.html">Linear Regression, Part 1</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.06-Linear-Regression-part2.html">Linear Regression, Part 2</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.09-Principal-Component-Analysis-part1.html">Principal Component Analysis, PDSHB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
+</ul>
+</details></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">High Dimensional Spaces</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../high-dimensional-spaces/high-dim-intro.html">High Dimensional Spaces</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -234,27 +260,9 @@
 </ul>
 </details></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Home Works</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../machine-learning/05.00-Machine-Learning.html">Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.01-What-Is-Machine-Learning.html">What Is Machine Learning?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.02-Introducing-Scikit-Learn.html">Introducing Scikit-Learn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.04-Feature-Engineering.html">Feature Engineering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.05-Naive-Bayes.html">Naive Bayes Classification</a></li>
-
-
-
-<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.11-Clustering.html">Clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.12-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.06-Linear-Regression-part1.html">Linear Regression, Part 1</a></li>
-
-
-
-<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.09-Principal-Component-Analysis-part1.html">Principal Component Analysis, PDSHB</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../hws/GitHub-Pages.html">Create Your GitHub Pages</a></li>
 </ul>
 
     </div>
@@ -555,7 +563,7 @@ Looking through the Python 3.10 source code, we find that the integer (long) typ
 <li><p><code class="docutils literal notranslate"><span class="pre">ob_digit</span></code>, which contains the actual integer value that we expect the Python variable to represent</p></li>
 </ul>
 <p>This means that there is some overhead involved in storing an integer in Python as compared to a compiled language like C, as illustrated in the following figure:</p>
-<p><img alt="Integer Memory Layout" src="pyhton-DSHB/img/cint_vs_pyint.png" /></p>
+<p><img alt="Integer Memory Layout" src="../_images/cint_vs_pyint.png" /></p>
 <p>Here, <code class="docutils literal notranslate"><span class="pre">PyObject_HEAD</span></code> is the part of the structure containing the reference count, type code, and other pieces mentioned before.</p>
 <p>Notice the difference here: a C integer is essentially a label for a position in memory whose bytes encode an integer value.
 A Python integer is a pointer to a position in memory containing all the Python object information, including the bytes that contain the integer value.
@@ -635,7 +643,7 @@ We can create a list of integers as follows:</p>
 <p>But this flexibility comes at a cost: to allow these flexible types, each item in the list must contain its own type, reference count, and other information. That is, each item is a complete Python object.
 In the special case that all variables are of the same type, much of this information is redundant, so it can be much more efficient to store the data in a fixed-type array.
 The difference between a dynamic-type list and a fixed-type (NumPy-style) array is illustrated in the following figure:</p>
-<p><img alt="Array Memory Layout" src="pyhton-DSHB/img/array_vs_list.png" /></p>
+<p><img alt="Array Memory Layout" src="../_images/array_vs_list.png" /></p>
 <p>At the implementation level, the array essentially contains a single pointer to one contiguous block of data.
 The Python list, on the other hand, contains a pointer to a block of pointers, each of which in turn points to a full Python object like the Python integer we saw earlier.
 Again, the advantage of the list is flexibility: because each list element is a full structure containing both data and type information, the list can be filled with data of any desired type.
