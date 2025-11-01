@@ -55,6 +55,7 @@ parts:
       - file: high-dimensional-spaces/image_01_intro
       - file: high-dimensional-spaces/image_02_seg_k-means
       - file: high-dimensional-spaces/image_03_seg_coords
+      - file: high-dimensional-spaces/image_04_classification_Bayes_kNN
       - file: high-dimensional-spaces/BF-clustering
       - file: high-dimensional-spaces/k-means-clustering
       - file: high-dimensional-spaces/high_dim_and_CD
