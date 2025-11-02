@@ -56,7 +56,8 @@ parts:
       - file: high-dimensional-spaces/image_02_seg_k-means
       - file: high-dimensional-spaces/image_03_seg_coords
       - file: high-dimensional-spaces/image_04_classification_Bayes_kNN
-      - file: high-dimensional-spaces/BF-clustering
+      # - file: high-dimensional-spaces/image_05_GMM      
+      # - file: high-dimensional-spaces/BF-clustering
       - file: high-dimensional-spaces/k-means-clustering
       - file: high-dimensional-spaces/high_dim_and_CD
       - file: high-dimensional-spaces/high_dim_and_k-means
@@ -78,3 +79,5 @@ parts:
     - file: hws/index
       sections:
       - file: hws/GitHub-Pages
+      - file: hws/Image-Segmentation
+      - file: hws/Graph-Cut
