@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>kNN in high dimensional spaces &#8212; Algorithms for Data Science</title>
+    <title>Image Segmentation using Graph Cut Methods: Exercise &#8212; Algorithms for Data Science</title>
   
   
   
@@ -57,12 +57,13 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'high-dimensional-spaces/high_dim_and_KNN';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'hws/Graph-Cut';</script>
     <link rel="icon" href="../_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Clustering images" href="image_clustering.html" />
-    <link rel="prev" title="k-Nearest Neighbors and Classification Evaluation Metrics" href="kNN-Classification-Evaluation.html" />
+    <link rel="prev" title="Image Segmentation Exercise: Comparing Classification Methods" href="Image-Segmentation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -237,35 +238,35 @@
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">High Dimensional Spaces</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="high-dim-intro.html">High Dimensional Spaces</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="SAT_Table.html">SAT-Table</a></li>
-<li class="toctree-l2"><a class="reference internal" href="NQueen.html">N-Queen Problem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="image_01_intro.html">Images as high dimensional data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="image_02_seg_k-means.html">Image Segmentaion</a></li>
-<li class="toctree-l2"><a class="reference internal" href="image_03_seg_coords.html">Add coordinates as spatial features to clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="image_04_classification_Bayes_kNN.html">Image Segmentation: Comparing Thresholding, Naive Bayes, and k-NN</a></li>
-<li class="toctree-l2"><a class="reference internal" href="k-means-clustering.html">k-means Clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="high_dim_and_CD.html">High Dimensional Data &amp; the curse of dimensionality</a></li>
-<li class="toctree-l2"><a class="reference internal" href="high_dim_and_k-means.html">k-means in high dimensional spaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kNN-Classification-Evaluation.html">k-Nearest Neighbors and Classification Evaluation Metrics</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">kNN in high dimensional spaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="image_clustering.html">Clustering images</a></li>
-<li class="toctree-l2"><a class="reference internal" href="image-clustering_HC.html">Clustering images by hierarchical clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LVQ.html">Vector Quantization</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../high-dimensional-spaces/high-dim-intro.html">High Dimensional Spaces</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/SAT_Table.html">SAT-Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/NQueen.html">N-Queen Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_01_intro.html">Images as high dimensional data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_02_seg_k-means.html">Image Segmentaion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_03_seg_coords.html">Add coordinates as spatial features to clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_04_classification_Bayes_kNN.html">Image Segmentation: Comparing Thresholding, Naive Bayes, and k-NN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/k-means-clustering.html">k-means Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/high_dim_and_CD.html">High Dimensional Data &amp; the curse of dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/high_dim_and_k-means.html">k-means in high dimensional spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/kNN-Classification-Evaluation.html">k-Nearest Neighbors and Classification Evaluation Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/high_dim_and_KNN.html">kNN in high dimensional spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_clustering.html">Clustering images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image-clustering_HC.html">Clustering images by hierarchical clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/LVQ.html">Vector Quantization</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="Dimensionality-reduction_01.html">Dimensionality Reduction - Part 1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Dimensionality-reduction_02.html">Dimensionality Reduction - Part 2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Bias-Variance-Tradeoff.html">Bias-Variance Tradeoff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/Dimensionality-reduction_01.html">Dimensionality Reduction - Part 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/Dimensionality-reduction_02.html">Dimensionality Reduction - Part 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/Bias-Variance-Tradeoff.html">Bias-Variance Tradeoff</a></li>
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Home Works</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../hws/index.html">Home Works</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../hws/GitHub-Pages.html">Create Your GitHub Pages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../hws/Image-Segmentation.html">Image Segmentation Exercise: Comparing Classification Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../hws/Graph-Cut.html">Image Segmentation using Graph Cut Methods: Exercise</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Home Works</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="GitHub-Pages.html">Create Your GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Image-Segmentation.html">Image Segmentation Exercise: Comparing Classification Methods</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Image Segmentation using Graph Cut Methods: Exercise</a></li>
 </ul>
 </details></li>
 </ul>
@@ -314,37 +315,6 @@
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/fum-cs/a4ds/blob/main/high-dimensional-spaces/high_dim_and_KNN.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch on Colab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img alt="Colab logo" src="../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -370,7 +340,7 @@
       
       
       
-      <li><a href="https://github.com/fum-cs/a4ds/issues/new?title=Issue%20on%20page%20%2Fhigh-dimensional-spaces/high_dim_and_KNN.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/fum-cs/a4ds/issues/new?title=Issue%20on%20page%20%2Fhws/Graph-Cut.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -400,7 +370,7 @@
       
       
       
-      <li><a href="../_sources/high-dimensional-spaces/high_dim_and_KNN.ipynb" target="_blank"
+      <li><a href="../_sources/hws/Graph-Cut.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -410,7 +380,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -484,7 +454,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>kNN in high dimensional spaces</h1>
+    <h1>Image Segmentation using Graph Cut Methods: Exercise</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -494,7 +464,24 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-curse-of-dimensionality">The curse of dimensionality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-overview">Exercise Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theoretical-background">Theoretical Background</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-representation-of-images">Graph Representation of Images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-cut-formulation">Graph Cut Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-solution">Spectral Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-tasks">Exercise Tasks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-graph-construction-and-matrix-formulation">Part 1: Graph Construction and Matrix Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-spectral-segmentation">Part 2: Spectral Segmentation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-guidelines">Implementation Guidelines</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-mathematical-components">Key Mathematical Components:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">Deliverables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
         </div>
@@ -506,95 +493,115 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><img alt="" src="../_images/banner.png" /></p>
-<script src="require.js"></script><section class="tex2jax_ignore mathjax_ignore" id="knn-in-high-dimensional-spaces">
-<h1>kNN in high dimensional spaces<a class="headerlink" href="#knn-in-high-dimensional-spaces" title="Link to this heading">#</a></h1>
-<section id="the-curse-of-dimensionality">
-<h2>The curse of dimensionality<a class="headerlink" href="#the-curse-of-dimensionality" title="Link to this heading">#</a></h2>
-<p><strong>Mahmood Amintoosi, Fall 2025</strong></p>
-<p>Computer Science Dept, Ferdowsi University of Mashhad</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="n">n_classes</span> <span class="o">=</span> <span class="mi">2</span>
-
-<span class="c1"># Define an empty list to store the accuracy scores</span>
-<span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">n_dimensions</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span><span class="c1"># , 200]#, 1000]</span>
-
-<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">n_dimensions</span><span class="p">:</span>
-    <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span>
-        <span class="n">n_samples</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span>
-        <span class="n">n_features</span><span class="o">=</span><span class="n">d</span><span class="p">,</span>
-        <span class="n">n_classes</span> <span class="o">=</span> <span class="n">n_classes</span><span class="p">,</span>
-        <span class="n">n_redundant</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">n_informative</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-        <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">n_clusters_per_class</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="c1"># Split the data into train and test sets</span>
-    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
-        <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
-    <span class="p">)</span>
-
-    <span class="c1"># Train a k-nearest neighbor classifier with k=5</span>
-    <span class="n">clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-    <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-
-    <span class="c1"># Predict the test labels</span>
-    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-
-    <span class="c1"># Compute the accuracy score</span>
-    <span class="n">score</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-    <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="c1"># Plot init seeds along side sample data</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;#4EACC5&quot;</span><span class="p">,</span> <span class="s2">&quot;#FF9C34&quot;</span><span class="p">,</span> <span class="s2">&quot;#4E9A06&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">]</span>
-
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_classes</span><span class="p">):</span>
-            <span class="n">cluster_data</span> <span class="o">=</span> <span class="n">y</span> <span class="o">==</span> <span class="n">k</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">cluster_data</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">cluster_data</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>  
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;KMeans Clustering (2D) with True Labels&quot;</span><span class="p">)</span>  
-        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Feature 1&quot;</span><span class="p">)</span>  
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Feature 2&quot;</span><span class="p">)</span>  
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># Plot the accuracy scores versus the number of features</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_dimensions</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Number of features&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Accuracy score&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Performance of k-NN with Increasing Feature Dimensions&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">n_dimensions</span><span class="p">)</span>
-<span class="c1"># plt.xscale(&quot;log&quot;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
-</pre></div>
-</div>
-<img alt="../_images/7c0dcd41f3065ca6769c5967150f4bdf87d35c0eb7c70b8dc4aace6dfef6c61d.png" src="../_images/7c0dcd41f3065ca6769c5967150f4bdf87d35c0eb7c70b8dc4aace6dfef6c61d.png" />
-<img alt="../_images/d1ad747b136c459b86855ae38a5adf19f1816843608b2519f88662c0c23ee7c9.png" src="../_images/d1ad747b136c459b86855ae38a5adf19f1816843608b2519f88662c0c23ee7c9.png" />
-</div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="image-segmentation-using-graph-cut-methods-exercise">
+<h1>Image Segmentation using Graph Cut Methods: Exercise<a class="headerlink" href="#image-segmentation-using-graph-cut-methods-exercise" title="Link to this heading">#</a></h1>
+<section id="exercise-overview">
+<h2>Exercise Overview<a class="headerlink" href="#exercise-overview" title="Link to this heading">#</a></h2>
+<p>This exercise focuses on <strong>Graph Cut</strong> methods for image segmentation, building upon your mathematical background in eigenvalues and eigenvectors. Graph Cut formulates image segmentation as a graph partitioning problem that can be solved using spectral methods.</p>
+</section>
+<section id="theoretical-background">
+<h2>Theoretical Background<a class="headerlink" href="#theoretical-background" title="Link to this heading">#</a></h2>
+<section id="graph-representation-of-images">
+<h3>Graph Representation of Images<a class="headerlink" href="#graph-representation-of-images" title="Link to this heading">#</a></h3>
+<p>In Graph Cut segmentation, we represent an image as an undirected graph <span class="math notranslate nohighlight">\(G = (V, E)\)</span> where:</p>
+<ul class="simple">
+<li><p><strong>Vertices (V)</strong>: Pixels in the image (<span class="math notranslate nohighlight">\(v_i \in V\)</span>)</p></li>
+<li><p><strong>Edges (E)</strong>: Connections between neighboring pixels (<span class="math notranslate nohighlight">\(e_{ij} \in E\)</span>)</p></li>
+<li><p><strong>Edge Weights (<span class="math notranslate nohighlight">\(w_{ij}\)</span>)</strong>: Similarity between pixels, typically defined as:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ w_{ij} = \exp\left(-\frac{\|I(i) - I(j)\|^2}{\sigma^2}\right) \]</div>
+<p>where <span class="math notranslate nohighlight">\(I(i)\)</span> and <span class="math notranslate nohighlight">\(I(j)\)</span> are pixel intensities, and <span class="math notranslate nohighlight">\(\sigma\)</span> is a scaling parameter.</p>
+</section>
+<section id="graph-cut-formulation">
+<h3>Graph Cut Formulation<a class="headerlink" href="#graph-cut-formulation" title="Link to this heading">#</a></h3>
+<p>The segmentation problem is formulated as partitioning the graph into two disjoint sets <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> (foreground and background) by minimizing a cost function:</p>
+<div class="math notranslate nohighlight">
+\[ \text{Cut}(A, B) = \sum_{i \in A, j \in B} w_{ij} \]</div>
+<p>However, the simple cut criterion tends to favor small, isolated components. This leads to the <strong>Normalized Cut</strong> criterion:</p>
+<div class="math notranslate nohighlight">
+\[ \text{NCut}(A, B) = \frac{\text{Cut}(A, B)}{\text{Assoc}(A, V)} + \frac{\text{Cut}(A, B)}{\text{Assoc}(B, V)} \]</div>
+<p>where <span class="math notranslate nohighlight">\(\text{Assoc}(A, V) = \sum_{i \in A, j \in V} w_{ij}\)</span> is the total connection from set <span class="math notranslate nohighlight">\(A\)</span> to all vertices.</p>
+</section>
+<section id="spectral-solution">
+<h3>Spectral Solution<a class="headerlink" href="#spectral-solution" title="Link to this heading">#</a></h3>
+<p>The Normalized Cut problem can be solved using spectral graph theory. We define:</p>
+<ul class="simple">
+<li><p><strong>Degree matrix</strong> <span class="math notranslate nohighlight">\(D\)</span>: Diagonal matrix with <span class="math notranslate nohighlight">\(D_{ii} = \sum_j w_{ij}\)</span></p></li>
+<li><p><strong>Laplacian matrix</strong> <span class="math notranslate nohighlight">\(L = D - W\)</span>, where <span class="math notranslate nohighlight">\(W\)</span> is the weight matrix</p></li>
+</ul>
+<p>The solution involves finding the eigenvector corresponding to the second smallest eigenvalue of the generalized eigenvalue problem:</p>
+<div class="math notranslate nohighlight">
+\[ (D - W)\mathbf{y} = \lambda D\mathbf{y} \]</div>
+<p>The signs of the elements in this eigenvector provide the segmentation.</p>
+</section>
+</section>
+<section id="exercise-tasks">
+<h2>Exercise Tasks<a class="headerlink" href="#exercise-tasks" title="Link to this heading">#</a></h2>
+<section id="part-1-graph-construction-and-matrix-formulation">
+<h3>Part 1: Graph Construction and Matrix Formulation<a class="headerlink" href="#part-1-graph-construction-and-matrix-formulation" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Build the Weight Matrix</strong></p>
+<ul class="simple">
+<li><p>Implement a function to construct the affinity matrix <span class="math notranslate nohighlight">\(W\)</span> for a given image</p></li>
+<li><p>Use both intensity and spatial proximity to compute weights</p></li>
+<li><p>Experiment with different neighborhood systems (4-connected vs 8-connected)</p></li>
+</ul>
+</li>
+<li><p><strong>Matrix Operations</strong></p>
+<ul class="simple">
+<li><p>Compute the degree matrix <span class="math notranslate nohighlight">\(D\)</span></p></li>
+<li><p>Construct the Laplacian matrix <span class="math notranslate nohighlight">\(L = D - W\)</span></p></li>
+<li><p>Verify properties of the Laplacian matrix</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="part-2-spectral-segmentation">
+<h3>Part 2: Spectral Segmentation<a class="headerlink" href="#part-2-spectral-segmentation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Solve the generalized eigenvalue problem <span class="math notranslate nohighlight">\((D - W)\mathbf{y} = \lambda D\mathbf{y}\)</span></p></li>
+<li><p>Extract the eigenvector corresponding to the second smallest eigenvalue</p></li>
+<li><p>Use this eigenvector to bipartition the image</p></li>
+</ul>
+</section>
+</section>
+<section id="implementation-guidelines">
+<h2>Implementation Guidelines<a class="headerlink" href="#implementation-guidelines" title="Link to this heading">#</a></h2>
+<section id="key-mathematical-components">
+<h3>Key Mathematical Components:<a class="headerlink" href="#key-mathematical-components" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Affinity Matrix Construction</strong>:</p>
+<ul class="simple">
+<li><p>Size: <span class="math notranslate nohighlight">\(N \times N\)</span> where <span class="math notranslate nohighlight">\(N\)</span> is the number of pixels</p></li>
+<li><p>Sparse implementation recommended for efficiency</p></li>
+</ul>
+</li>
+<li><p><strong>Eigenvalue Computation</strong>:</p>
+<ul class="simple">
+<li><p>Use specialized algorithms for large sparse matrices</p></li>
+<li><p>Focus on finding the smallest eigenvalues/eigenvectors</p></li>
+</ul>
+</li>
+<li><p><strong>Segmentation from Eigenvectors</strong>:</p>
+<ul class="simple">
+<li><p>Threshold the Fiedler vector (second smallest eigenvector)</p></li>
+<li><p>Use k-means on multiple eigenvectors for multi-way cuts</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="deliverables">
+<h2>Deliverables<a class="headerlink" href="#deliverables" title="Link to this heading">#</a></h2>
+<p>Submit your Jupyter Notebook in FUM-VU.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<p>For deeper understanding of Graph Cut methods and their applications, please refer to:
+<span id="id1">[<a class="reference internal" href="../intro.html#id15" title="Tayebe Fayaz. Spectral clustering for image segmentation. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2015. خوشه‌بندی طیفی برای قطعه بندی تصویر. URL: https://hcloud.hsu.ac.ir/index.php/s/Y4BedGEY7OjXVgK.">Fay15</a>, <a class="reference internal" href="../intro.html#id17" title="Fateme sadat Hoseini. Graph minimum cut. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, October 2021. برش کمینه در گراف. URL: http://hcloud.hsu.ac.ir/index.php/s/OtehB4LUQFv8cla.">sH21</a>]</span></p>
+<p>These references provide comprehensive coverage of graph theory and its applications in image segmentation &amp; graph cut, connecting the mathematical concepts with practical implementations.</p>
+<p>This exercise will help you bridge the gap between abstract mathematical concepts (eigenvalues, eigenvectors, matrix theory) and practical image analysis applications, demonstrating the power of linear algebra in solving complex computer vision problems.</p>
 </section>
 </section>
 
@@ -611,7 +618,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./high-dimensional-spaces"
+            path: "./hws"
         },
         predefinedOutput: true
     }
@@ -629,22 +636,13 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="kNN-Classification-Evaluation.html"
+       href="Image-Segmentation.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">k-Nearest Neighbors and Classification Evaluation Metrics</p>
+        <p class="prev-next-title">Image Segmentation Exercise: Comparing Classification Methods</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="image_clustering.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Clustering images</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -662,7 +660,24 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-curse-of-dimensionality">The curse of dimensionality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-overview">Exercise Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theoretical-background">Theoretical Background</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-representation-of-images">Graph Representation of Images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-cut-formulation">Graph Cut Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-solution">Spectral Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-tasks">Exercise Tasks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-graph-construction-and-matrix-formulation">Part 1: Graph Construction and Matrix Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-spectral-segmentation">Part 2: Spectral Segmentation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-guidelines">Implementation Guidelines</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-mathematical-components">Key Mathematical Components:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">Deliverables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
 

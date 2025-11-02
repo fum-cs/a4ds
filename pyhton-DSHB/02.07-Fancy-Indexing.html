@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -247,7 +247,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_02_seg_k-means.html">Image Segmentaion</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_03_seg_coords.html">Add coordinates as spatial features to clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_04_classification_Bayes_kNN.html">Image Segmentation: Comparing Thresholding, Naive Bayes, and k-NN</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/BF-clustering.html">Brute force search clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/k-means-clustering.html">k-means Clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/high_dim_and_CD.html">High Dimensional Data &amp; the curse of dimensionality</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/high_dim_and_k-means.html">k-means in high dimensional spaces</a></li>
@@ -267,6 +266,8 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../hws/index.html">Home Works</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hws/GitHub-Pages.html">Create Your GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hws/Image-Segmentation.html">Image Segmentation Exercise: Comparing Classification Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hws/Graph-Cut.html">Image Segmentation using Graph Cut Methods: Exercise</a></li>
 </ul>
 </details></li>
 </ul>
@@ -522,7 +523,7 @@ This allows us to very quickly access and modify complicated subsets of an array
 For example, consider the following array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">1701</span><span class="p">)</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -731,7 +732,7 @@ For example, we might have an <span class="math notranslate nohighlight">\(N\)</
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-whitegrid&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]);</span>

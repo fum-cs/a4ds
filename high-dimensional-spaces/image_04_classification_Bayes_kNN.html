@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -61,7 +61,7 @@
     <link rel="icon" href="../_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Brute force search clustering" href="BF-clustering.html" />
+    <link rel="next" title="k-means Clustering" href="k-means-clustering.html" />
     <link rel="prev" title="Add coordinates as spatial features to clustering" href="image_03_seg_coords.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -245,7 +245,6 @@
 <li class="toctree-l2"><a class="reference internal" href="image_02_seg_k-means.html">Image Segmentaion</a></li>
 <li class="toctree-l2"><a class="reference internal" href="image_03_seg_coords.html">Add coordinates as spatial features to clustering</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Image Segmentation: Comparing Thresholding, Naive Bayes, and k-NN</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BF-clustering.html">Brute force search clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="k-means-clustering.html">k-means Clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="high_dim_and_CD.html">High Dimensional Data &amp; the curse of dimensionality</a></li>
 <li class="toctree-l2"><a class="reference internal" href="high_dim_and_k-means.html">k-means in high dimensional spaces</a></li>
@@ -265,6 +264,8 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../hws/index.html">Home Works</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hws/GitHub-Pages.html">Create Your GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hws/Image-Segmentation.html">Image Segmentation Exercise: Comparing Classification Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hws/Graph-Cut.html">Image Segmentation using Graph Cut Methods: Exercise</a></li>
 </ul>
 </details></li>
 </ul>
@@ -538,20 +539,20 @@ A distance-based method that classifies pixels based on the majority vote of the
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- Cell 1: Import Libraries ---</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.naive_bayes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianNB</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">skimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">data</span><span class="p">,</span> <span class="n">segmentation</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">norm</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span><span class="p">,</span> <span class="n">segmentation</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
 
 <span class="c1"># --- Cell 2: Create Test Image with Known Ground Truth ---</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">create_test_image_with_ground_truth</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">)):</span>
+<span class="k">def</span> <span class="nf">create_test_image_with_ground_truth</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">)):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a test image with known ground truth segmentation</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -578,7 +579,7 @@ A distance-based method that classifies pixels based on the majority vote of the
     
     <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">ground_truth</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">sample_training_pixels</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">,</span> <span class="n">n_samples_per_class</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">sample_training_pixels</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">,</span> <span class="n">n_samples_per_class</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sample training pixels from the image using ground truth</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -605,7 +606,7 @@ A distance-based method that classifies pixels based on the majority vote of the
     <span class="k">return</span> <span class="n">train_coords</span><span class="p">,</span> <span class="n">train_labels</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 
 <span class="c1"># --- Cell 3: Data Preparation Function ---</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">prepare_data</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">train_coords</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">prepare_data</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">train_coords</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Prepare training and test data for classifiers</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -628,7 +629,7 @@ A distance-based method that classifies pixels based on the majority vote of the
     <span class="k">return</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">intensities</span>
 
 <span class="c1"># --- Cell 4: Fixed Threshold Segmentation ---</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">fixed_threshold_segmentation</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">fixed_threshold_segmentation</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Perform segmentation using fixed intensity threshold</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -636,7 +637,7 @@ A distance-based method that classifies pixels based on the majority vote of the
     <span class="k">return</span> <span class="n">segmentation_result</span>
 
 <span class="c1"># --- Cell 5: Naive Bayes Segmentation ---</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">naive_bayes_segmentation</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">image_shape</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">naive_bayes_segmentation</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">image_shape</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Perform segmentation using Naive Bayes classifier</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -656,7 +657,7 @@ A distance-based method that classifies pixels based on the majority vote of the
     <span class="k">return</span> <span class="n">nb_segmentation</span><span class="p">,</span> <span class="n">nb_bg_prob</span><span class="p">,</span> <span class="n">nb_fg_prob</span><span class="p">,</span> <span class="n">nb_classifier</span>
 
 <span class="c1"># --- Cell 6: k-NN Segmentation ---</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">knn_segmentation</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">image_shape</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">knn_segmentation</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">image_shape</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Perform segmentation using k-NN classifier</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -676,7 +677,7 @@ A distance-based method that classifies pixels based on the majority vote of the
     <span class="k">return</span> <span class="n">knn_segmentation</span><span class="p">,</span> <span class="n">knn_bg_prob</span><span class="p">,</span> <span class="n">knn_fg_prob</span><span class="p">,</span> <span class="n">knn_classifier</span>
 
 <span class="c1"># --- Cell 7: Visualize Training Samples and Distributions ---</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">visualize_training_samples_and_distributions</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">train_coords</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">visualize_training_samples_and_distributions</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">train_coords</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Visualize the image with training samples and intensity distributions</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -745,7 +746,7 @@ A distance-based method that classifies pixels based on the majority vote of the
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Foreground - Mean: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">fg_intensities</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, Std: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">fg_intensities</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># --- Cell 8: Compare All Segmentation Methods ---</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">compare_all_segmentation_methods</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">,</span> <span class="n">train_coords</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">compare_all_segmentation_methods</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">,</span> <span class="n">train_coords</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compare Fixed Threshold, Naive Bayes, and k-NN segmentation results</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -890,7 +891,7 @@ A distance-based method that classifies pixels based on the majority vote of the
             <span class="n">threshold_accuracy</span><span class="p">,</span> <span class="n">nb_accuracy</span><span class="p">,</span> <span class="n">knn_accuracy</span><span class="p">)</span>
 
 <span class="c1"># --- Cell 9: Main Execution ---</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Main function to demonstrate all segmentation methods</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -952,6 +953,7 @@ k-NN Accuracy:           0.999
 </div>
 </div>
 </div>
+<p>For more information about alpha-matting - which is discussed in tha class - see these refrences: <span id="id1">[<a class="reference internal" href="../intro.html#id21" title="Farzane Rashidabadi. Image matting. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, January 2016. برش هوشمند تصویر. URL: http://hcloud.hsu.ac.ir/index.php/s/OaHkkTSsO8mNrk0.">Ras16</a>, <a class="reference internal" href="../intro.html#id20" title="Farzad Zandi. Designing effective inter-pixel information flow for natural image matting. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, July 2018. درهم‌تنیدگی تصویر مبتنی بر جریان اطلاعات بین پیکسلی. URL: http://hcloud.hsu.ac.ir/index.php/s/7n0SdzOAGHAKH31.">Zan18</a>]</span></p>
 </section>
 </section>
 
@@ -995,11 +997,11 @@ k-NN Accuracy:           0.999
       </div>
     </a>
     <a class="right-next"
-       href="BF-clustering.html"
+       href="k-means-clustering.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Brute force search clustering</p>
+        <p class="prev-next-title">k-means Clustering</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
