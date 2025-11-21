@@ -59,7 +59,9 @@ parts:
       # - file: high-dimensional-spaces/image_05_GMM      
       # - file: high-dimensional-spaces/BF-clustering
       - file: high-dimensional-spaces/k-means-clustering
-      - file: high-dimensional-spaces/high_dim_and_CD
+      # - file: high-dimensional-spaces/high_dim_and_CD
+      - file: high-dimensional-spaces/High-Dimensional-Data-and-The-Curse-of-Dimensionality
+      - file: high-dimensional-spaces/Random-Projection
       - file: high-dimensional-spaces/high_dim_and_k-means
       - file: high-dimensional-spaces/kNN-Classification-Evaluation
       - file: high-dimensional-spaces/high_dim_and_KNN
