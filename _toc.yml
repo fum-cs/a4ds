@@ -45,6 +45,7 @@ parts:
       - file: machine-learning/05.06-Linear-Regression-part2
       # - file: machine-learning/Clustering-Validation-Metrics
       - file: machine-learning/05.09-Principal-Component-Analysis-part1
+      - file: machine-learning/05.09-Principal-Component-Analysis-part2      
       - file: machine-learning/05.08-Random-Forests
   - caption: High Dimensional Spaces
     chapters:
@@ -61,17 +62,17 @@ parts:
       - file: high-dimensional-spaces/k-means-clustering
       # - file: high-dimensional-spaces/high_dim_and_CD
       - file: high-dimensional-spaces/High-Dimensional-Data-and-The-Curse-of-Dimensionality
-      - file: high-dimensional-spaces/Random-Projection
       - file: high-dimensional-spaces/high_dim_and_k-means
       - file: high-dimensional-spaces/kNN-Classification-Evaluation
       - file: high-dimensional-spaces/high_dim_and_KNN
+      - file: high-dimensional-spaces/Random-Projection
       - file: high-dimensional-spaces/image_clustering
       - file: high-dimensional-spaces/image-clustering_HC
       # - file: high-dimensional-spaces/kmeans-clustering-iris
       - file: high-dimensional-spaces/LVQ
       # - file: high-dimensional-spaces/Silhouette-clustering
-      - file: high-dimensional-spaces/Dimensionality-reduction_01
-      - file: high-dimensional-spaces/Dimensionality-reduction_02
+      # - file: high-dimensional-spaces/Dimensionality-reduction_01
+      # - file: high-dimensional-spaces/Dimensionality-reduction_02
       # - file: high-dimensional-spaces/plot_pca_vs_lda
       # - file: high-dimensional-spaces/SVD_image_compression
       - file: high-dimensional-spaces/Bias-Variance-Tradeoff
