@@ -511,7 +511,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-thin-shell-argument">The Thin Shell Argument</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-uniform-points-on-a-hypersphere">Generating Uniform Points on a Hypersphere</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-muller-method">The Muller Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-vector-uniformly-distributed-on-the-surface-of-a-unit-hypersphere">Random vector uniformly distributed on the surface of a unit hypersphere</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-points-inside-the-ball">Generating Points <em>Inside</em> the Ball</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-distribution-function">Cumulative Distribution Function</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-vectors">Random Vectors</a></li>
@@ -525,13 +525,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distance-of-a-gaussian-vector-from-the-origin">Distance of a Gaussian Vector from the Origin</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-simulation-gaussian-thin-shell">Numerical Simulation: Gaussian Thin Shell</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gaussian-annulus-phenomenon">The Gaussian Annulus Phenomenon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-previous-sections">Connection to Previous Sections</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relation-to-empty-center-porcupine-effect">✔ Relation to “Empty Center / Porcupine Effect”</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relation-to-thin-shell-argument">✔ Relation to “Thin Shell Argument”</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relation-to-generating-points-inside-the-ball">✔ Relation to “Generating Points Inside the Ball”</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relation-to-random-vectors-are-nearly-orthogonal">✔ Relation to “Random Vectors are Nearly Orthogonal”</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-previous-sections">Connection to Previous Sections</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-matters-preparing-for-jl">Why This Matters (Preparing for JL)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
@@ -702,7 +696,7 @@ Consider a thin shell of width <span class="math notranslate nohighlight">\(\eps
 <div><p>For example, for a circle in two dimensions, with r =1 and <span class="math notranslate nohighlight">\(\epsilon\)</span> = 0.01 the
 volume of the thin shell is <span class="math notranslate nohighlight">\(1−(0.99)^2 = 0.0199 ≃ 2%\)</span>. As expected, in two-dimensions,
 the thin shell encloses only a small fraction of the volume of the original hypersphere.
-But for 100 dimensions thin shell volume becomes <span class="math notranslate nohighlight">\(1−(0.99)^{100} ≃ 1 - 0.37 ≃ 63%\)</span>.</p>
+But for 100 dimensions thin shell volume becomes <span class="math notranslate nohighlight">\(1−(0.99)^{100} ≃ 1 - 0.37 ≃ 0.63\)</span>.</p>
 </div></blockquote>
 <p><strong>Conclusion:</strong> In high dimensions, almost <strong>100% of the volume</strong> (and probability mass) of a hypersphere is concentrated in a thin shell near the surface (crust). The interior is essentially empty.</p>
 <hr class="docutils" />
@@ -772,7 +766,7 @@ Due to the volume properties discussed above, simple methods like “Rejection S
     <span class="c1"># Convert the list to a numpy array for efficient storage and manipulation</span>
     <span class="n">points_inside</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">points_inside</span><span class="p">[:</span><span class="n">num_points</span><span class="p">])</span>
     
-    <span class="c1"># Calculate the ratio 10000 / N where N is total_generated_points</span>
+    <span class="c1"># Calculate the ratio 2000 / N where N is total_generated_points</span>
     <span class="n">ratio</span> <span class="o">=</span> <span class="n">num_points</span> <span class="o">/</span> <span class="n">total_generated_points</span>
     
     <span class="c1"># Return the points inside the sphere and the ratio</span>
@@ -782,7 +776,7 @@ Due to the volume properties discussed above, simple methods like “Rejection S
 <span class="k">def</span> <span class="nf">visualize_2D</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;10,000 Points Uniformly Distributed in a 2D Unit Circle&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;2,000 Points Uniformly Distributed in a 2D Unit Circle&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
@@ -813,19 +807,19 @@ Due to the volume properties discussed above, simple methods like “Rejection S
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/84ff1359a4c4df172c3feca35cc3fa451a0d300251df7166035f1f708157fa9b.png" src="../_images/84ff1359a4c4df172c3feca35cc3fa451a0d300251df7166035f1f708157fa9b.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dimension: 2, Total points generated: 2560, Ratio: 0.78125
-Dimension: 3, Total points generated: 3793, Ratio: 0.5272871078302136
-Dimension: 4, Total points generated: 6326, Ratio: 0.3161555485298767
-Dimension: 5, Total points generated: 12494, Ratio: 0.1600768368817032
-Dimension: 6, Total points generated: 24613, Ratio: 0.08125787185633608
-Dimension: 7, Total points generated: 54173, Ratio: 0.0369187602680302
-Dimension: 8, Total points generated: 122772, Ratio: 0.0162903593653276
-Dimension: 9, Total points generated: 309320, Ratio: 0.00646579593948015
-Dimension: 10, Total points generated: 822034, Ratio: 0.0024329893897332712
+<img alt="../_images/7abb40eea361f0958323c0fd10ee7fbe96dd248c7bb259affcb645153790ccbd.png" src="../_images/7abb40eea361f0958323c0fd10ee7fbe96dd248c7bb259affcb645153790ccbd.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dimension: 2, Total points generated: 2574, Ratio: 0.777000777000777
+Dimension: 3, Total points generated: 3766, Ratio: 0.5310674455655868
+Dimension: 4, Total points generated: 6580, Ratio: 0.303951367781155
+Dimension: 5, Total points generated: 11398, Ratio: 0.1754693805930865
+Dimension: 6, Total points generated: 23695, Ratio: 0.0844059928254906
+Dimension: 7, Total points generated: 53522, Ratio: 0.037367811367288215
+Dimension: 8, Total points generated: 123644, Ratio: 0.016175471514994662
+Dimension: 9, Total points generated: 310177, Ratio: 0.0064479313424270655
+Dimension: 10, Total points generated: 807321, Ratio: 0.0024773293398784374
 </pre></div>
 </div>
-<img alt="../_images/f279191fcc766a8626f1d5116566f5cd05e245048383deb550cfb6979395a4e2.png" src="../_images/f279191fcc766a8626f1d5116566f5cd05e245048383deb550cfb6979395a4e2.png" />
+<img alt="../_images/618afe857beadcb1eef1e09bf0012a4d15430b17c93c42f2930a745ba6754063.png" src="../_images/618afe857beadcb1eef1e09bf0012a4d15430b17c93c42f2930a745ba6754063.png" />
 </div>
 </div>
 <p><strong>Generate points form Gaussian distribution</strong></p>
@@ -845,8 +839,8 @@ Dimension: 10, Total points generated: 822034, Ratio: 0.0024329893897332712
 <img alt="../_images/7ca00f44c670fd7cf19477c96e70cb28c44f24a4af94d45a92048477bdbdfaf9.png" src="../_images/7ca00f44c670fd7cf19477c96e70cb28c44f24a4af94d45a92048477bdbdfaf9.png" />
 </div>
 </div>
-<section id="the-muller-method">
-<h3>The Muller Method<a class="headerlink" href="#the-muller-method" title="Link to this heading">#</a></h3>
+<section id="random-vector-uniformly-distributed-on-the-surface-of-a-unit-hypersphere">
+<h3>Random vector uniformly distributed on the surface of a unit hypersphere<a class="headerlink" href="#random-vector-uniformly-distributed-on-the-surface-of-a-unit-hypersphere" title="Link to this heading">#</a></h3>
 <p>To generate a random vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> uniformly distributed on the surface of a unit hypersphere <span class="math notranslate nohighlight">\(S_d(1)\)</span>:</p>
 <ol class="arabic simple">
 <li><p>Generate <span class="math notranslate nohighlight">\(x_i \sim \mathcal{N}(0, 1)\)</span> for <span class="math notranslate nohighlight">\(i=1 \dots d\)</span>.</p></li>
@@ -898,8 +892,9 @@ Dimension: 10, Total points generated: 822034, Ratio: 0.0024329893897332712
 </div>
 </div>
 <p>To get a uniform volume density, the cumulative distribution function (CDF) must follow the volume growth <span class="math notranslate nohighlight">\(r^d\)</span>. Thus, we need to sample <span class="math notranslate nohighlight">\(\rho\)</span> such that <span class="math notranslate nohighlight">\(P(R \le r) = r^d\)</span>.
-Using Inverse Transform Sampling with <span class="math notranslate nohighlight">\(a \sim U(0,1)\)</span>:
-$<span class="math notranslate nohighlight">\( \rho = a^{1/d} \)</span>$</p>
+Using Inverse Transform Sampling with <span class="math notranslate nohighlight">\(a \sim U(0,1)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \rho = a^{1/d} \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate uniform points in 2D circle for visualization</span>
@@ -972,7 +967,7 @@ P(F^{-1}(a) \leq x) = P(a \leq F(x))
 <span class="c1"># Normalize</span>
 <span class="n">x_norm</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dot products of random pairs in </span><span class="si">{</span><span class="n">dim</span><span class="si">}</span><span class="s2">-D (should be close to 0):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dot products of random pairs in </span><span class="si">{</span><span class="n">dim</span><span class="si">}</span><span class="s2">-D:&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_norm</span><span class="p">)):</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_norm</span><span class="p">)):</span>
         <span class="n">dp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x_norm</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">x_norm</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
@@ -981,13 +976,13 @@ P(F^{-1}(a) \leq x) = P(a \leq F(x))
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dot products of random pairs in 200-D (should be close to 0):
-Vector 0 . Vector 1 = 0.0977
-Vector 0 . Vector 2 = -0.0023
-Vector 0 . Vector 3 = -0.0483
-Vector 1 . Vector 2 = -0.1164
-Vector 1 . Vector 3 = -0.0809
-Vector 2 . Vector 3 = 0.0817
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dot products of random pairs in 200-D:
+Vector 0 . Vector 1 = -0.0345
+Vector 0 . Vector 2 = 0.0655
+Vector 0 . Vector 3 = 0.0054
+Vector 1 . Vector 2 = -0.0890
+Vector 1 . Vector 3 = -0.0445
+Vector 2 . Vector 3 = 0.0598
 </pre></div>
 </div>
 </div>
@@ -1130,33 +1125,25 @@ they reflect the <strong>intrinsic geometry of high-dimensional space</strong>.<
 <section id="connection-to-previous-sections">
 <h2>Connection to Previous Sections<a class="headerlink" href="#connection-to-previous-sections" title="Link to this heading">#</a></h2>
 <p>Here is how the Gaussian phenomenon links back to the concepts earlier in the notebook:</p>
-<section id="relation-to-empty-center-porcupine-effect">
-<h3>✔ Relation to “Empty Center / Porcupine Effect”<a class="headerlink" href="#relation-to-empty-center-porcupine-effect" title="Link to this heading">#</a></h3>
+<p><strong>Relation to “Empty Center / Porcupine Effect”</strong></p>
 <p>Volume around the center is negligible in high dimensions →
 <strong>Gaussian mass avoids the center</strong>, exactly like uniform points.</p>
-</section>
 <hr class="docutils" />
-<section id="relation-to-thin-shell-argument">
-<h3>✔ Relation to “Thin Shell Argument”<a class="headerlink" href="#relation-to-thin-shell-argument" title="Link to this heading">#</a></h3>
+<p><strong>Relation to “Thin Shell Argument”</strong></p>
 <p>Uniform hypersphere volume concentrates at radius <span class="math notranslate nohighlight">\(r\)</span>:
 Gaussian probability mass concentrates at radius <span class="math notranslate nohighlight">\(\sqrt{d}\)</span>.
 The geometry is identical; only the radius scale differs.</p>
-</section>
 <hr class="docutils" />
-<section id="relation-to-generating-points-inside-the-ball">
-<h3>✔ Relation to “Generating Points Inside the Ball”<a class="headerlink" href="#relation-to-generating-points-inside-the-ball" title="Link to this heading">#</a></h3>
+<p><strong>Relation to “Generating Points Inside the Ball”</strong></p>
 <p>You observed that uniform points require special sampling (<span class="math notranslate nohighlight">\(\rho = a^{1/d}\)</span>)
 because naive sampling bunches points near the center.</p>
 <p>Gaussian sampling naturally avoids the center due to the same volume effects.</p>
-</section>
 <hr class="docutils" />
-<section id="relation-to-random-vectors-are-nearly-orthogonal">
-<h3>✔ Relation to “Random Vectors are Nearly Orthogonal”<a class="headerlink" href="#relation-to-random-vectors-are-nearly-orthogonal" title="Link to this heading">#</a></h3>
+<p><strong>Relation to “Random Vectors are Nearly Orthogonal”</strong></p>
 <p>Since nearly all Gaussian points lie at distance <span class="math notranslate nohighlight">\(\sqrt{d}\)</span>,
 their normalized directions behave almost like points uniformly distributed on the sphere.</p>
 <p>Thus Gaussian vectors are almost orthogonal —
 the basis for <strong>random projection</strong> and <strong>Johnson–Lindenstrauss</strong>.</p>
-</section>
 </section>
 <hr class="docutils" />
 <section id="why-this-matters-preparing-for-jl">
@@ -1267,7 +1254,7 @@ the basis for <strong>random projection</strong> and <strong>Johnson–Lindenstr
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-thin-shell-argument">The Thin Shell Argument</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-uniform-points-on-a-hypersphere">Generating Uniform Points on a Hypersphere</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-muller-method">The Muller Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-vector-uniformly-distributed-on-the-surface-of-a-unit-hypersphere">Random vector uniformly distributed on the surface of a unit hypersphere</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-points-inside-the-ball">Generating Points <em>Inside</em> the Ball</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-distribution-function">Cumulative Distribution Function</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-vectors">Random Vectors</a></li>
@@ -1281,13 +1268,7 @@ the basis for <strong>random projection</strong> and <strong>Johnson–Lindenstr
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distance-of-a-gaussian-vector-from-the-origin">Distance of a Gaussian Vector from the Origin</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-simulation-gaussian-thin-shell">Numerical Simulation: Gaussian Thin Shell</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gaussian-annulus-phenomenon">The Gaussian Annulus Phenomenon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-previous-sections">Connection to Previous Sections</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relation-to-empty-center-porcupine-effect">✔ Relation to “Empty Center / Porcupine Effect”</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relation-to-thin-shell-argument">✔ Relation to “Thin Shell Argument”</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relation-to-generating-points-inside-the-ball">✔ Relation to “Generating Points Inside the Ball”</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relation-to-random-vectors-are-nearly-orthogonal">✔ Relation to “Random Vectors are Nearly Orthogonal”</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-previous-sections">Connection to Previous Sections</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-matters-preparing-for-jl">Why This Matters (Preparing for JL)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
