@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -574,8 +574,9 @@ Computer Science Dept, Ferdowsi University of Mashhad</p>
 <section id="the-hypercube">
 <h3>The Hypercube<a class="headerlink" href="#the-hypercube" title="Link to this heading">#</a></h3>
 <p>The data space is often viewed as a <span class="math notranslate nohighlight">\(d\)</span>-dimensional hyper-rectangle or hypercube.
-For a hypercube <span class="math notranslate nohighlight">\(H_d(l)\)</span> with side length <span class="math notranslate nohighlight">\(l\)</span>, the volume is:
-$<span class="math notranslate nohighlight">\(\text{Vol}(H_d(l)) = l^d\)</span>$</p>
+For a hypercube <span class="math notranslate nohighlight">\(H_d(l)\)</span> with side length <span class="math notranslate nohighlight">\(l\)</span>, the volume is:</p>
+<div class="math notranslate nohighlight">
+\[\text{Vol}(H_d(l)) = l^d\]</div>
 </section>
 <section id="the-hypersphere">
 <h3>The Hypersphere<a class="headerlink" href="#the-hypersphere" title="Link to this heading">#</a></h3>
@@ -655,12 +656,11 @@ of each coordinate to capture 10% of the data</p>
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">dims_esl</span><span class="p">:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fractions</span><span class="p">,</span> <span class="n">edge_length</span><span class="p">(</span><span class="n">fractions</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;p=</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="c1"># Highlighting the case for p=10, r=0.01</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">),</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.60</span><span class="p">,</span> <span class="s1">&#39;p=10, r=0.01 $\Rightarrow$ edge=0.63&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="c1"># Highlighting the case for p=10, r=0.1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">),</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span> 
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Fraction of Volume (Data)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Edge Length of Subcube&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Fraction of Volume ($r$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Edge Length of Subcube: $e_p(r)$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Edge Length required to capture fraction of Volume&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
@@ -669,11 +669,11 @@ of each coordinate to capture 10% of the data</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/15e761b70c82622f171c363073d0bfd022e5b7ad203bfc870ad84c399522a600.png" src="../_images/15e761b70c82622f171c363073d0bfd022e5b7ad203bfc870ad84c399522a600.png" />
+<img alt="../_images/50202d2fe6b515f9477c853c14a44d6050c80c35c78e4ffe2390c3001267d553.png" src="../_images/50202d2fe6b515f9477c853c14a44d6050c80c35c78e4ffe2390c3001267d553.png" />
 </div>
 </div>
 <p><strong>Analysis:</strong>
-In 10 dimensions (<span class="math notranslate nohighlight">\(p=10\)</span>), to capture just <strong>1%</strong> (<span class="math notranslate nohighlight">\(r=0.01\)</span>) of the data, we need to cover <strong>63%</strong> of the range of each input variable[cite: 65, 66].
+In 10 dimensions (<span class="math notranslate nohighlight">\(p=10\)</span>), to capture just <strong>10%</strong> (<span class="math notranslate nohighlight">\(r=0.1\)</span>) of the data, we need to cover <strong>80%</strong> of the range of each input variable.
 Such neighborhoods are no longer “local”. To find neighbors, we must look very far away.</p>
 </section>
 <section id="distance-to-boundary">
@@ -692,20 +692,18 @@ Consider a thin shell of width <span class="math notranslate nohighlight">\(\eps
 <div class="math notranslate nohighlight">
 \[ \text{Vol}(S_d(r, \epsilon)) = \text{Vol}(S_d(r)) - \text{Vol}(S_d(r - \epsilon)) \]</div>
 <p><img alt="" src="../_images/Figure-6.6-Zaki.png" /></p>
-<blockquote>
-<div><blockquote>
-<div><p>For example, for a circle in two dimensions, with r =1 and <span class="math notranslate nohighlight">\(\epsilon\)</span> = 0.01 the
-volume of the thin shell is 1−(0.99)2 = 0.0199 ≃ 2%. As expected, in two-dimensions,
-the thin shell encloses only a small fraction of the volume of the original hypersphere.
-For three dimensions this fraction becomes 1−(0.99)3 = 0.0297 ≃ 3%, which is still a
-relatively small fraction.</p>
-</div></blockquote>
-</div></blockquote>
 <p>The ratio of the shell’s volume to the total volume is:</p>
 <div class="math notranslate nohighlight">
 \[ \frac{\text{Vol}(S_d(r, \epsilon))}{\text{Vol}(S_d(r))} = 1 - \left( 1 - \frac{\epsilon}{r} \right)^d \]</div>
-<p>As <span class="math notranslate nohighlight">\(d \to \infty\)</span>, the term <span class="math notranslate nohighlight">\((1 - \frac{\epsilon}{r})^d\)</span> tends to 0.
-$<span class="math notranslate nohighlight">\( \lim_{d \to \infty} \frac{\text{Vol}(S_d(r, \epsilon))}{\text{Vol}(S_d(r))} \to 1 \)</span>$</p>
+<p>As <span class="math notranslate nohighlight">\(d \to \infty\)</span>, the term <span class="math notranslate nohighlight">\((1 - \frac{\epsilon}{r})^d\)</span> tends to 0.</p>
+<div class="math notranslate nohighlight">
+\[ \lim_{d \to \infty} \frac{\text{Vol}(S_d(r, \epsilon))}{\text{Vol}(S_d(r))} \to 1 \]</div>
+<blockquote>
+<div><p>For example, for a circle in two dimensions, with r =1 and <span class="math notranslate nohighlight">\(\epsilon\)</span> = 0.01 the
+volume of the thin shell is <span class="math notranslate nohighlight">\(1−(0.99)^2 = 0.0199 ≃ 2%\)</span>. As expected, in two-dimensions,
+the thin shell encloses only a small fraction of the volume of the original hypersphere.
+But for 100 dimensions thin shell volume becomes <span class="math notranslate nohighlight">\(1−(0.99)^{100} ≃ 1 - 0.37 ≃ 63%\)</span>.</p>
+</div></blockquote>
 <p><strong>Conclusion:</strong> In high dimensions, almost <strong>100% of the volume</strong> (and probability mass) of a hypersphere is concentrated in a thin shell near the surface (crust). The interior is essentially empty.</p>
 <hr class="docutils" />
 <div class="cell docutils container">
@@ -872,14 +870,16 @@ Dimension: 10, Total points generated: 822034, Ratio: 0.0024329893897332712
 <img alt="../_images/17cb8cd7b8cb9219dd00662a2882db2b969177a2bef30fe8660cf07ce5e2e23e.png" src="../_images/17cb8cd7b8cb9219dd00662a2882db2b969177a2bef30fe8660cf07ce5e2e23e.png" />
 </div>
 </div>
-<p>The joint probability density of the independent Gaussian components is spherically symmetric:
-$<span class="math notranslate nohighlight">\( f(x) = \prod_{i=1}^d \frac{1}{\sqrt{2\pi}} e^{-x_i^2/2} = \frac{1}{(2\pi)^{d/2}} e^{-\frac{1}{2}\sum x_i^2} = \frac{1}{(2\pi)^{d/2}} e^{-\frac{||x||^2}{2}} \)</span><span class="math notranslate nohighlight">\(
-Since the density depends only on the length \)</span>||x||$ and not the direction, the direction vectors are uniformly distributed.</p>
+<p>The joint probability density of the independent Gaussian components is spherically symmetric:</p>
+<div class="math notranslate nohighlight">
+\[ f(x) = \prod_{i=1}^d \frac{1}{\sqrt{2\pi}} e^{-x_i^2/2} = \frac{1}{(2\pi)^{d/2}} e^{-\frac{1}{2}\sum x_i^2} = \frac{1}{(2\pi)^{d/2}} e^{-\frac{||x||^2}{2}} \]</div>
+<p>Since the density depends only on the length <span class="math notranslate nohighlight">\(||x||\)</span> and not the direction, the direction vectors are uniformly distributed.</p>
 </section>
 <section id="generating-points-inside-the-ball">
 <h3>Generating Points <em>Inside</em> the Ball<a class="headerlink" href="#generating-points-inside-the-ball" title="Link to this heading">#</a></h3>
-<p>If we want points uniformly distributed <em>inside</em> the ball (not just on the surface), simply scaling by a uniform random number <span class="math notranslate nohighlight">\(\rho \in [0,1]\)</span> is incorrect because it bunches points near the center (volume is smaller there).
-$<span class="math notranslate nohighlight">\(y=\rho\frac{x}{||x||}, \quad 0\le \rho \le 1\)</span>$</p>
+<p>If we want points uniformly distributed <em>inside</em> the ball (not just on the surface), simply scaling by a uniform random number <span class="math notranslate nohighlight">\(\rho \in [0,1]\)</span> is incorrect because it bunches points near the center (volume is smaller there).</p>
+<div class="math notranslate nohighlight">
+\[y=\rho\frac{x}{||x||}, \quad 0\le \rho \le 1\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
