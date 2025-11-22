@@ -63,8 +63,8 @@
     <link rel="icon" href="../_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="k-means in high dimensional spaces" href="high_dim_and_k-means.html" />
-    <link rel="prev" title="High Dimensional Data &amp; The Curse of Dimensionality" href="High-Dimensional-Data-and-The-Curse-of-Dimensionality.html" />
+    <link rel="next" title="Clustering images" href="image_clustering.html" />
+    <link rel="prev" title="kNN in high dimensional spaces" href="high_dim_and_KNN.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -233,7 +233,12 @@
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.09-Principal-Component-Analysis-part1.html">Principal Component Analysis, PDSHB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.09-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.09-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
+
+
+
+
 <li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
 </ul>
 </details></li>
@@ -249,16 +254,14 @@
 <li class="toctree-l2"><a class="reference internal" href="image_04_classification_Bayes_kNN.html">Image Segmentation: Comparing Thresholding, Naive Bayes, and k-NN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="k-means-clustering.html">k-means Clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="High-Dimensional-Data-and-The-Curse-of-Dimensionality.html">High Dimensional Data &amp; The Curse of Dimensionality</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Random Projection: Theory and Implementation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="high_dim_and_k-means.html">k-means in high dimensional spaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="kNN-Classification-Evaluation.html">k-Nearest Neighbors and Classification Evaluation Metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="high_dim_and_KNN.html">kNN in high dimensional spaces</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Random Projection: Theory and Implementation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="image_clustering.html">Clustering images</a></li>
 <li class="toctree-l2"><a class="reference internal" href="image-clustering_HC.html">Clustering images by hierarchical clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="LVQ.html">Vector Quantization</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="Dimensionality-reduction_01.html">Dimensionality Reduction - Part 1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Dimensionality-reduction_02.html">Dimensionality Reduction - Part 2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Bias-Variance-Tradeoff.html">Bias-Variance Tradeoff</a></li>
 </ul>
 </details></li>
@@ -582,7 +585,7 @@ As we saw in <strong>Foundations of Data Science (Blum et al.)</strong>, if we g
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8b83e718a806896590e5118a803e88e1df9fc41e692f2ef357a429f89697c8bb.png" src="../_images/8b83e718a806896590e5118a803e88e1df9fc41e692f2ef357a429f89697c8bb.png" />
+<img alt="../_images/995fa394382f24918531d5fd2bcb06c5f0a48d529f95a0273102e77de8f7a479.png" src="../_images/995fa394382f24918531d5fd2bcb06c5f0a48d529f95a0273102e77de8f7a479.png" />
 </div>
 </div>
 <p><strong>Observation:</strong> The dot products cluster tightly around <strong>0</strong>. This confirms that random directions are perpendicular (orthogonal) to each other.</p>
@@ -595,23 +598,26 @@ As we saw in <strong>Foundations of Data Science (Blum et al.)</strong>, if we g
 <blockquote>
 <div><p>Points in a high-dimensional space can be mapped into a lower-dimensional space of dimension <span class="math notranslate nohighlight">\(k\)</span> such that the <strong>pairwise distances</strong> between the points are nearly preserved.</p>
 </div></blockquote>
-<p>Mathematically, for any two data points <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>:
-$<span class="math notranslate nohighlight">\( (1 - \epsilon) ||x - y||^2 \le ||f(x) - f(y)||^2 \le (1 + \epsilon) ||x - y||^2 \)</span>$</p>
+<p>Mathematically, for any two data points <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ (1 - \epsilon) ||x - y||^2 \le ||f(x) - f(y)||^2 \le (1 + \epsilon) ||x - y||^2 \]</div>
 <p>Where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(\cdot)\)</span> is the projection function.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> is the tolerance for distortion (error).</p></li>
 </ul>
-<p><strong>Key Insight:</strong> The required lower dimension <span class="math notranslate nohighlight">\(k\)</span> does <strong>not</strong> depend on the original dimension <span class="math notranslate nohighlight">\(d\)</span>. It only depends on the number of samples <span class="math notranslate nohighlight">\(n\)</span> and the error <span class="math notranslate nohighlight">\(\epsilon\)</span>:
-$<span class="math notranslate nohighlight">\( k \ge \frac{4 \ln(n)}{\epsilon^2 / 2 - \epsilon^3 / 3} \)</span>$</p>
+<p><strong>Key Insight:</strong> The required lower dimension <span class="math notranslate nohighlight">\(k\)</span> does <strong>not</strong> depend on the original dimension <span class="math notranslate nohighlight">\(d\)</span>. It only depends on the number of samples <span class="math notranslate nohighlight">\(n\)</span> and the error <span class="math notranslate nohighlight">\(\epsilon\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ k \ge \frac{4 \ln(n)}{\epsilon^2 / 2 - \epsilon^3 / 3} \]</div>
 <p>This means we can reduce a 1,000,000-dimensional text dataset to a few hundred dimensions just as easily as a 10,000-dimensional one, provided the number of samples <span class="math notranslate nohighlight">\(n\)</span> is the same.</p>
 </section>
 <hr class="docutils" />
 <section id="types-of-random-matrices">
 <h2>4. Types of Random Matrices<a class="headerlink" href="#types-of-random-matrices" title="Link to this heading">#</a></h2>
-<p>In practice, we project data <span class="math notranslate nohighlight">\(X\)</span> (shape <span class="math notranslate nohighlight">\(n \times d\)</span>) into a lower dimension <span class="math notranslate nohighlight">\(k\)</span> using a random matrix <span class="math notranslate nohighlight">\(R\)</span> (shape <span class="math notranslate nohighlight">\(d \times k\)</span>):
-$<span class="math notranslate nohighlight">\( X_{new} = \frac{1}{\sqrt{k}} X \cdot R \)</span><span class="math notranslate nohighlight">\(
-*(The scaling factor \)</span>1/\sqrt{k}$ is to maintain the expected length of vectors).*</p>
+<p>In practice, we project data <span class="math notranslate nohighlight">\(X\)</span> (shape <span class="math notranslate nohighlight">\(n \times d\)</span>) into a lower dimension <span class="math notranslate nohighlight">\(k\)</span> using a random matrix <span class="math notranslate nohighlight">\(R\)</span> (shape <span class="math notranslate nohighlight">\(d \times k\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[ X_{new} = \frac{1}{\sqrt{k}} X \cdot R \]</div>
+<p><em>(The scaling factor <span class="math notranslate nohighlight">\(1/\sqrt{k}\)</span> is to maintain the expected length of vectors).</em></p>
 <p>There are two main ways to generate <span class="math notranslate nohighlight">\(R\)</span>:</p>
 <section id="a-gaussian-random-projection">
 <h3>A. Gaussian Random Projection<a class="headerlink" href="#a-gaussian-random-projection" title="Link to this heading">#</a></h3>
@@ -620,13 +626,15 @@ $<span class="math notranslate nohighlight">\( X_{new} = \frac{1}{\sqrt{k}} X \c
 <section id="b-sparse-random-projection-achlioptas">
 <h3>B. Sparse Random Projection (Achlioptas)<a class="headerlink" href="#b-sparse-random-projection-achlioptas" title="Link to this heading">#</a></h3>
 <p>Generating a huge matrix of float numbers is slow. <strong>Dimitris Achlioptas</strong> showed that we can use a much simpler, sparse matrix. The elements <span class="math notranslate nohighlight">\(r_{ij}\)</span> are drawn from:</p>
-<p>$<span class="math notranslate nohighlight">\(
+<div class="math notranslate nohighlight">
+\[\begin{split}
 r_{ij} = \begin{cases} 
 +\sqrt{s} &amp; \text{with prob } \frac{1}{2s} \\
 0 &amp; \text{with prob } 1 - \frac{1}{s} \\
 -\sqrt{s} &amp; \text{with prob } \frac{1}{2s}
 \end{cases}
-\)</span><span class="math notranslate nohighlight">\(Usually, \)</span>s=3<span class="math notranslate nohighlight">\(. This means the matrix is mostly zeros (\)</span>\approx 66%<span class="math notranslate nohighlight">\(), with some \)</span>+1<span class="math notranslate nohighlight">\( and \)</span>-1$.</p>
+\end{split}\]</div>
+<p>Usually, <span class="math notranslate nohighlight">\(s=3\)</span>. This means the matrix is mostly zeros (<span class="math notranslate nohighlight">\(\approx 66\%\)</span>), with some <span class="math notranslate nohighlight">\(+1\)</span> and <span class="math notranslate nohighlight">\(-1\)</span>.</p>
 <ul class="simple">
 <li><p><strong>Benefit:</strong> Much faster matrix multiplication and less memory usage.</p></li>
 </ul>
@@ -696,7 +704,51 @@ Original shape: (500, 50000)
 Projected shape: (500, 5326)
 </pre></div>
 </div>
-<img alt="../_images/8763561110f2d871eb8ecde70470424cabbb24e36011d954cb78c6e75d23c23f.png" src="../_images/8763561110f2d871eb8ecde70470424cabbb24e36011d954cb78c6e75d23c23f.png" />
+<img alt="../_images/be7f2bde7b0f4fb3aedea6824d3221be1b5d3d20df743d07b1268eee5d5cc014.png" src="../_images/be7f2bde7b0f4fb3aedea6824d3221be1b5d3d20df743d07b1268eee5d5cc014.png" />
+</div>
+</div>
+<p>If we project from 50000 dimensions down to lower than ‘min_dim’ …</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If we project from 50000 dimensions down to lower than &#39;min_dim&#39; </span>
+<span class="n">transformer</span> <span class="o">=</span> <span class="n">SparseRandomProjection</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_new</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original shape: </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Projected shape: </span><span class="si">{</span><span class="n">X_new</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 4. Verify Distance Preservation</span>
+<span class="c1"># Compute pairwise distances in original space</span>
+<span class="n">dist_original</span> <span class="o">=</span> <span class="n">euclidean_distances</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="c1"># Extract upper triangle (unique pairs), excluding diagonal</span>
+<span class="n">original_dists</span> <span class="o">=</span> <span class="n">dist_original</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">triu_indices</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="c1"># Compute pairwise distances in projected space</span>
+<span class="n">dist_new</span> <span class="o">=</span> <span class="n">euclidean_distances</span><span class="p">(</span><span class="n">X_new</span><span class="p">)</span>
+<span class="n">new_dists</span> <span class="o">=</span> <span class="n">dist_new</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">triu_indices</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="c1"># Calculate the ratio of new distances to old distances</span>
+<span class="n">ratios</span> <span class="o">=</span> <span class="n">new_dists</span> <span class="o">/</span> <span class="n">original_dists</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">ratios</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lower Bound (1-eps)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Upper Bound (1+eps)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Histogram of Distance Ratios (Projected / Original)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Ratio (New Dist / Old Dist)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original shape: (500, 50000)
+Projected shape: (500, 300)
+</pre></div>
+</div>
+<img alt="../_images/c1a1db7f7e211df97eb9aec34b5feed1497cfcd9620a1cadf865e396dab8c36a.png" src="../_images/c1a1db7f7e211df97eb9aec34b5feed1497cfcd9620a1cadf865e396dab8c36a.png" />
 </div>
 </div>
 <section id="interpretation-of-the-plot">
@@ -758,20 +810,20 @@ Projected shape: (500, 5326)
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="High-Dimensional-Data-and-The-Curse-of-Dimensionality.html"
+       href="high_dim_and_KNN.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">High Dimensional Data &amp; The Curse of Dimensionality</p>
+        <p class="prev-next-title">kNN in high dimensional spaces</p>
       </div>
     </a>
     <a class="right-next"
-       href="high_dim_and_k-means.html"
+       href="image_clustering.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">k-means in high dimensional spaces</p>
+        <p class="prev-next-title">Clustering images</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

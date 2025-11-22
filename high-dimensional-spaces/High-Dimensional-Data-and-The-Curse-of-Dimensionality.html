@@ -63,7 +63,7 @@
     <link rel="icon" href="../_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Random Projection: Theory and Implementation" href="Random-Projection.html" />
+    <link rel="next" title="k-means in high dimensional spaces" href="high_dim_and_k-means.html" />
     <link rel="prev" title="k-means Clustering" href="k-means-clustering.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -233,7 +233,12 @@
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.09-Principal-Component-Analysis-part1.html">Principal Component Analysis, PDSHB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.09-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.09-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
+
+
+
+
 <li class="toctree-l2"><a class="reference internal" href="../machine-learning/05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
 </ul>
 </details></li>
@@ -249,16 +254,14 @@
 <li class="toctree-l2"><a class="reference internal" href="image_04_classification_Bayes_kNN.html">Image Segmentation: Comparing Thresholding, Naive Bayes, and k-NN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="k-means-clustering.html">k-means Clustering</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">High Dimensional Data &amp; The Curse of Dimensionality</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Random-Projection.html">Random Projection: Theory and Implementation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="high_dim_and_k-means.html">k-means in high dimensional spaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="kNN-Classification-Evaluation.html">k-Nearest Neighbors and Classification Evaluation Metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="high_dim_and_KNN.html">kNN in high dimensional spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Random-Projection.html">Random Projection: Theory and Implementation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="image_clustering.html">Clustering images</a></li>
 <li class="toctree-l2"><a class="reference internal" href="image-clustering_HC.html">Clustering images by hierarchical clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="LVQ.html">Vector Quantization</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="Dimensionality-reduction_01.html">Dimensionality Reduction - Part 1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Dimensionality-reduction_02.html">Dimensionality Reduction - Part 2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Bias-Variance-Tradeoff.html">Bias-Variance Tradeoff</a></li>
 </ul>
 </details></li>
@@ -513,7 +516,12 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-uniform-points-on-a-hypersphere">Generating Uniform Points on a Hypersphere</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-vector-uniformly-distributed-on-the-surface-of-a-unit-hypersphere">Random vector uniformly distributed on the surface of a unit hypersphere</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-points-inside-the-ball">Generating Points <em>Inside</em> the Ball</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-distribution-function">Cumulative Distribution Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Generating Points <em>Inside</em> the Ball</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-the-target-cdf">1. Determining the Target CDF</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-transform-sampling">2. Inverse Transform Sampling</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#application-to-hypersphere">3. Application to Hypersphere</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-vectors">Random Vectors</a></li>
 </ul>
 </li>
@@ -868,6 +876,12 @@ Dimension: 10, Total points generated: 807321, Ratio: 0.0024773293398784374
 <div class="math notranslate nohighlight">
 \[ f(x) = \prod_{i=1}^d \frac{1}{\sqrt{2\pi}} e^{-x_i^2/2} = \frac{1}{(2\pi)^{d/2}} e^{-\frac{1}{2}\sum x_i^2} = \frac{1}{(2\pi)^{d/2}} e^{-\frac{||x||^2}{2}} \]</div>
 <p>Since the density depends only on the length <span class="math notranslate nohighlight">\(||x||\)</span> and not the direction, the direction vectors are uniformly distributed.</p>
+<p><strong>Conclusion:</strong>
+The density function <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span> depends <strong>only on the length</strong> (magnitude) of the vector <span class="math notranslate nohighlight">\(||\mathbf{x}||\)</span>, and not on its coordinates (direction).</p>
+<ul class="simple">
+<li><p>This property is called <strong>Spherical Symmetry</strong> or <strong>Isotropy</strong>.</p></li>
+<li><p>It implies that the distribution is invariant under rotation. Therefore, all directions are equally probable, and the normalized vector <span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{x} / ||\mathbf{x}||\)</span> is uniformly distributed on the hypersphere.</p></li>
+</ul>
 </section>
 <section id="generating-points-inside-the-ball">
 <h3>Generating Points <em>Inside</em> the Ball<a class="headerlink" href="#generating-points-inside-the-ball" title="Link to this heading">#</a></h3>
@@ -891,14 +905,67 @@ Dimension: 10, Total points generated: 807321, Ratio: 0.0024773293398784374
 <img alt="../_images/5da8f0e21b3eb2c873298e7806a017102459b1abfec328cd5df536337f76cfbf.png" src="../_images/5da8f0e21b3eb2c873298e7806a017102459b1abfec328cd5df536337f76cfbf.png" />
 </div>
 </div>
-<p>To get a uniform volume density, the cumulative distribution function (CDF) must follow the volume growth <span class="math notranslate nohighlight">\(r^d\)</span>. Thus, we need to sample <span class="math notranslate nohighlight">\(\rho\)</span> such that <span class="math notranslate nohighlight">\(P(R \le r) = r^d\)</span>.
-Using Inverse Transform Sampling with <span class="math notranslate nohighlight">\(a \sim U(0,1)\)</span>:</p>
+</section>
+<section id="id1">
+<h3>Generating Points <em>Inside</em> the Ball<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>If we want points uniformly distributed <em>inside</em> the ball (not just on the surface), a naive approach might be:</p>
+<ol class="arabic simple">
+<li><p>Generate a random direction <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> on the surface (using the Muller method).</p></li>
+<li><p>Generate a random radius <span class="math notranslate nohighlight">\(\rho\)</span> uniformly from <span class="math notranslate nohighlight">\([0, 1]\)</span>.</p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(\mathbf{x} = \rho \mathbf{y}\)</span>.</p></li>
+</ol>
+<p><strong>Why is this incorrect?</strong>
+If <span class="math notranslate nohighlight">\(\rho\)</span> is uniform, the points will cluster near the center. In <span class="math notranslate nohighlight">\(d\)</span>-dimensions, the volume of a shell at radius <span class="math notranslate nohighlight">\(r\)</span> is proportional to <span class="math notranslate nohighlight">\(r^{d-1}\)</span>. There is much more volume (and thus should be more points) near the surface (<span class="math notranslate nohighlight">\(r=1\)</span>) than near the center (<span class="math notranslate nohighlight">\(r=0\)</span>).</p>
+<p>To get a uniform density, the probability of a point falling inside a radius <span class="math notranslate nohighlight">\(r\)</span> must be proportional to the volume enclosed by that radius.</p>
+<blockquote>
+<div><p>To get a uniform volume density, the cumulative distribution function (CDF) must follow the volume growth <span class="math notranslate nohighlight">\(r^d\)</span>. Thus, we need to sample <span class="math notranslate nohighlight">\(\rho\)</span> such that <span class="math notranslate nohighlight">\(P(R \le r) = r^d\)</span>. Using Inverse Transform Sampling with <span class="math notranslate nohighlight">\(a \sim U(0,1)\)</span>: <span class="math notranslate nohighlight">\( \rho = a^{1/d} \)</span></p>
+</div></blockquote>
+<section id="determining-the-target-cdf">
+<h4>1. Determining the Target CDF<a class="headerlink" href="#determining-the-target-cdf" title="Link to this heading">#</a></h4>
+<p>Let <span class="math notranslate nohighlight">\(R\)</span> be the random variable representing the radius of a point. The Cumulative Distribution Function (CDF), denoted as <span class="math notranslate nohighlight">\(F(r)\)</span>, represents the probability that a point is found within radius <span class="math notranslate nohighlight">\(r\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[ \rho = a^{1/d} \]</div>
+\[F(r) = P(R \le r)\]</div>
+<p>For a uniform distribution inside the ball, this probability must equal the ratio of the volume of the ball of radius <span class="math notranslate nohighlight">\(r\)</span> to the total volume (radius 1):</p>
+<div class="math notranslate nohighlight">
+\[F(r) = \frac{\text{Vol}(S_d(r))}{\text{Vol}(S_d(1))} = \frac{K_d r^d}{K_d 1^d} = r^d\]</div>
+<p>So, our target CDF is <strong><span class="math notranslate nohighlight">\(F(r) = r^d\)</span></strong>.</p>
+</section>
+<section id="inverse-transform-sampling">
+<h4>2. Inverse Transform Sampling<a class="headerlink" href="#inverse-transform-sampling" title="Link to this heading">#</a></h4>
+<p>Now, how do we generate random numbers that follow the distribution <span class="math notranslate nohighlight">\(F(r) = r^d\)</span>?
+We use the <strong>Inverse Transform Sampling</strong> method.</p>
+<blockquote>
+<div><p><strong>Recall (Inverse Transform Sampling):</strong>
+If <span class="math notranslate nohighlight">\(U\)</span> is a random variable with a standard uniform distribution <span class="math notranslate nohighlight">\(U \sim \mathcal{U}(0,1)\)</span>, and <span class="math notranslate nohighlight">\(F\)</span> is a continuous CDF, then the random variable <span class="math notranslate nohighlight">\(X = F^{-1}(U)\)</span> has the distribution <span class="math notranslate nohighlight">\(F\)</span>.</p>
+<p><em>Intuition:</em> We generate a random probability <span class="math notranslate nohighlight">\(a\)</span> (from 0 to 1) and ask “what value <span class="math notranslate nohighlight">\(x\)</span> corresponds to this cumulative probability?”.
+<span class="math notranslate nohighlight">\(P(F^{-1}(a) \le x) = P(a \le F(x)) = F(x)\)</span></p>
+</div></blockquote>
+</section>
+<section id="application-to-hypersphere">
+<h4>3. Application to Hypersphere<a class="headerlink" href="#application-to-hypersphere" title="Link to this heading">#</a></h4>
+<p>We apply this to our radius variable <span class="math notranslate nohighlight">\(R\)</span>:</p>
+<ol class="arabic simple">
+<li><p>Generate a uniform random number <span class="math notranslate nohighlight">\(a \sim \mathcal{U}(0,1)\)</span>.</p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(a = F(\rho) = \rho^d\)</span>.</p></li>
+<li><p>Solve for <span class="math notranslate nohighlight">\(\rho\)</span>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\rho = a^{1/d}\]</div>
+<p><strong>Algorithm for Uniform Points in <span class="math notranslate nohighlight">\(d\)</span>-Ball:</strong></p>
+<ol class="arabic simple">
+<li><p>Generate <span class="math notranslate nohighlight">\(\mathbf{x} \sim \mathcal{N}(0, I_d)\)</span>.</p></li>
+<li><p>Normalize: <span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{x} / ||\mathbf{x}||\)</span>.</p></li>
+<li><p>Generate <span class="math notranslate nohighlight">\(a \sim \mathcal{U}(0,1)\)</span>.</p></li>
+<li><p>Scale: <span class="math notranslate nohighlight">\(\mathbf{z} = (a^{1/d}) \mathbf{y}\)</span>.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate uniform points in 2D circle for visualization</span>
+<span class="n">n_points</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mi">2</span>
 
+<span class="c1"># 1. Direction (Muller Method)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_points</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
 <span class="n">norm_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">y_surface</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">norm_x</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
 
@@ -918,39 +985,12 @@ Using Inverse Transform Sampling with <span class="math notranslate nohighlight"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f6f70d2e757ddc679e0b10f227e4afeca0f6e2510ccdbee3cb336b80e7311fc9.png" src="../_images/f6f70d2e757ddc679e0b10f227e4afeca0f6e2510ccdbee3cb336b80e7311fc9.png" />
+<img alt="../_images/6c4a05105fb47c0ec4e0346a038f16591b70d52cf846840c5ad5c5134489303d.png" src="../_images/6c4a05105fb47c0ec4e0346a038f16591b70d52cf846840c5ad5c5134489303d.png" />
 </div>
 </div>
-</section>
-<section id="cumulative-distribution-function">
-<h3>Cumulative Distribution Function<a class="headerlink" href="#cumulative-distribution-function" title="Link to this heading">#</a></h3>
-<p>For random variable <span class="math notranslate nohighlight">\(X\)</span>, its cumulative distribution function (CDF) <span class="math notranslate nohighlight">\(F:\mathbb{R} \to [0,1]\)</span>,
-gives the probability of observing a value at most
-some given value <span class="math notranslate nohighlight">\(x\)</span>: (eq. 1.17 of Zaki)</p>
-<div class="math notranslate nohighlight">
-\[
-\large
-\begin{aligned}
-    F(x) = P(X \le x) \qquad \text{for all } -\infty &lt; x &lt; \infty
-\end{aligned}
-\]</div>
-<p>If <span class="math notranslate nohighlight">\(a\sim \mathcal{U}(0,1) \Rightarrow P(a\leq a_0) = a_0\)</span></p>
-<p>If we get <span class="math notranslate nohighlight">\(X=F^{-1}(a)\)</span>, then <span class="math notranslate nohighlight">\(X\)</span> has probabilty distribution <span class="math notranslate nohighlight">\(F\)</span>.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-P(X \le x) &amp;= P(F^{-1}(a) \le x) \\
-&amp;= P(a \le F(x)) \\
-&amp;= F(x) \quad \textrm{Since} \quad a\sim \mathcal{U}(0,1)
-\end{aligned}
-\end{split}\]</div>
-<p>Due to the monotonicity of <span class="math notranslate nohighlight">\(F^{-1}\)</span>, the inequality <span class="math notranslate nohighlight">\(F^{-1}(a) \leq x\)</span> holds if and only if <span class="math notranslate nohighlight">\(a \leq F(x)\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[
-P(F^{-1}(a) \leq x) = P(a \leq F(x))
-\]</div>
 <hr class="docutils" />
 <p>Another counter-intuitive property is that “every direction is orthogonal to every other direction.” or random vectors in high dimensions are nearly orthogonal to each other.</p>
+</section>
 </section>
 <section id="random-vectors">
 <h3>Random Vectors<a class="headerlink" href="#random-vectors" title="Link to this heading">#</a></h3>
@@ -1216,11 +1256,11 @@ the basis for <strong>random projection</strong> and <strong>Johnson–Lindenstr
       </div>
     </a>
     <a class="right-next"
-       href="Random-Projection.html"
+       href="high_dim_and_k-means.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Random Projection: Theory and Implementation</p>
+        <p class="prev-next-title">k-means in high dimensional spaces</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1256,7 +1296,12 @@ the basis for <strong>random projection</strong> and <strong>Johnson–Lindenstr
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-uniform-points-on-a-hypersphere">Generating Uniform Points on a Hypersphere</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-vector-uniformly-distributed-on-the-surface-of-a-unit-hypersphere">Random vector uniformly distributed on the surface of a unit hypersphere</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-points-inside-the-ball">Generating Points <em>Inside</em> the Ball</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-distribution-function">Cumulative Distribution Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Generating Points <em>Inside</em> the Ball</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-the-target-cdf">1. Determining the Target CDF</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-transform-sampling">2. Inverse Transform Sampling</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#application-to-hypersphere">3. Application to Hypersphere</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-vectors">Random Vectors</a></li>
 </ul>
 </li>

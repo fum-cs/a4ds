@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Principal Component Analysis, PDSHB &#8212; Algorithms for Data Science</title>
+    <title>Principal Component Analysis, Part 1 &#8212; Algorithms for Data Science</title>
   
   
   
@@ -63,7 +63,7 @@
     <link rel="icon" href="../_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Decision Trees and Random Forests" href="05.08-Random-Forests.html" />
+    <link rel="next" title="Principal Component Analysis, Part 2" href="05.09-Principal-Component-Analysis-part2.html" />
     <link rel="prev" title="Linear Regression, Part 2" href="05.06-Linear-Regression-part2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -233,7 +233,12 @@
 
 
 
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Principal Component Analysis, PDSHB</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Principal Component Analysis, Part 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
+
+
+
+
 <li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
 </ul>
 </details></li>
@@ -249,16 +254,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_04_classification_Bayes_kNN.html">Image Segmentation: Comparing Thresholding, Naive Bayes, and k-NN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/k-means-clustering.html">k-means Clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/High-Dimensional-Data-and-The-Curse-of-Dimensionality.html">High Dimensional Data &amp; The Curse of Dimensionality</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/Random-Projection.html">Random Projection: Theory and Implementation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/high_dim_and_k-means.html">k-means in high dimensional spaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/kNN-Classification-Evaluation.html">k-Nearest Neighbors and Classification Evaluation Metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/high_dim_and_KNN.html">kNN in high dimensional spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/Random-Projection.html">Random Projection: Theory and Implementation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image_clustering.html">Clustering images</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/image-clustering_HC.html">Clustering images by hierarchical clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/LVQ.html">Vector Quantization</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/Dimensionality-reduction_01.html">Dimensionality Reduction - Part 1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/Dimensionality-reduction_02.html">Dimensionality Reduction - Part 2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../high-dimensional-spaces/Bias-Variance-Tradeoff.html">Bias-Variance Tradeoff</a></li>
 </ul>
 </details></li>
@@ -487,7 +490,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Principal Component Analysis, PDSHB</h1>
+    <h1>Principal Component Analysis, Part 1</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -518,8 +521,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="principal-component-analysis-pdshb">
-<h1>Principal Component Analysis, PDSHB<a class="headerlink" href="#principal-component-analysis-pdshb" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="principal-component-analysis-part-1">
+<h1>Principal Component Analysis, Part 1<a class="headerlink" href="#principal-component-analysis-part-1" title="Link to this heading">#</a></h1>
 <p>Up until now, we have been looking in depth at supervised learning estimators: those estimators that predict labels based on labeled training data.
 Here we begin looking at several unsupervised estimators, which can highlight interesting aspects of the data without reference to any known labels.</p>
 <p>In this chapter we will explore what is perhaps one of the most broadly used unsupervised algorithms, principal component analysis (PCA).
@@ -1020,11 +1023,11 @@ Scikit-Learn includes a number of interesting variants on PCA in the <code class
       </div>
     </a>
     <a class="right-next"
-       href="05.08-Random-Forests.html"
+       href="05.09-Principal-Component-Analysis-part2.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Decision Trees and Random Forests</p>
+        <p class="prev-next-title">Principal Component Analysis, Part 2</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
