@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -535,6 +535,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-pytorch-auto-grad">Using PyTorch auto grad</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backward">Backward</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-pytorch-library">Using PyTorch library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-automatic-differentiation-for-1d-function-alignment">Example: Automatic Differentiation for 1D Function Alignment</a></li>
 </ul>
 </li>
 </ul>
@@ -1513,6 +1514,143 @@ tensor(1.0971, grad_fn=&lt;SelectBackward0&gt;)
 <img alt="../_images/0abad921b14794b13339b9e78553332ef92d5f0f517281f03216c1ae4b8f541f.png" src="../_images/0abad921b14794b13339b9e78553332ef92d5f0f517281f03216c1ae4b8f541f.png" />
 </div>
 </div>
+</section>
+<section id="example-automatic-differentiation-for-1d-function-alignment">
+<h2>Example: Automatic Differentiation for 1D Function Alignment<a class="headerlink" href="#example-automatic-differentiation-for-1d-function-alignment" title="Link to this heading">#</a></h2>
+<p>A simple yet illustrative application of <strong>automatic differentiation (AD)</strong> is aligning two one–dimensional functions.<br />
+Suppose we observe two signals:</p>
+<ul class="simple">
+<li><p>an original function <span class="math notranslate nohighlight">\( f(x) \)</span></p></li>
+<li><p>a shifted version of it <span class="math notranslate nohighlight">\( g(x) = f(x - \tau_{\text{true}}) \)</span></p></li>
+</ul>
+<p>We do not know the true shift <span class="math notranslate nohighlight">\( \tau_{\text{true}} \)</span>.<br />
+Our goal is to estimate a parameter <span class="math notranslate nohighlight">\( t \)</span> such that the shifted function</p>
+<div class="math notranslate nohighlight">
+\[
+f_t(x) = f(x - t)
+\]</div>
+<p>aligns with <span class="math notranslate nohighlight">\( g(x) \)</span>.<br />
+This leads to the optimization problem:</p>
+<div class="math notranslate nohighlight">
+\[
+L(t) = \sum_x \left( f(x - t) - g(x) \right)^2.
+\]</div>
+<p>Note that the derivative</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial}{\partial t} f(x - t) = - f'(x - t)
+\]</div>
+<p>can be complicated or not analytically available if <span class="math notranslate nohighlight">\( f \)</span> is given only as sampled data.<br />
+<strong>Automatic differentiation</strong> computes the gradient <span class="math notranslate nohighlight">\( \frac{dL}{dt} \)</span> automatically, allowing us to solve the alignment problem with <strong>gradient descent</strong> on a single parameter.</p>
+<p>Below is a sequence of plots showing the original functions <span class="math notranslate nohighlight">\( f \)</span> and <span class="math notranslate nohighlight">\( g \)</span> and the gradual alignment of <span class="math notranslate nohighlight">\( f(x - t) \)</span> as the optimization progresses.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>                   
+<span class="n">true_shift</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">true_shift</span><span class="p">)</span>       
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">([</span><span class="n">t</span><span class="p">],</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">):</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+    <span class="n">f_shifted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span>     <span class="c1"># f(x - t)</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="p">((</span><span class="n">f_shifted</span> <span class="o">-</span> <span class="n">g</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimated shift =&quot;</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated shift = 0.7867217063903809
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Create the x-axis</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+
+<span class="c1"># Define the original function f and its shifted version g</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">true_shift</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">true_shift</span><span class="p">)</span>
+
+<span class="c1"># Learnable parameter: horizontal shift t</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">([</span><span class="n">t</span><span class="p">],</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># Store intermediate curves for visualization</span>
+<span class="n">history</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">):</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+    <span class="c1"># Shifted function: f(x - t)</span>
+    <span class="n">f_shifted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span>
+
+    <span class="c1"># Mean squared error loss</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="p">((</span><span class="n">f_shifted</span> <span class="o">-</span> <span class="n">g</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+    <span class="c1"># Save plots every few steps</span>
+    <span class="k">if</span> <span class="n">step</span> <span class="o">%</span> <span class="mi">20</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">step</span> <span class="o">==</span> <span class="mi">39</span><span class="p">:</span>
+        <span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">step</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">f_shifted</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">clone</span><span class="p">()))</span>
+
+<span class="c1"># print(&quot;Estimated shift =&quot;, t.item())</span>
+
+<span class="c1"># ---- Plot the original functions f and g ----</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;f(x)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;g(x) = f(x - true_shift)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Original Functions f(x) and g(x)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># ---- Plot the alignment progress ----</span>
+<span class="k">for</span> <span class="n">step</span><span class="p">,</span> <span class="n">t_val</span><span class="p">,</span> <span class="n">shifted_curve</span> <span class="ow">in</span> <span class="n">history</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;g(x)&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">shifted_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;f(x - t), step=</span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Alignment Progress at Step </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2"> (t ≈ </span><span class="si">{</span><span class="n">t_val</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/7a447d5f260d28c0dea3137e1dcb3b4bf78fa4453e89c1bae8fb150633d3d4db.png" src="../_images/7a447d5f260d28c0dea3137e1dcb3b4bf78fa4453e89c1bae8fb150633d3d4db.png" />
+<img alt="../_images/66d572b2b3eb5674f89078cbd31f4804699982535b4eaa98e7b3344d40b34ac0.png" src="../_images/66d572b2b3eb5674f89078cbd31f4804699982535b4eaa98e7b3344d40b34ac0.png" />
+<img alt="../_images/5e71f4b3fff70ac799c721568d1e164bf63af3426a709cf8c8c05ac24b89f4d4.png" src="../_images/5e71f4b3fff70ac799c721568d1e164bf63af3426a709cf8c8c05ac24b89f4d4.png" />
+<img alt="../_images/30748fbae92f4ec1fe5d8a23ab2c063d5d767160476951052a925d80f3fbf6eb.png" src="../_images/30748fbae92f4ec1fe5d8a23ab2c063d5d767160476951052a925d80f3fbf6eb.png" />
+</div>
+</div>
 <p><strong>Further Reading:</strong></p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://aegeorge42.github.io/">Neural Networks from scratch</a></p></li>
@@ -1632,6 +1770,7 @@ tensor(1.0971, grad_fn=&lt;SelectBackward0&gt;)
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-pytorch-auto-grad">Using PyTorch auto grad</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backward">Backward</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-pytorch-library">Using PyTorch library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-automatic-differentiation-for-1d-function-alignment">Example: Automatic Differentiation for 1D Function Alignment</a></li>
 </ul>
 </li>
 </ul>
