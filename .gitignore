@@ -177,3 +177,5 @@ _build/*/
 __pycache__
 
 markdown_output/
+
+MNIST/
