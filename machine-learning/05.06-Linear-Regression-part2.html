@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -272,6 +272,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../hws/GitHub-Pages.html">Create Your GitHub Pages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hws/Image-Segmentation.html">Image Segmentation Exercise: Comparing Classification Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hws/Graph-Cut.html">Image Segmentation using Graph Cut Methods: Exercise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hws/Image-Alignment-AD.html">Exercise: 2D Image Alignment Using Automatic Differentiation</a></li>
 </ul>
 </details></li>
 </ul>
@@ -536,6 +537,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backward">Backward</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-pytorch-library">Using PyTorch library</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-automatic-differentiation-for-1d-function-alignment">Example: Automatic Differentiation for 1D Function Alignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-graph-layout-with-autograd">Application: Graph Layout with Autograd</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem">The Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-math-defining-energy">The Math: Defining “Energy”</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1633,10 +1639,10 @@ L(t) = \sum_x \left( f(x - t) - g(x) \right)^2.
 <span class="c1"># ---- Plot the alignment progress ----</span>
 <span class="k">for</span> <span class="n">step</span><span class="p">,</span> <span class="n">t_val</span><span class="p">,</span> <span class="n">shifted_curve</span> <span class="ow">in</span> <span class="n">history</span><span class="p">:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;g(x)&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">shifted_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;f(x - t), step=</span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;g(x)&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Alignment Progress at Step </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2"> (t ≈ </span><span class="si">{</span><span class="n">t_val</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Alignment Progress at Step </span><span class="si">{</span><span class="n">step</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> (t ≈ </span><span class="si">{</span><span class="n">t_val</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1646,9 +1652,132 @@ L(t) = \sum_x \left( f(x - t) - g(x) \right)^2.
 </details>
 <div class="cell_output docutils container">
 <img alt="../_images/7a447d5f260d28c0dea3137e1dcb3b4bf78fa4453e89c1bae8fb150633d3d4db.png" src="../_images/7a447d5f260d28c0dea3137e1dcb3b4bf78fa4453e89c1bae8fb150633d3d4db.png" />
-<img alt="../_images/66d572b2b3eb5674f89078cbd31f4804699982535b4eaa98e7b3344d40b34ac0.png" src="../_images/66d572b2b3eb5674f89078cbd31f4804699982535b4eaa98e7b3344d40b34ac0.png" />
-<img alt="../_images/5e71f4b3fff70ac799c721568d1e164bf63af3426a709cf8c8c05ac24b89f4d4.png" src="../_images/5e71f4b3fff70ac799c721568d1e164bf63af3426a709cf8c8c05ac24b89f4d4.png" />
-<img alt="../_images/30748fbae92f4ec1fe5d8a23ab2c063d5d767160476951052a925d80f3fbf6eb.png" src="../_images/30748fbae92f4ec1fe5d8a23ab2c063d5d767160476951052a925d80f3fbf6eb.png" />
+<img alt="../_images/546d6d6a6abd0bb11a184551e64176c228dd74b5ae680a4efaf23c69b78b73be.png" src="../_images/546d6d6a6abd0bb11a184551e64176c228dd74b5ae680a4efaf23c69b78b73be.png" />
+<img alt="../_images/f638b875f223d38e65f7167e4b3703e3fc4ed8fa9be3939d4907ee859a1964d9.png" src="../_images/f638b875f223d38e65f7167e4b3703e3fc4ed8fa9be3939d4907ee859a1964d9.png" />
+<img alt="../_images/e663b321574becb95642e5ff29302c99e51e63a926c7483eb4684ebd4e321776.png" src="../_images/e663b321574becb95642e5ff29302c99e51e63a926c7483eb4684ebd4e321776.png" />
+</div>
+</div>
+</section>
+<section id="application-graph-layout-with-autograd">
+<h2>Application: Graph Layout with Autograd<a class="headerlink" href="#application-graph-layout-with-autograd" title="Link to this heading">#</a></h2>
+<p>In the previous section, we used <strong>Gradient Descent</strong> to find the optimal line parameters (<span class="math notranslate nohighlight">\(w, b\)</span>) that minimize the prediction error. However, automatic differentiation (<code class="docutils literal notranslate"><span class="pre">autograd</span></code>) is a general tool that can optimize <em>any</em> differentiable objective function, not just regression errors.</p>
+<p>To demonstrate this, let’s solve a geometric problem: <strong>Force-Directed Graph Drawing</strong>.</p>
+<section id="the-problem">
+<h3>The Problem<a class="headerlink" href="#the-problem" title="Link to this heading">#</a></h3>
+<p>Imagine we have a graph <span class="math notranslate nohighlight">\(G=(V, E)\)</span> representing connections between objects. We want to visualize this graph on a 2D plane. If we place the nodes randomly, the result is a messy “hairball.” We want to find the optimal coordinates <span class="math notranslate nohighlight">\(X \in \mathbb{R}^{|V| \times 2}\)</span> that make the graph look organized.</p>
+</section>
+<section id="the-math-defining-energy">
+<h3>The Math: Defining “Energy”<a class="headerlink" href="#the-math-defining-energy" title="Link to this heading">#</a></h3>
+<p>We can model this physical system using two forces, resulting in an objective function <span class="math notranslate nohighlight">\(L(X)\)</span> that we want to <strong>minimize</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>Attraction (Springs):</strong> Connected nodes <span class="math notranslate nohighlight">\((i, j) \in E\)</span> should be close to each other.
+$<span class="math notranslate nohighlight">\(L_{attract} = \sum_{(i,j) \in E} \|x_i - x_j\|^2\)</span>$</p></li>
+<li><p><strong>Repulsion (Electrostatic):</strong> All nodes should repel each other to prevent overlap.
+$<span class="math notranslate nohighlight">\(L_{repulse} = \sum_{i \neq j} \frac{1}{\|x_i - x_j\| + \epsilon}\)</span>$</p></li>
+</ol>
+<p>The total loss function is:</p>
+<div class="math notranslate nohighlight">
+\[L(X) = L_{attract} + \lambda L_{repulse}\]</div>
+<p>Instead of manually calculating the complex gradients <span class="math notranslate nohighlight">\(\nabla_X L\)</span> for every coordinate, we simply define this energy function in PyTorch and let <code class="docutils literal notranslate"><span class="pre">autograd</span></code> move the nodes to their optimal positions.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># --- 1. Setup Data: Create a Grid Graph ---</span>
+<span class="c1"># We use a grid because it has a clear structure that we want to recover.</span>
+<span class="n">n_side</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">grid_2d_graph</span><span class="p">(</span><span class="n">n_side</span><span class="p">,</span> <span class="n">n_side</span><span class="p">)</span>
+<span class="n">nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+<span class="c1"># Map 2D grid coordinates to indices 0..N-1</span>
+<span class="n">node_to_idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nodes</span><span class="p">)}</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+
+<span class="c1"># Convert edges to a tensor of shape (num_edges, 2)</span>
+<span class="n">edge_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
+    <span class="n">edge_list</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">node_to_idx</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">node_to_idx</span><span class="p">[</span><span class="n">v</span><span class="p">]])</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">edge_list</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+
+<span class="c1"># --- 2. Initialize Coordinates Randomly ---</span>
+<span class="c1"># X represents the (x, y) coordinates of our N nodes.</span>
+<span class="c1"># We want to optimize X, so requires_grad=True.</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Using Adam optimizer (acts like Gradient Descent with momentum)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">([</span><span class="n">X</span><span class="p">],</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># --- 3. Visualization Setup ---</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">steps_to_plot</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">]</span> <span class="c1"># Iterations to visualize</span>
+
+<span class="c1"># --- 4. Optimization Loop ---</span>
+<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">501</span><span class="p">):</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    
+    <span class="c1"># Calculate all pairwise differences: X_i - X_j</span>
+    <span class="c1"># Shape becomes (N, N, 2) via broadcasting</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">X</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="c1"># Euclidean distance between all pairs</span>
+    <span class="c1"># Add small epsilon to avoid division by zero</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-6</span>
+    
+    <span class="c1"># --- The Energy Function ---</span>
+    
+    <span class="c1"># 1. Attraction: Minimize distance for connected edges</span>
+    <span class="c1"># We gather distances only for pairs present in &#39;edges&#39;</span>
+    <span class="n">edge_distances</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">edges</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">edges</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]]</span>
+    <span class="n">loss_attraction</span> <span class="o">=</span> <span class="p">(</span><span class="n">edge_distances</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    
+    <span class="c1"># 2. Repulsion: Maximize distance for ALL pairs (inverse distance)</span>
+    <span class="c1"># We ignore the diagonal (distance to self is 0) by masking or just sum all</span>
+    <span class="c1"># Since 1/0 is handled by epsilon, we sum everything.</span>
+    <span class="n">loss_repulsion</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">dist</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    
+    <span class="c1"># Total Loss: Combine forces</span>
+    <span class="c1"># We weigh repulsion slightly less to keep the graph compact</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_attraction</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">loss_repulsion</span>
+    
+    <span class="c1"># --- Autograd Magic ---</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    
+    <span class="c1"># --- Plotting ---</span>
+    <span class="k">if</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">steps_to_plot</span><span class="p">:</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">steps_to_plot</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        
+        <span class="c1"># Detach tensor to numpy for plotting</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+        
+        <span class="c1"># Draw edges</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">edge_list</span><span class="p">:</span>
+            <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">pos</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            
+        <span class="c1"># Draw nodes</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pos</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pos</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;teal&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Iteration </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="se">\n</span><span class="s2">Loss: </span><span class="si">{</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Optimization of Graph Layout using Autograd&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/196852a085930e3db44c16fdbfa66abe905dd4027cf2bc4a471354ec05ec8684.png" src="../_images/196852a085930e3db44c16fdbfa66abe905dd4027cf2bc4a471354ec05ec8684.png" />
 </div>
 </div>
 <p><strong>Further Reading:</strong></p>
@@ -1668,6 +1797,7 @@ L(t) = \sum_x \left( f(x - t) - g(x) \right)^2.
 </ul>
 </li>
 </ul>
+</section>
 </section>
 </section>
 
@@ -1771,6 +1901,11 @@ L(t) = \sum_x \left( f(x - t) - g(x) \right)^2.
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backward">Backward</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-pytorch-library">Using PyTorch library</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-automatic-differentiation-for-1d-function-alignment">Example: Automatic Differentiation for 1D Function Alignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-graph-layout-with-autograd">Application: Graph Layout with Autograd</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem">The Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-math-defining-energy">The Math: Defining “Energy”</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
