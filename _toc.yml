@@ -84,3 +84,4 @@ parts:
       - file: hws/GitHub-Pages
       - file: hws/Image-Segmentation
       - file: hws/Graph-Cut
+      - file: hws/Image-Alignment-AD
