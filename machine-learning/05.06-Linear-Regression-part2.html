@@ -1669,11 +1669,15 @@ L(t) = \sum_x \left( f(x - t) - g(x) \right)^2.
 <section id="the-math-defining-energy">
 <h3>The Math: Defining “Energy”<a class="headerlink" href="#the-math-defining-energy" title="Link to this heading">#</a></h3>
 <p>We can model this physical system using two forces, resulting in an objective function <span class="math notranslate nohighlight">\(L(X)\)</span> that we want to <strong>minimize</strong>:</p>
-<ol class="arabic simple">
-<li><p><strong>Attraction (Springs):</strong> Connected nodes <span class="math notranslate nohighlight">\((i, j) \in E\)</span> should be close to each other.
-$<span class="math notranslate nohighlight">\(L_{attract} = \sum_{(i,j) \in E} \|x_i - x_j\|^2\)</span>$</p></li>
-<li><p><strong>Repulsion (Electrostatic):</strong> All nodes should repel each other to prevent overlap.
-$<span class="math notranslate nohighlight">\(L_{repulse} = \sum_{i \neq j} \frac{1}{\|x_i - x_j\| + \epsilon}\)</span>$</p></li>
+<ol class="arabic">
+<li><p><strong>Attraction (Springs):</strong> Connected nodes <span class="math notranslate nohighlight">\((i, j) \in E\)</span> should be close to each other.</p>
+<div class="math notranslate nohighlight">
+\[L_{attract} = \sum_{(i,j) \in E} \|x_i - x_j\|^2\]</div>
+</li>
+<li><p><strong>Repulsion (Electrostatic):</strong> All nodes should repel each other to prevent overlap.</p>
+<div class="math notranslate nohighlight">
+\[L_{repulse} = \sum_{i \neq j} \frac{1}{\|x_i - x_j\| + \epsilon}\]</div>
+</li>
 </ol>
 <p>The total loss function is:</p>
 <div class="math notranslate nohighlight">
@@ -1709,7 +1713,7 @@ $<span class="math notranslate nohighlight">\(L_{repulse} = \sum_{i \neq j} \fra
 <span class="c1"># --- 2. Initialize Coordinates Randomly ---</span>
 <span class="c1"># X represents the (x, y) coordinates of our N nodes.</span>
 <span class="c1"># We want to optimize X, so requires_grad=True.</span>
-<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Using Adam optimizer (acts like Gradient Descent with momentum)</span>
@@ -1777,7 +1781,7 @@ $<span class="math notranslate nohighlight">\(L_{repulse} = \sum_{i \neq j} \fra
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/196852a085930e3db44c16fdbfa66abe905dd4027cf2bc4a471354ec05ec8684.png" src="../_images/196852a085930e3db44c16fdbfa66abe905dd4027cf2bc4a471354ec05ec8684.png" />
+<img alt="../_images/a70bfe19d97eca20757535308675afdcc67266798ea0aa07bfddd308779579f6.png" src="../_images/a70bfe19d97eca20757535308675afdcc67266798ea0aa07bfddd308779579f6.png" />
 </div>
 </div>
 <p><strong>Further Reading:</strong></p>
