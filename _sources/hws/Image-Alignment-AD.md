@@ -1,25 +1,55 @@
-## Exercise: 2D Image Alignment Using Automatic Differentiation
+## 2D Image Alignment Using Automatic Differentiation
 
-In this exercise, you will implement a simple 2D image registration method using PyTorch and automatic differentiation.
-The goal is to recover the unknown translation parameters $(t_x, t_y)$ that best align a moving image to a target image.
+In this exercise, you will study a simple **2D image registration** problem using PyTorch and automatic differentiation.
+
+The goal is to estimate a 2D translation $(t_x, t_y)$ that aligns a *moving image* to a *target image* by minimizing a mean squared error loss.
+
+---
+
+### Problem setup
 
 You are given two synthetic images:
 
-1. A target image that contains a white square.
-2. A moving image that contains the same square, but shifted.
+- A **target image** containing a white square.
+- A **moving image** containing the same square, but shifted.
 
-We assume that the transformation between the images is a simple translation.
-The task is to estimate the translation parameters$ (t_x) $ and $ (t_y) $by minimizing the mean squared error:
+We assume that the transformation between the two images is **only a translation**.
+
+---
+
+### Important note on coordinate normalization
+
+The translation parameters $(t_x, t_y)$ are defined in **normalized image coordinates**, where:
+
+- Image coordinates lie in the interval $[-1, 1]$
+- $(0,0)$ corresponds to the image center
+- $(t_x, t_y)$ do **not** represent pixel displacements
+
+This normalization is required by PyTorch's `grid_sample` function.
+
+---
+
+### Optimization problem
+
+The loss function is defined as:
 
 $$
-\mathcal{L}(t_x, t_y) = \frac{1}{HW} \sum_{i,j} \left( I_{\text{moving}}(x_i - t_x, y_j - t_y) - I_{\text{target}}(x_i, y_j) \right)^2
+\mathcal{L}(t_x, t_y)
+=
+\frac{1}{HW}
+\sum_{i,j}
+\Big(
+I_{\text{moving}}(x_i - t_x, y_j - t_y)
+-
+I_{\text{target}}(x_i, y_j)
+\Big)^2
 $$
 
-Use PyTorch's automatic differentiation engine to compute gradients of the loss with respect to $(t_x, t_y)$, and update them using gradient descent.
+The translation parameters $(t_x, t_y)$ are optimized using gradient-based methods and automatic differentiation.
 
-A warping function is provided that uses `grid_sample` to translate the image.
+---
 
-Your task is to run the following code, understand it, visualize the alignment progress, and explain how automatic differentiation recovers the translation.
+### Provided code
 
 ```python
 import torch
@@ -30,11 +60,11 @@ import matplotlib.pyplot as plt
 target = torch.zeros(1, 1, 80, 80)
 target[:, :, 20:60, 20:60] = 1.0
 
-# initial moving image: shifted version
+# moving image: shifted square
 moving = torch.zeros_like(target)
 moving[:, :, 25:65, 10:50] = 1.0
 
-# parameters to learn: translation tx, ty
+# learnable translation parameters (normalized coordinates)
 theta = torch.tensor([0.0, 0.0], requires_grad=True)
 optimizer = torch.optim.Adam([theta], lr=0.05)
 
@@ -46,7 +76,12 @@ def warp_image(img, tx, ty):
         indexing="ij"
     )
     grid = torch.stack([grid_x - tx, grid_y - ty], dim=-1)
-    return F.grid_sample(img, grid.unsqueeze(0), mode="bilinear", align_corners=True)
+    return F.grid_sample(
+        img,
+        grid.unsqueeze(0),
+        mode="bilinear",
+        align_corners=True
+    )
 
 for it in range(11):
     optimizer.zero_grad()
@@ -63,12 +98,38 @@ for it in range(11):
         plt.show()
 
 print("Estimated translation:", theta.detach())
-```
+````
 
-### Questions to answer
+---
 
-1. What loss function is being minimized? Write it symbolically.
-2. Why does `grid_sample` allow backpropagation through the geometric transformation?
-3. What values should$ (t_x) $and$ (t_y) $converge to in this example?
-4. Try modifying the square size or changing the learning rate. How does the optimization behave?
+### Questions
+
+1. **Loss analysis**
+   Identify the loss function being minimized and explain its components.
+   Which variables are optimized, and which quantities are fixed?
+
+2. **Automatic differentiation**
+   Explain why gradients with respect to $(t_x, t_y)$ can be computed, even though the transformation is geometric.
+
+3. **Expected solution**
+   Based on how the two images are constructed, to what values should $(t_x, t_y)$ approximately converge?
+   Provide a geometric explanation.
+
+4. **Optimization behavior**
+   Investigate how the optimization changes when:
+
+   * the learning rate is increased or decreased,
+   * the square size is modified,
+   * the initial translation is far from the correct value.
+
+---
+
+### Submission instructions
+
+* Prepare a **Jupyter Notebook** (`.ipynb`) containing:
+
+  * the executed code,
+  * visual outputs,
+  * written answers to the questions.
+* Upload the notebook to the university learning management system.
 

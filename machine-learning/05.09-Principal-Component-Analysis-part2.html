@@ -1243,38 +1243,48 @@ Each <span class="math notranslate nohighlight">\(\mathbf{u}_k\)</span> is found
 </li>
 </ol>
 <p>Let <span class="math notranslate nohighlight">\(\mathbf{z}_i = \mathbf{x}_i - \bar{\mathbf{x}}\)</span> be the centered data points. Then:</p>
-<!-- 1. Expand using $\|A\|^2 = A^TA$: -->
+<ol class="arabic simple">
+<li><p>Expand using <span class="math notranslate nohighlight">\(\|A\|^2 = A^TA\)</span>:</p></li>
+</ol>
 <div class="math notranslate nohighlight">
 \[
 \sigma^2_{\mathbf{u}} = \frac{1}{n} \sum_{i=1}^n (\mathbf{u}^T \mathbf{z}_i)^2 
 = \frac{1}{n} \sum_{i=1}^n (\mathbf{u}^T \mathbf{z}_i)(\mathbf{z}_i^T \mathbf{u})
 \]</div>
-<!-- 2. Apply the identity $A^TB = B^TA$ to the second term: -->
+<ol class="arabic simple" start="2">
+<li><p>Apply the identity <span class="math notranslate nohighlight">\(A^TB = B^TA\)</span> to the second term:</p></li>
+</ol>
 <div class="math notranslate nohighlight">
 \[
 = \frac{1}{n} \sum_{i=1}^n \mathbf{u}^T \mathbf{z}_i \mathbf{z}_i^T \mathbf{u}
+\]</div>
+<ol class="arabic simple" start="3">
+<li><p>Factor out <span class="math notranslate nohighlight">\(\mathbf{u}^T\)</span> and <span class="math notranslate nohighlight">\(\mathbf{u}\)</span>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
 = \mathbf{u}^T \left( \frac{1}{n} \sum_{i=1}^n \mathbf{z}_i \mathbf{z}_i^T \right) \mathbf{u}
 \]</div>
-<p>Recognize the covariance matrix <span class="math notranslate nohighlight">\(\mathbf{C} = \frac{1}{n} \sum_{i=1}^n \mathbf{z}_i \mathbf{z}_i^T\)</span>:</p>
+<ol class="arabic simple" start="4">
+<li><p>Recognize the covariance matrix <span class="math notranslate nohighlight">\(\mathbf{C} = \frac{1}{n} \sum_{i=1}^n \mathbf{z}_i \mathbf{z}_i^T\)</span>:</p></li>
+</ol>
 <div class="math notranslate nohighlight">
 \[
 = \mathbf{u}^T \mathbf{C} \mathbf{u}
+\]</div>
+<ol class="arabic simple" start="5">
+<li><p>Express in terms of the centered data matrix <span class="math notranslate nohighlight">\(\mathbf{Z} = [\mathbf{z}_1 \cdots \mathbf{z}_n]^T\)</span>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+= \frac{1}{n} \mathbf{u}^T \mathbf{Z}^T \mathbf{Z} \mathbf{u}
+= \frac{1}{n} \|\mathbf{Z}\mathbf{u}\|^2
 \]</div>
 <p>Hence the variance of the projected data is:</p>
 <div class="math notranslate nohighlight">
 \[
 \boxed{\sigma^2_{\mathbf{u}} = \mathbf{u}^T \mathbf{C} \mathbf{u}}
 \]</div>
-<hr class="docutils" />
-<p><strong>Note:</strong>
-In terms of thecentered data matrix: <span class="math notranslate nohighlight">\(\mathbf{Z} = \mathbf{X} - \mathbf{1}\cdot\mathbf{\mu}^T\)</span>, then:</p>
-<div class="math notranslate nohighlight">
-\[
-\mathbf{u}^T \left( \frac{1}{n} \sum_{i=1}^n \mathbf{z}_i \mathbf{z}_i^T \right) \mathbf{u}
-= \frac{1}{n} \mathbf{u}^T \mathbf{Z}^T \mathbf{Z} \mathbf{u}
-= \frac{1}{n} \|\mathbf{Z}\mathbf{u}\|^2
-\]</div>
-<hr class="docutils" />
 <section id="optimization-problem">
 <h4>Optimization Problem<a class="headerlink" href="#optimization-problem" title="Link to this heading">#</a></h4>
 <p>We should maximize the projected variance <span class="math notranslate nohighlight">\(\sigma^2_\mathbf{u} = \mathbf{u}^T \mathbf{C} \mathbf{u}\)</span> subject to the constraint <span class="math notranslate nohighlight">\(\mathbf{u}^T\mathbf{u}=1\)</span>. This constrained optimization problem can be solved using Lagrange multipliers:</p>
@@ -1335,7 +1345,7 @@ In terms of thecentered data matrix: <span class="math notranslate nohighlight">
 <span class="n">Z</span> <span class="o">=</span> <span class="n">X</span> <span class="o">-</span> <span class="n">X_mean</span>
 
 <span class="c1"># Compute covariance matrix</span>
-<span class="n">cov_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Z</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">Z</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+<span class="n">cov_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Z</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">Z</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Compute eigenvalues and eigenvectors</span>
 <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">cov_matrix</span><span class="p">)</span>
@@ -1353,7 +1363,7 @@ In terms of thecentered data matrix: <span class="math notranslate nohighlight">
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>u1 = [-0.83818843 -0.54538075], λ1 = 1.02
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>u1 = [-0.83818843 -0.54538075], λ1 = 1.03
 </pre></div>
 </div>
 </div>
@@ -1404,7 +1414,7 @@ In terms of thecentered data matrix: <span class="math notranslate nohighlight">
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/056af3b86ca016337baa96e044ec8de70fe43037dc75371691f5a5389f7af352.png" src="../_images/056af3b86ca016337baa96e044ec8de70fe43037dc75371691f5a5389f7af352.png" />
+<img alt="../_images/38253dcc9fb0d26204d1def0c345a99050c63981701fecf619efca0b88d13fad.png" src="../_images/38253dcc9fb0d26204d1def0c345a99050c63981701fecf619efca0b88d13fad.png" />
 </div>
 </div>
 </section>
@@ -1442,7 +1452,7 @@ In terms of thecentered data matrix: <span class="math notranslate nohighlight">
     
     <span class="c1"># Step 2: Compute covariance matrix</span>
     <span class="n">n_samples</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">cov_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Z</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">Z</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_samples</span>
+    <span class="n">cov_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Z</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">Z</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_samples</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
     
     <span class="c1"># Step 3: Compute eigenvalues and eigenvectors</span>
     <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">cov_matrix</span><span class="p">)</span>

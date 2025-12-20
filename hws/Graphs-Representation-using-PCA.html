@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2D Image Alignment Using Automatic Differentiation &#8212; Algorithms for Data Science</title>
+    <title>Discovering Community Structure in Graphs using PCA &#8212; Algorithms for Data Science</title>
   
   
   
@@ -57,14 +57,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'hws/Image-Alignment-AD';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'hws/Graphs-Representation-using-PCA';</script>
     <link rel="icon" href="../_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Discovering Community Structure in Graphs using PCA" href="Graphs-Representation-using-PCA.html" />
-    <link rel="prev" title="Image Segmentation using Graph Cut Methods: Exercise" href="Graph-Cut.html" />
+    <link rel="next" title="Learning a Graph Layout using Automatic Differentiation" href="Learning-Graph-Layout-using-AD.html" />
+    <link rel="prev" title="Exercise: 2D Image Alignment Using Automatic Differentiation" href="Image-Alignment-AD.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -272,8 +270,8 @@
 <li class="toctree-l2"><a class="reference internal" href="GitHub-Pages.html">Create Your GitHub Pages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Image-Segmentation.html">Image Segmentation Exercise: Comparing Classification Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Graph-Cut.html">Image Segmentation using Graph Cut Methods: Exercise</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">2D Image Alignment Using Automatic Differentiation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Graphs-Representation-using-PCA.html">Discovering Community Structure in Graphs using PCA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Image-Alignment-AD.html">Exercise: 2D Image Alignment Using Automatic Differentiation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Discovering Community Structure in Graphs using PCA</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Learning-Graph-Layout-using-AD.html">Learning a Graph Layout using Automatic Differentiation</a></li>
 </ul>
 </details></li>
@@ -348,7 +346,7 @@
       
       
       
-      <li><a href="https://github.com/fum-cs/a4ds/issues/new?title=Issue%20on%20page%20%2Fhws/Image-Alignment-AD.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/fum-cs/a4ds/issues/new?title=Issue%20on%20page%20%2Fhws/Graphs-Representation-using-PCA.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -378,7 +376,7 @@
       
       
       
-      <li><a href="../_sources/hws/Image-Alignment-AD.md" target="_blank"
+      <li><a href="../_sources/hws/Graphs-Representation-using-PCA.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -462,7 +460,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>2D Image Alignment Using Automatic Differentiation</h1>
+    <h1>Discovering Community Structure in Graphs using PCA</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -472,12 +470,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-setup">Problem setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-note-on-coordinate-normalization">Important note on coordinate normalization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-problem">Optimization problem</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#provided-code">Provided code</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-instructions">Submission instructions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-generation-given-do-not-modify">Graph generation (given – do not modify)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tasks">Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptual-questions-for-thinking-only">Conceptual questions (for thinking only)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission">Submission</a></li>
 </ul>
             </nav>
         </div>
@@ -489,136 +486,70 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="d-image-alignment-using-automatic-differentiation">
-<h1>2D Image Alignment Using Automatic Differentiation<a class="headerlink" href="#d-image-alignment-using-automatic-differentiation" title="Link to this heading">#</a></h1>
-<p>In this exercise, you will study a simple <strong>2D image registration</strong> problem using PyTorch and automatic differentiation.</p>
-<p>The goal is to estimate a 2D translation <span class="math notranslate nohighlight">\((t_x, t_y)\)</span> that aligns a <em>moving image</em> to a <em>target image</em> by minimizing a mean squared error loss.</p>
-<hr class="docutils" />
-<section id="problem-setup">
-<h2>Problem setup<a class="headerlink" href="#problem-setup" title="Link to this heading">#</a></h2>
-<p>You are given two synthetic images:</p>
-<ul class="simple">
-<li><p>A <strong>target image</strong> containing a white square.</p></li>
-<li><p>A <strong>moving image</strong> containing the same square, but shifted.</p></li>
-</ul>
-<p>We assume that the transformation between the two images is <strong>only a translation</strong>.</p>
+  <section id="discovering-community-structure-in-graphs-using-pca">
+<h1>Discovering Community Structure in Graphs using PCA<a class="headerlink" href="#discovering-community-structure-in-graphs-using-pca" title="Link to this heading">#</a></h1>
+<section id="objective">
+<h2>Objective<a class="headerlink" href="#objective" title="Link to this heading">#</a></h2>
+<p>The goal of this exercise is to explore how <strong>Principal Component Analysis (PCA)</strong> can reveal
+community structure in graphs by operating directly on the <strong>adjacency matrix</strong>.</p>
+<p>You will work with a fixed graph that has a known community structure and analyze how PCA
+embeds the nodes into a low-dimensional space.</p>
 </section>
 <hr class="docutils" />
-<section id="important-note-on-coordinate-normalization">
-<h2>Important note on coordinate normalization<a class="headerlink" href="#important-note-on-coordinate-normalization" title="Link to this heading">#</a></h2>
-<p>The translation parameters <span class="math notranslate nohighlight">\((t_x, t_y)\)</span> are defined in <strong>normalized image coordinates</strong>, where:</p>
-<ul class="simple">
-<li><p>Image coordinates lie in the interval <span class="math notranslate nohighlight">\([-1, 1]\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\((0,0)\)</span> corresponds to the image center</p></li>
-<li><p><span class="math notranslate nohighlight">\((t_x, t_y)\)</span> do <strong>not</strong> represent pixel displacements</p></li>
-</ul>
-<p>This normalization is required by PyTorch’s <code class="docutils literal notranslate"><span class="pre">grid_sample</span></code> function.</p>
-</section>
-<hr class="docutils" />
-<section id="optimization-problem">
-<h2>Optimization problem<a class="headerlink" href="#optimization-problem" title="Link to this heading">#</a></h2>
-<p>The loss function is defined as:</p>
-<div class="math notranslate nohighlight">
-\[
-\mathcal{L}(t_x, t_y)
-=
-\frac{1}{HW}
-\sum_{i,j}
-\Big(
-I_{\text{moving}}(x_i - t_x, y_j - t_y)
--
-I_{\text{target}}(x_i, y_j)
-\Big)^2
-\]</div>
-<p>The translation parameters <span class="math notranslate nohighlight">\((t_x, t_y)\)</span> are optimized using gradient-based methods and automatic differentiation.</p>
-</section>
-<hr class="docutils" />
-<section id="provided-code">
-<h2>Provided code<a class="headerlink" href="#provided-code" title="Link to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<section id="graph-generation-given-do-not-modify">
+<h2>Graph generation (given – do not modify)<a class="headerlink" href="#graph-generation-given-do-not-modify" title="Link to this heading">#</a></h2>
+<p>All students must work on the same graph.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 
-<span class="c1"># synthetic target image (white square)</span>
-<span class="n">target</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
-<span class="n">target</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">20</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">:</span><span class="mi">60</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">n_communities</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">community_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
+<span class="n">p_in</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">p_out</span> <span class="o">=</span> <span class="mf">0.05</span>
 
-<span class="c1"># moving image: shifted square</span>
-<span class="n">moving</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
-<span class="n">moving</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">25</span><span class="p">:</span><span class="mi">65</span><span class="p">,</span> <span class="mi">10</span><span class="p">:</span><span class="mi">50</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
-
-<span class="c1"># learnable translation parameters (normalized coordinates)</span>
-<span class="n">theta</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">([</span><span class="n">theta</span><span class="p">],</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">warp_image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">):</span>
-    <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span>
-    <span class="n">grid_y</span><span class="p">,</span> <span class="n">grid_x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span>
-        <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">H</span><span class="p">),</span>
-        <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">W</span><span class="p">),</span>
-        <span class="n">indexing</span><span class="o">=</span><span class="s2">&quot;ij&quot;</span>
-    <span class="p">)</span>
-    <span class="n">grid</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">grid_x</span> <span class="o">-</span> <span class="n">tx</span><span class="p">,</span> <span class="n">grid_y</span> <span class="o">-</span> <span class="n">ty</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">grid_sample</span><span class="p">(</span>
-        <span class="n">img</span><span class="p">,</span>
-        <span class="n">grid</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
-        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;bilinear&quot;</span><span class="p">,</span>
-        <span class="n">align_corners</span><span class="o">=</span><span class="kc">True</span>
-    <span class="p">)</span>
-
-<span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
-    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
-    <span class="n">warped</span> <span class="o">=</span> <span class="n">warp_image</span><span class="p">(</span><span class="n">moving</span><span class="p">,</span> <span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">loss</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">mse_loss</span><span class="p">(</span><span class="n">warped</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
-    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
-
-    <span class="k">if</span> <span class="n">it</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Iteration </span><span class="si">{</span><span class="n">it</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">warped</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimated translation:&quot;</span><span class="p">,</span> <span class="n">theta</span><span class="o">.</span><span class="n">detach</span><span class="p">())</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">stochastic_block_model</span><span class="p">(</span>
+    <span class="n">community_sizes</span><span class="p">,</span>
+    <span class="p">[[</span><span class="n">p_in</span><span class="p">,</span> <span class="n">p_out</span><span class="p">],</span> <span class="p">[</span><span class="n">p_out</span><span class="p">,</span> <span class="n">p_in</span><span class="p">]],</span>
+    <span class="n">seed</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <hr class="docutils" />
-<section id="questions">
-<h2>Questions<a class="headerlink" href="#questions" title="Link to this heading">#</a></h2>
+<section id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Link to this heading">#</a></h2>
+<p>You are asked to implement the following steps:</p>
 <ol class="arabic simple">
-<li><p><strong>Loss analysis</strong>
-Identify the loss function being minimized and explain its components.
-Which variables are optimized, and which quantities are fixed?</p></li>
-<li><p><strong>Automatic differentiation</strong>
-Explain why gradients with respect to <span class="math notranslate nohighlight">\((t_x, t_y)\)</span> can be computed, even though the transformation is geometric.</p></li>
-<li><p><strong>Expected solution</strong>
-Based on how the two images are constructed, to what values should <span class="math notranslate nohighlight">\((t_x, t_y)\)</span> approximately converge?
-Provide a geometric explanation.</p></li>
-<li><p><strong>Optimization behavior</strong>
-Investigate how the optimization changes when:</p>
-<ul class="simple">
-<li><p>the learning rate is increased or decreased,</p></li>
-<li><p>the square size is modified,</p></li>
-<li><p>the initial translation is far from the correct value.</p></li>
-</ul>
-</li>
+<li><p>Extract the <strong>adjacency matrix</strong> of the graph.</p></li>
+<li><p>Normalize the adjacency matrix before applying PCA.</p></li>
+<li><p>Apply <strong>PCA</strong> to reduce the node representations to <strong>two dimensions</strong>.</p></li>
+<li><p>Use the PCA coordinates to visualize the graph.</p></li>
+<li><p>Compare the PCA-based visualization with standard graph layouts
+(e.g., Spring, Circular, Kamada–Kawai).</p></li>
 </ol>
 </section>
 <hr class="docutils" />
-<section id="submission-instructions">
-<h2>Submission instructions<a class="headerlink" href="#submission-instructions" title="Link to this heading">#</a></h2>
+<section id="conceptual-questions-for-thinking-only">
+<h2>Conceptual questions (for thinking only)<a class="headerlink" href="#conceptual-questions-for-thinking-only" title="Link to this heading">#</a></h2>
+<p>You do <strong>not</strong> need to write the answers in the notebook.</p>
+<ol class="arabic simple">
+<li><p>What does each row of the adjacency matrix represent geometrically?</p></li>
+<li><p>Why is normalization important before applying PCA in this context?</p></li>
+<li><p>Why can PCA separate communities even though it does not use graph connectivity explicitly?</p></li>
+<li><p>What information does the explained variance ratio give about the graph structure?</p></li>
+<li><p>What are the limitations of PCA-based embeddings for community detection?</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="submission">
+<h2>Submission<a class="headerlink" href="#submission" title="Link to this heading">#</a></h2>
+<p>Submit a <strong>Jupyter Notebook (.ipynb)</strong> containing:</p>
 <ul class="simple">
-<li><p>Prepare a <strong>Jupyter Notebook</strong> (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) containing:</p>
-<ul>
-<li><p>the executed code,</p></li>
-<li><p>visual outputs,</p></li>
-<li><p>written answers to the questions.</p></li>
+<li><p>your code,</p></li>
+<li><p>generated visualizations,</p></li>
+<li><p>numerical outputs.</p></li>
 </ul>
-</li>
-<li><p>Upload the notebook to the university learning management system.</p></li>
-</ul>
+<p>Written answers to the conceptual questions are <strong>not required</strong>.</p>
 </section>
 </section>
 
@@ -653,20 +584,20 @@ Investigate how the optimization changes when:</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Graph-Cut.html"
+       href="Image-Alignment-AD.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Image Segmentation using Graph Cut Methods: Exercise</p>
+        <p class="prev-next-title">Exercise: 2D Image Alignment Using Automatic Differentiation</p>
       </div>
     </a>
     <a class="right-next"
-       href="Graphs-Representation-using-PCA.html"
+       href="Learning-Graph-Layout-using-AD.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Discovering Community Structure in Graphs using PCA</p>
+        <p class="prev-next-title">Learning a Graph Layout using Automatic Differentiation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -686,12 +617,11 @@ Investigate how the optimization changes when:</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-setup">Problem setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-note-on-coordinate-normalization">Important note on coordinate normalization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-problem">Optimization problem</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#provided-code">Provided code</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-instructions">Submission instructions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-generation-given-do-not-modify">Graph generation (given – do not modify)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tasks">Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptual-questions-for-thinking-only">Conceptual questions (for thinking only)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission">Submission</a></li>
 </ul>
   </nav></div>
 
