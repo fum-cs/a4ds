@@ -1,4 +1,3 @@
-
 ## Discovering Community Structure in Graphs using PCA
 
 ### Objective
@@ -7,7 +6,7 @@ The goal of this exercise is to explore how **Principal Component Analysis (PCA)
 community structure in graphs by operating directly on the **adjacency matrix**.
 
 You will work with a fixed graph that has a known community structure and analyze how PCA
-embeds the nodes into a low-dimensional space.
+maps high-dimensional connectivity patterns into a low-dimensional space.
 
 ---
 
@@ -38,11 +37,24 @@ G = nx.stochastic_block_model(
 You are asked to implement the following steps:
 
 1. Extract the **adjacency matrix** of the graph.
-2. Normalize the adjacency matrix before applying PCA.
-3. Apply **PCA** to reduce the node representations to **two dimensions**.
-4. Use the PCA coordinates to visualize the graph.
-5. Compare the PCA-based visualization with standard graph layouts
+
+2. Apply **PCA** to reduce the node representations to **two dimensions**.
+
+3. Visualize the graph using the 2D PCA coordinates.
+
+4. Compare the PCA-based visualization with standard graph layouts
    (e.g., Spring, Circular, Kamada–Kawai).
+
+5. Data representation task:
+   Display, in a clear tabular or textual form, the relationship between:
+
+   * each node’s adjacency vector (or a small selected part of it),
+   * its corresponding 2D PCA coordinates,
+   * and its true community label.
+
+   The goal is to explicitly show how each row of the adjacency matrix is mapped
+   to a point in the PCA space.
+   Displaying only a subset of rows (e.g., first few nodes) is sufficient.
 
 ---
 
@@ -51,10 +63,8 @@ You are asked to implement the following steps:
 You do **not** need to write the answers in the notebook.
 
 1. What does each row of the adjacency matrix represent geometrically?
-2. Why is normalization important before applying PCA in this context?
-3. Why can PCA separate communities even though it does not use graph connectivity explicitly?
-4. What information does the explained variance ratio give about the graph structure?
-5. What are the limitations of PCA-based embeddings for community detection?
+2. Why can PCA separate communities even though it does not explicitly use graph edges?
+3. What information does the explained variance ratio provide about the graph structure?
 
 ---
 
@@ -64,6 +74,6 @@ Submit a **Jupyter Notebook (.ipynb)** containing:
 
 * your code,
 * generated visualizations,
-* numerical outputs.
+* numerical outputs and tables.
 
 Written answers to the conceptual questions are **not required**.

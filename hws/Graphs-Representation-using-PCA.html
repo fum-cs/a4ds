@@ -62,7 +62,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Learning a Graph Layout using Automatic Differentiation" href="Learning-Graph-Layout-using-AD.html" />
-    <link rel="prev" title="Exercise: 2D Image Alignment Using Automatic Differentiation" href="Image-Alignment-AD.html" />
+    <link rel="prev" title="2D Image Alignment Using Automatic Differentiation" href="Image-Alignment-AD.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -270,7 +270,7 @@
 <li class="toctree-l2"><a class="reference internal" href="GitHub-Pages.html">Create Your GitHub Pages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Image-Segmentation.html">Image Segmentation Exercise: Comparing Classification Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Graph-Cut.html">Image Segmentation using Graph Cut Methods: Exercise</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Image-Alignment-AD.html">Exercise: 2D Image Alignment Using Automatic Differentiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Image-Alignment-AD.html">2D Image Alignment Using Automatic Differentiation</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Discovering Community Structure in Graphs using PCA</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Learning-Graph-Layout-using-AD.html">Learning a Graph Layout using Automatic Differentiation</a></li>
 </ul>
@@ -493,7 +493,7 @@ document.write(`
 <p>The goal of this exercise is to explore how <strong>Principal Component Analysis (PCA)</strong> can reveal
 community structure in graphs by operating directly on the <strong>adjacency matrix</strong>.</p>
 <p>You will work with a fixed graph that has a known community structure and analyze how PCA
-embeds the nodes into a low-dimensional space.</p>
+maps high-dimensional connectivity patterns into a low-dimensional space.</p>
 </section>
 <hr class="docutils" />
 <section id="graph-generation-given-do-not-modify">
@@ -519,13 +519,23 @@ embeds the nodes into a low-dimensional space.</p>
 <section id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Link to this heading">#</a></h2>
 <p>You are asked to implement the following steps:</p>
-<ol class="arabic simple">
+<ol class="arabic">
 <li><p>Extract the <strong>adjacency matrix</strong> of the graph.</p></li>
-<li><p>Normalize the adjacency matrix before applying PCA.</p></li>
 <li><p>Apply <strong>PCA</strong> to reduce the node representations to <strong>two dimensions</strong>.</p></li>
-<li><p>Use the PCA coordinates to visualize the graph.</p></li>
+<li><p>Visualize the graph using the 2D PCA coordinates.</p></li>
 <li><p>Compare the PCA-based visualization with standard graph layouts
 (e.g., Spring, Circular, Kamada–Kawai).</p></li>
+<li><p>Data representation task:
+Display, in a clear tabular or textual form, the relationship between:</p>
+<ul class="simple">
+<li><p>each node’s adjacency vector (or a small selected part of it),</p></li>
+<li><p>its corresponding 2D PCA coordinates,</p></li>
+<li><p>and its true community label.</p></li>
+</ul>
+<p>The goal is to explicitly show how each row of the adjacency matrix is mapped
+to a point in the PCA space.
+Displaying only a subset of rows (e.g., first few nodes) is sufficient.</p>
+</li>
 </ol>
 </section>
 <hr class="docutils" />
@@ -534,10 +544,8 @@ embeds the nodes into a low-dimensional space.</p>
 <p>You do <strong>not</strong> need to write the answers in the notebook.</p>
 <ol class="arabic simple">
 <li><p>What does each row of the adjacency matrix represent geometrically?</p></li>
-<li><p>Why is normalization important before applying PCA in this context?</p></li>
-<li><p>Why can PCA separate communities even though it does not use graph connectivity explicitly?</p></li>
-<li><p>What information does the explained variance ratio give about the graph structure?</p></li>
-<li><p>What are the limitations of PCA-based embeddings for community detection?</p></li>
+<li><p>Why can PCA separate communities even though it does not explicitly use graph edges?</p></li>
+<li><p>What information does the explained variance ratio provide about the graph structure?</p></li>
 </ol>
 </section>
 <hr class="docutils" />
@@ -547,7 +555,7 @@ embeds the nodes into a low-dimensional space.</p>
 <ul class="simple">
 <li><p>your code,</p></li>
 <li><p>generated visualizations,</p></li>
-<li><p>numerical outputs.</p></li>
+<li><p>numerical outputs and tables.</p></li>
 </ul>
 <p>Written answers to the conceptual questions are <strong>not required</strong>.</p>
 </section>
@@ -589,7 +597,7 @@ embeds the nodes into a low-dimensional space.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Exercise: 2D Image Alignment Using Automatic Differentiation</p>
+        <p class="prev-next-title">2D Image Alignment Using Automatic Differentiation</p>
       </div>
     </a>
     <a class="right-next"
