@@ -86,4 +86,4 @@ parts:
       - file: hws/Graph-Cut
       - file: hws/Image-Alignment-AD
       - file: hws/Graphs-Representation-using-PCA
-      - file: hws/Learning-Graph-Layout-using-AD
+      # - file: hws/Learning-Graph-Layout-using-AD
