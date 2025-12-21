@@ -272,7 +272,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../hws/GitHub-Pages.html">Create Your GitHub Pages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hws/Image-Segmentation.html">Image Segmentation Exercise: Comparing Classification Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hws/Graph-Cut.html">Image Segmentation using Graph Cut Methods: Exercise</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../hws/Image-Alignment-AD.html">Exercise: 2D Image Alignment Using Automatic Differentiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hws/Image-Alignment-AD.html">2D Image Alignment Using Automatic Differentiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hws/Graphs-Representation-using-PCA.html">Discovering Community Structure in Graphs using PCA</a></li>
 </ul>
 </details></li>
 </ul>
@@ -503,7 +504,10 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-why-random-projection">1. Introduction: Why Random Projection?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#foundation-orthogonality-in-high-dimensions">2. Foundation: Orthogonality in High Dimensions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-theory-johnson-lindenstrauss-lemma">3. The Theory: Johnson-Lindenstrauss Lemma</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-theory-johnson-lindenstrauss-lemma">3. The Theory: Johnson-Lindenstrauss Lemma</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-random-projection-length-scaling">Note: Random Projection Length Scaling</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-random-matrices">4. Types of Random Matrices</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-gaussian-random-projection">A. Gaussian Random Projection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-sparse-random-projection-achlioptas">B. Sparse Random Projection (Achlioptas)</a></li>
@@ -534,7 +538,7 @@ document.write(`
 Computer Science Dept, Ferdowsi University of Mashhad</p>
 <section id="introduction-why-random-projection">
 <h2>1. Introduction: Why Random Projection?<a class="headerlink" href="#introduction-why-random-projection" title="Link to this heading">#</a></h2>
-<p>In the previous section, we explored the weird properties of high-dimensional spaces. We learned that as dimensions increase, data becomes sparse, and distance-based methods (like k-NN) struggle. This is the <strong>Curse of Dimensionality</strong>.</p>
+<p>In the previous sections, we explored the weird properties of high-dimensional spaces. We learned that as dimensions increase, data becomes sparse, and distance-based methods (like k-NN) struggle. This is the <strong>Curse of Dimensionality</strong>.</p>
 <p>To solve this, we often use <strong>Dimensionality Reduction</strong>. The most famous method is <strong>PCA (Principal Component Analysis)</strong>, which finds the “best” axes to preserve variance. However, PCA has a major drawback:</p>
 <ul class="simple">
 <li><p><strong>It is computationally expensive:</strong> Calculating the covariance matrix and its eigenvectors takes a long time for very large datasets (<span class="math notranslate nohighlight">\(O(d^2 n)\)</span> or <span class="math notranslate nohighlight">\(O(d^3)\)</span>).</p></li>
@@ -552,7 +556,7 @@ Instead of finding the “best” axes, we simply project the data onto <strong>
 <h2>2. Foundation: Orthogonality in High Dimensions<a class="headerlink" href="#foundation-orthogonality-in-high-dimensions" title="Link to this heading">#</a></h2>
 <p><em>Recap from High-Dimensional Geometry:</em></p>
 <p>Why does projecting onto random vectors work? The answer lies in the geometry of high-dimensional spaces.
-As we saw in <strong>Foundations of Data Science (Blum et al.)</strong>, if we generate random vectors from a Gaussian distribution in high dimensions (<span class="math notranslate nohighlight">\(d \to \infty\)</span>), they have a unique property:</p>
+As we saw in <a class="reference internal" href="High-Dimensional-Data-and-The-Curse-of-Dimensionality.html"><span class="std std-doc">The Curse of Dimensionality</span></a> section, if we generate random vectors from a Gaussian distribution in high dimensions (<span class="math notranslate nohighlight">\(d \to \infty\)</span>), they have a unique property:</p>
 <blockquote>
 <div><p><strong>“Random vectors in high dimensions are nearly orthogonal to each other.”</strong></p>
 </div></blockquote>
@@ -611,6 +615,79 @@ As we saw in <strong>Foundations of Data Science (Blum et al.)</strong>, if we g
 <div class="math notranslate nohighlight">
 \[ k \ge \frac{4 \ln(n)}{\epsilon^2 / 2 - \epsilon^3 / 3} \]</div>
 <p>This means we can reduce a 1,000,000-dimensional text dataset to a few hundred dimensions just as easily as a 10,000-dimensional one, provided the number of samples <span class="math notranslate nohighlight">\(n\)</span> is the same.</p>
+<section id="note-random-projection-length-scaling">
+<h3>Note: Random Projection Length Scaling<a class="headerlink" href="#note-random-projection-length-scaling" title="Link to this heading">#</a></h3>
+<p>This experiment shows why the scaling factor <span class="math notranslate nohighlight">\(1/\sqrt{k}\)</span> is necessary in random projection.<br />
+We take a unit vector in a high-dimensional space (<span class="math notranslate nohighlight">\(d\)</span>) and project it into a lower-dimensional space (<span class="math notranslate nohighlight">\(k\)</span>) using a random matrix.</p>
+<ul class="simple">
+<li><p><strong>Without scaling:</strong> the projected vector length concentrates around <span class="math notranslate nohighlight">\(\sqrt{k}\)</span>.</p></li>
+<li><p><strong>With scaling (<span class="math notranslate nohighlight">\(1/\sqrt{k}\)</span>):</strong> the projected vector length concentrates around 1, preserving the expected norm.</p></li>
+</ul>
+<p>The histograms below compare both cases, confirming that scaling ensures distances and lengths remain consistent after projection.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Demonstration: Length of projected vectors (Scaling check)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mi">1000</span>   <span class="c1"># Original dimension</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">100</span>    <span class="c1"># Target dimension</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">5000</span>  <span class="c1"># Number of trials</span>
+
+<span class="c1"># Generate a random unit vector in R^d</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Arrays to store lengths</span>
+<span class="n">lengths_no_scaling</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">lengths_with_scaling</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
+    <span class="c1"># Random projection matrix R of shape (d × k)</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+    
+    <span class="c1"># Project x into k dimensions</span>
+    <span class="n">x_new</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">R</span>
+    
+    <span class="c1"># Length without scaling</span>
+    <span class="n">lengths_no_scaling</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_new</span><span class="p">))</span>
+    
+    <span class="c1"># Length with scaling factor 1/sqrt(k)</span>
+    <span class="n">x_new_scaled</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">))</span> <span class="o">*</span> <span class="n">x_new</span>
+    <span class="n">lengths_with_scaling</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_new_scaled</span><span class="p">))</span>
+
+<span class="c1"># Plot histograms</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">lengths_no_scaling</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Expected √k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Projected lengths without scaling (k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Length&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">lengths_with_scaling</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Expected 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Projected lengths with scaling&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Length&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/dc47c4bd0722e005c7a77c7348f20c9201c593c5a00c50724871ad7b9ec1bfff.png" src="../_images/dc47c4bd0722e005c7a77c7348f20c9201c593c5a00c50724871ad7b9ec1bfff.png" />
+</div>
+</div>
+</section>
 </section>
 <hr class="docutils" />
 <section id="types-of-random-matrices">
@@ -846,7 +923,10 @@ Projected shape: (500, 300)
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-why-random-projection">1. Introduction: Why Random Projection?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#foundation-orthogonality-in-high-dimensions">2. Foundation: Orthogonality in High Dimensions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-theory-johnson-lindenstrauss-lemma">3. The Theory: Johnson-Lindenstrauss Lemma</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-theory-johnson-lindenstrauss-lemma">3. The Theory: Johnson-Lindenstrauss Lemma</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-random-projection-length-scaling">Note: Random Projection Length Scaling</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-random-matrices">4. Types of Random Matrices</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-gaussian-random-projection">A. Gaussian Random Projection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-sparse-random-projection-achlioptas">B. Sparse Random Projection (Achlioptas)</a></li>
