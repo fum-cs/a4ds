@@ -179,3 +179,8 @@ __pycache__
 markdown_output/
 
 MNIST/
+.ipynb_checkpoints/
+_sources/
+_build/
+*.pt
+*.pkl
