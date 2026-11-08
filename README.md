@@ -53,3 +53,7 @@ In notebooks folder:
 - copy *.jpg _build\html\_images\
 - ghp-import -n -p -f ./_build/html
 - jupyter-book build --builder pdflatex ./
+
+
+# increase buf_size = 2000000 of texlive: %PATH%\texlive\2024\texmf-dist\web2c\latexmk\texmf.cnf
+# latexmk -pdf -xelatex -interaction=nonstopmode -file-line-error a4ds.tex
